@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.ChapterQuestionScoreMapper">
+
+    <resultMap type="ChapterQuestionScore" id="ChapterQuestionScoreResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_id"/>
+        <result property="version" column="version"/>
+        <result property="questionScore" column="questionscore"/>
+        <result property="chapterId" column="chapter_id"/>
+        <result property="testPaperQuestion" column="test_paper_questions"/>
+        <result property="stuId" column="stu_id"/>
+    </resultMap>
+
+    <sql id="selectChapterQuestionScoreVo">
+        select  id, create_time, create_by, create_id, update_time, update_by,
+         update_id, version, questionscore, chapter_id, test_paper_questions,stu_id
+        from tk_chapter_questionscore
+    </sql>
+    <select id="selectList" parameterType="ChapterQuestionScore" resultMap="ChapterQuestionScoreResult">
+        <include refid="selectChapterQuestionScoreVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}</if>
+            <if test="createTime != null  and createTime.trim() != '' ">
+                and create_time = #{createTime}</if>
+            <if test="createBy != null ">
+                and create_by = #{createBy}</if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}</if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}</if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}</if>
+            <if test="version != null ">
+                and version = #{version}</if>
+            <if test="questionScore != null  and questionScore.trim() != '' ">
+                and questionscore = #{questionScore}</if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">
+                and chapter_id = #{chapterId}</if>
+            <if test="testPaperQuestion != null  and testPaperQuestion.trim() != '' ">
+                and test_paper_questions = #{testPaperQuestion}</if>
+            <if test="stuId != null  and stuId.trim() != '' ">
+                and stu_id = #{stuId}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="ChapterQuestionScoreResult">
+        <include refid="selectChapterQuestionScoreVo"/>
+
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="ChapterQuestionScore">
+        insert into tk_chapter_questionscore
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+
+            create_time,
+            <if test="createBy != null ">
+                create_by,</if>
+            <if test="createId != null  and createId.trim() != '' ">
+           create_id,</if>
+            <if test="updateTime != null ">
+                update_time, </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                update_by, </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                update_id ,</if>
+            <if test="version != null ">
+                 version,</if>
+            <if test="questionScore != null  and questionScore.trim() != '' ">
+                questionscore,</if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">
+                chapter_id,</if>
+            <if test="testPaperQuestion != null  and testPaperQuestion.trim() != '' ">
+                test_paper_questions ,</if>
+            <if test="stuId != null  and stuId.trim() != '' ">
+                stu_id </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            sysdate(),
+            <if test="createBy != null "> #{createBy},</if>
+            <if test="createId != null  and createId.trim() != '' "> #{createId},</if>
+            <if test="updateTime != null "> #{updateTime},</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">#{updateBy},</if>
+            <if test="updateId != null  and updateId.trim() != '' ">#{updateId},</if>
+            <if test="version != null ">#{version},</if>
+            <if test="questionScore != null  and questionScore.trim() != '' ">#{questionScore},</if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">{chapterId},</if>
+            <if test="testPaperQuestion != null  and testPaperQuestion.trim() != '' "> #{testPaperQuestion},</if>
+            <if test="stuId != null  and stuId.trim() != '' ">#{stuId},</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="ChapterQuestionScore">
+        update tk_chapter_questionscore
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  and createTime.trim() != '' ">
+                create_time = #{createTime},</if>
+            <if test="createBy != null ">
+              create_by = #{createBy},</if>
+            <if test="createId != null  and createId.trim() != '' ">
+                 create_id = #{createId},</if>
+                 update_time = sysdate(),
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                 update_by = #{updateBy},</if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                 update_id = #{updateId},</if>
+            <if test="version != null ">
+                 version = #{version},</if>
+            <if test="questionScore != null  and questionScore.trim() != '' ">
+                questionscore = #{questionScore},</if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">
+                 chapter_id = #{chapterId},</if>
+            <if test="testPaperQuestion != null  and testPaperQuestion.trim() != '' ">
+                 test_paper_questions = #{testPaperQuestion},</if>
+            <if test="stuId != null  and stuId.trim() != '' ">
+                 stu_id = #{stuId},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+</mapper>

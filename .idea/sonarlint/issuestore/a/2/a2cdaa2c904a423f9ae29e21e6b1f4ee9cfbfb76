@@ -1,0 +1,21 @@
+
+a
+java:S11927"FDefine a constant instead of duplicating this literal "order" 4 times.(¤¾¸Àúÿÿÿÿ
+l	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãéş“şÿÿÿÿ
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãæÎğ
+l	java:S117‘"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀŸúÛøÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(¨–ˆùıÿÿÿÿ
+^
+java:S4488&"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Œ³üÇ
+T
+java:S1854f">Remove this useless assignment to local variable "percentage".(Î€È®
+Q
+java:S1854Y"6Remove this useless assignment to local variable "df".(ë„¡•ûÿÿÿÿ
+V	java:S125J"<This block of commented-out lines of code should be removed.(—†òşıÿÿÿÿ
+B
+java:S1481Y"'Remove this unused "df" local variable.(ë„¡•ûÿÿÿÿ
+V	java:S125["<This block of commented-out lines of code should be removed.(å¸ÏÑÿÿÿÿÿ
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ß×Á¦ùÿÿÿÿ
+W	java:S125”"<This block of commented-out lines of code should be removed.(å¸ÏÑÿÿÿÿÿ

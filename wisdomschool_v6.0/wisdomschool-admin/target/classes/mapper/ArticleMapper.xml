@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.square.mapper.ArticleMapper">
+
+    <!-- 添加文章 -->
+    <insert id="addArticle" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_article
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="style != null">style,</if>
+            <if test="color != null">color,</if>
+            <if test="keywords != null">keywords,</if>
+            <if test="description != null">description,</if>
+            <if test="status != null">status,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="style != null">#{style},</if>
+            <if test="color != null">#{color},</if>
+            <if test="keywords != null">#{keywords},</if>
+            <if test="description != null">#{description},</if>
+            <if test="status != null">#{status},</if>
+            sysdate()
+        </trim>
+    </insert>
+    <sql id="selectArticleField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               user_id,
+               title,
+               content,
+               keywords,
+               description,
+               style,
+               color,
+               recommend,
+               status
+        from tb_article
+    </sql>
+    <sql id="selectArticleCountField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               article_id,
+               count_dig,
+               count_bury,
+               count_comment,
+               count_view,
+               weight
+        from tb_article_count
+    </sql>
+    <sql id="selectArticleVotesField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               info_type,
+               info_id,
+               user_id,
+               comment_id,
+               dig,
+               bury
+        from tb_article_votes
+    </sql>
+    <sql id="article">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        user_id,
+        title,
+        content,
+        keywords,
+        description,
+        style,
+        color,
+        recommend,
+        status
+    </sql>
+    <sql id="articleField">
+        a
+        .
+        id,
+        a
+        .
+        create_by,
+        a
+        .
+        create_time,
+        a
+        .
+        update_by,
+        a
+        .
+        update_time,
+        a
+        .
+        remark,
+        a
+        .
+        version,
+        a
+        .
+        user_id,
+        a
+        .
+        title,
+        a
+        .
+        content,
+        a
+        .
+        keywords,
+        a
+        .
+        description,
+        a
+        .
+        style,
+        a
+        .
+        color,
+        a
+        .
+        recommend,
+        a
+        .
+        status
+    </sql>
+    <sql id="articleCategoryMergeField">
+        c
+        .
+        id,
+        c
+        .
+        create_by,
+        c
+        .
+        create_time,
+        c
+        .
+        update_by,
+        c
+        .
+        update_time,
+        c
+        .
+        remark,
+        c
+        .
+        version,
+        c
+        .
+        article_id,
+        c
+        .
+        category_id,
+        c
+        .
+        type_id
+    </sql>
+    <sql id="articleVotesField">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        info_type,
+        info_id,
+        user_id,
+        comment_id,
+        dig,
+        bury
+    </sql>
+
+    <resultMap id="articleCommentResult" type="Comment">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="type_id" property="typeId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="user_id" property="userId"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="count_dig" property="countDig"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="reply_id" property="replyId"/>
+    </resultMap>
+    <resultMap id="articleResult" type="Article">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="user_id" property="userId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="keywords" property="keywords"/>
+        <result column="description" property="description"/>
+        <result column="style" property="style"/>
+        <result column="color" property="color"/>
+        <result column="recommend" property="recommend"/>
+        <result column="status" property="status"/>
+        <result column="type_id" property="typeId"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="tags" property="tags"/>
+        <result column="count_dig" property="countDig"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="count_view" property="countView"/>
+        <result column="weight" property="weight"/>
+        <result column="thumbnail" property="thumbnail"/>
+    </resultMap>
+    <resultMap id="articleCountResult" type="ArticleCount">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="article_id" property="articleId"/>
+        <result column="count_dig" property="countDig"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="count_view" property="countView"/>
+        <result column="weight" property="weight"/>
+    </resultMap>
+    <resultMap id="articleVotesResult" type="ArticleVotes">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="info_type" property="infoType"/>
+        <result column="info_id" property="infoId"/>
+        <result column="user_id" property="userId"/>
+        <result column="dig" property="dig"/>
+        <result column="bury" property="bury"/>
+    </resultMap>
+
+    <!-- 添加文章统计关联数据-->
+    <insert id="addArticleCount">
+        insert into tb_article_count
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null and articleId!=''">article_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null and articleId!=''">#{articleId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 添加文章和分类关联-->
+    <insert id="addArticleAndCategory">
+        insert into tb_article_category_merge
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="articleId != null and articleId!=''">article_id,</if>
+            <if test="categoryId != null and categoryId!=''">category_id,</if>
+            <if test="typeId != null and typeId!=''">type_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="articleId != null and articleId!=''">#{articleId},</if>
+            <if test="categoryId != null and categoryId!=''">#{categoryId},</if>
+            <if test="typeId != null and typeId!=''">#{typeId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 添加文章顶与踩记录-->
+    <insert id="addArticleVotes">
+        insert into tb_article_votes
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null and userId!=''">user_id,</if>
+            <if test="infoType != null and infoType!='' or infoType==0">info_type,</if>
+            <if test="infoId != null and infoId!=''">info_id,</if>
+            <if test="dig != null and dig!=''">dig,</if>
+            <if test="bury != null and bury!=''">bury,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null and userId!=''">#{userId},</if>
+            <if test="infoType != null and infoType!='' or infoType==0">#{infoType},</if>
+            <if test="infoId != null and infoId!=''">#{infoId},</if>
+            <if test="dig != null and dig!=''">#{dig},</if>
+            <if test="bury != null and bury!=''">#{bury},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- -->
+    <update id="updateArticleVotesById">
+        update tb_article_votes
+        <set>
+            <if test="userId != null and userId!=''">user_id = #{userId},</if>
+            <if test="infoType != null and infoType!='' or infoType==0">info_type = #{infoType},</if>
+            <if test="infoId != null and infoId!=''">info_id = #{infoId},</if>
+            <if test="dig != null and dig!=''">dig = #{dig},</if>
+            <if test="bury != null and bury!=''">bury = #{bury},</if>
+            update_time = sysdate()
+        </set>
+        where id=#{id}
+    </update>
+    <!-- Lin__ -->
+
+    <!-- 按id删除文章信息 -->
+    <delete id="deleteArticleById" parameterType="java.lang.Long">
+        delete
+        from tb_article
+        where id = #{id}
+    </delete>
+
+    <!-- 按id删除文章统计关联 -->
+    <delete id="deleteArticleCountById" parameterType="java.lang.Long">
+        delete
+        from tb_article_count
+        where article_id = #{articleId}
+    </delete>
+
+    <!-- 按id删除文章和分类关联 -->
+    <delete id="deleteArticleAndCcategoryById" parameterType="java.lang.Long">
+        delete
+        from tb_article_category_merge
+        where article_id = #{articleId}
+    </delete>
+
+    <!-- 按文章id删除用户顶或者踩记录 -->
+    <delete id="deleteAllArticleVotesById" parameterType="java.lang.Long">
+        delete
+        from tb_article_votes
+        where article_id = #{articleId}
+    </delete>
+
+    <!-- 按信息类型id、文章id、用户id删除用户顶或者踩记录 -->
+    <delete id="deleteArticleVotesById" parameterType="java.lang.Long">
+        delete
+        from tb_article_votes
+        where info_type = #{infoType}
+          and info_id = #{infoId}
+          and user_id = #{userId}
+    </delete>
+
+    <!-- 按id更新文章 -->
+    <update id="update">
+        update tb_article
+        <set>
+            <if test="title != null and title != ''">title=#{title},</if>
+            <if test="content != null and content != ''">content=#{content},</if>
+            <if test="status != null and status != ''">status=#{status},</if>
+            update_time = sysdate()
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 按id更新文章审核状态，status：0正常状态 1删除-->
+    <update id="updateArticleStatusById">
+        update tb_article
+        <set>
+            <if test="status != null and status !='' or status==0">status=#{status},</if>
+            <if test="recommend != null and recommend !='' or recommend==0">recommend=#{recommend},</if>
+            update_time = sysdate()
+        </set>
+        where id=#{id}
+    </update>
+    <!-- 按id更新文章分类 -->
+    <update id="editArticleAndCcategoryById">
+        update tb_article_category_merge
+        <set>
+            <if test="categoryId != null and categoryId != ''">category_id=#{categoryId},</if>
+            <if test="typeId != null and typeId != ''">type_id=#{typeId},</if>
+            update_time = sysdate()
+        </set>
+        where article_id=#{articleId}
+    </update>
+
+    <!-- 更新文章被评论的数量 -->
+    <update id="updateArticleCommentCount">
+        update tb_article_count
+        set count_comment=(select count(*) from tb_comment where type_id = #{articleId} and type = 1)
+        where article_id = #{articleId}
+    </update>
+
+    <!-- 更新文章被顶的数量 -->
+    <update id="updateArticleDiggCount">
+        update tb_article_count
+        set count_dig=(select count(*)
+                       from tb_article_votes
+                       where info_type = 0 and info_id = #{articleId} and dig = 1)
+        where article_id = #{articleId}
+    </update>
+
+    <!-- 更新文章被踩的数量 -->
+    <update id="updateArticleBurysCount">
+        update tb_article_count
+        set count_bury=(select count(*)
+                        from tb_article_votes
+                        where info_type = 0 and info_id = #{articleId} and burys = 1)
+        where article_id = #{articleId}
+    </update>
+
+    <!-- 更新文章评论被顶的数量 -->
+    <update id="updateArticleCommentDiggCount">
+        update tb_comment
+        set count_dig=(select count(*) from tb_article_votes where info_type = 1 and info_id = #{id} and dig = 1)
+        where id = #{id}
+    </update>
+
+    <!-- 更新文章评论被踩的数量 -->
+    <update id="updateArticleCommentBurysCount">
+        update tb_comment
+        set count_bury=(select count(*) from tb_article_votes where info_type = 1 and info_id = #{id} and burys = 1)
+        where id = #{id}
+    </update>
+
+    <!-- 更新文章权重 -->
+    <update id="updateArticleWeight">
+        update tb_article_count
+        set weight=#{weight}
+        where article_id = #{articleId}
+    </update>
+
+    <!-- 按id更新文章浏览数量统计 -->
+    <update id="updateArticleViewCount">
+        update tb_article_count
+        set count_view=count_view + 1
+        where article_id = #{articleId}
+    </update>
+
+    <!-- 按id查询文章信息 -->
+    <select id="selectById" resultMap="articleResult">
+        select
+        <include refid="article"/>
+        from tb_article
+        where id=#{id}
+    </select>
+
+    <!-- 按id查询文章统计信息 -->
+    <select id="findArticleCountById" resultMap="articleCountResult">
+        <include refid="selectArticleCountField"/>
+        where article_id=#{articleId}
+    </select>
+
+    <!--  按实体查询文章 -->
+    <select id="selectList" resultMap="articleResult" parameterType="Article">
+        select
+        <include refid="article"/>
+        from tb_article
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="userId != null  and userId.trim() != '' ">and user_id = #{userId}</if>
+            <if test="title != null  and title.trim() != '' ">and title = #{title}</if>
+            <if test="content != null  and content.trim() != '' ">and content like concat('%', #{content}, '%')</if>
+            <if test="description != null  and description.trim() != '' ">and description like concat('%', #{description}, '%')</if>
+            <if test="keywords != null  and keywords.trim() != '' ">and keywords like concat('%', #{keywords}, '%')</if>
+            <if test="status != null  and status.trim() != '' ">and status = #{status}</if>
+            <if test="typeId != null  and typeId.trim() != '' ">and typeId = #{typeId}</if>
+            <if test="categoryId != null  and categoryId.trim() != '' ">and category_id = #{categoryId}</if>
+            <if test="tags != null  and tags.trim() != '' ">and tags = #{tags}</if>
+        </where>
+    </select>
+
+    <!-- 查询文章标题是否存在 -->
+    <select id="checkArticleByTitle" resultType="Integer">
+        select count(1) from tb_article
+        <where>
+            <if test="title!=null and title!=''">and title= #{title}</if>
+            <if test="userId != null and userId !=''">and user_id = #{userId}</if>
+            <if test="id != null and id !=''">and id != #{id}</if>
+        </where>
+    </select>
+
+
+    <!-- 按信息类型id、信息id、用户id查询用户顶或者踩记录是否发布过同样内容 -->
+    <select id="checkArticleVotes" resultType="Integer">
+        select count(1)
+        from tb_article_votes
+        where info_type = #{infoType}
+          and info_id = #{infoId}
+          and user_id = #{userId}
+    </select>
+
+    <!-- 文章总数 -->
+    <select id="getArticleCount" resultType="Integer">
+        select count(1) from tb_article a inner join tb_article_category_merge c on a.id=c.article_id
+        <where>
+            <if test="title!=null and title!='' ">and a.title LIKE CONCAT(CONCAT('%', #{title}),'%')</if>
+            <if test="userId != null and userId !=''">and a.user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and a.create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+        </where>
+    </select>
+
+    <!-- 文章列表 -->
+    <select id="getArticleList" resultMap="articleResult">
+        select
+        <include refid="articleField"/>
+        ,
+        <include refid="articleCategoryMergeField"/>
+        from tb_article a inner join tb_article_category_merge c on a.id=c.article_id
+        <where>
+            <if test="title!=null and title!='' ">and a.title LIKE CONCAT(CONCAT('%', #{title}),'%')</if>
+            <if test="userId != null and userId !=''">and a.user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and a.create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+            <if test="status == 0">and a.status &gt;= 0</if>
+            <if test="status == 1">and a.status = 0</if>
+            <if test="status == 2">and a.status = 1</if>
+            <if test="status == 3">and a.status = 2</if>
+            <if test="status == 4">and a.status = 3</if>
+        </where>
+        order by
+        <if test="orderby != null">a.${orderby}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <!-- 文章索引总数 -->
+    <select id="getArticleIndexCount" resultType="Integer">
+        select count(1)
+        from tb_article
+    </select>
+
+    <!-- 文章索引列表 -->
+    <select id="getArticleIndexList" resultMap="articleResult">
+        <include refid="selectArticleField"/>
+        limit #{offset},#{rows}
+    </select>
+
+
+
+    <!-- 查询用户是否已添加顶或踩记录 -->
+    <select id="findArticleVotes" resultMap="articleVotesResult">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               info_type,
+               info_id,
+               user_id,
+               comment_id,
+               dig,
+               bury
+        from tb_article_votes
+        where info_id = #{infoId}
+          and user_id = #{userId}
+    </select>
+
+    <!-- Lin__ 条件查询点赞数  -->
+    <select id="selectDigCount" resultType="Integer">
+        select count(*)
+                       from tb_article_votes
+                       where info_type = #{infoType} and info_id = #{infoId} and dig = 1
+    </select>
+</mapper>

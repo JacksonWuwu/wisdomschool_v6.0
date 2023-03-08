@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.ClbumMapper">
+
+    <resultMap type="Clbum" id="ClbumResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="name"/>
+        <result property="mid" column="mid"/>
+        <result property="tid" column="tid"/>
+        <result property="tcid" column="tcid"/>
+        <result property="school_id" column="schoolId"/>
+    </resultMap>
+
+    <sql id="selectClbumVo">
+        select c.id,
+               c.create_by,
+               c.create_time,
+               c.update_by,
+               c.update_time,
+               c.remark,
+               c.version,
+               c.`name`,
+               c.mid,
+               c.tid,
+               c.tcid,
+               c.school_id
+        from tb_clbum c
+    </sql>
+
+    <select id="selectList" parameterType="Clbum" resultMap="ClbumResult">
+        <include refid="selectClbumVo"/>
+        <where>
+            <if test="id != null ">and c.id = #{id}</if>
+            <if test="createBy != null ">and c.create_by = #{createBy}</if>
+            <if test="createTime != null ">and c.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and c.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and c.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and c.remark = #{remark}</if>
+            <if test="version != null ">and c.version = #{version}</if>
+            <if test="name != null  and name.trim() != '' ">and c.name = #{name}</if>
+            <if test="mid != null and mid != '' ">and c.mid = #{mid}</if>
+            <if test="tid != null and tid != '' ">and c.tid = #{tid}</if>
+            <if test="tcid != null and tcid != '' ">and c.tcid = #{tcid}</if>
+            <if test="schoolId != null and schoolId != '' ">and c.school_id = #{schoolId}</if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="ClbumResult">
+        <include refid="selectClbumVo"/>
+        where c.id = #{id}
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from tb_clbum
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="mid != null and mid != ''">
+                AND mid = #{mid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert"
+            parameterType="Clbum">
+        insert into tb_clbum
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            <if test="name != null  and name != ''  ">name,</if>
+            <if test="mid != null and mid != '' ">mid,</if>
+            <if test="tid != null and tid != '' ">tid,</if>
+            <if test="tcid != null and tcid != '' ">tcid,</if>
+            <if test="schoolId != null and schoolId != '' ">school_id,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            <if test="name != null  and name != ''  ">#{name},</if>
+            <if test="mid != null and mid != '' ">#{mid},</if>
+            <if test="tid != null and tid != '' ">#{tid},</if>
+            <if test="tcid != null and tcid != '' ">#{tcid},</if>
+            <if test="schoolId != null and schoolId != '' ">#{schoolId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Clbum">
+        update tb_clbum
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="version != null  ">version = #{version},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="mid != null and mid != ''  ">mid = #{mid},</if>
+            <if test="tid != null and tid != ''  ">tid = #{tid},</if>
+            <if test="tcid != null and tcid != ''  ">tcid = #{tcid},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_clbum
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_clbum where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="selectBytid" parameterType="String" resultMap="ClbumResult">
+        SELECT c.*
+        FROM tb_clbum c,tb_clbum_course cc
+        WHERE cc.cid=c.id AND cc.tid=#{tid}
+    </select>
+
+    <select id="selectBytcid" parameterType="String" resultMap="ClbumResult">
+        SELECT c.*
+        FROM tb_clbum c,tb_clbum_course cc
+        WHERE cc.cid=c.id AND cc.tcid=#{tcid}
+    </select>
+
+
+</mapper>

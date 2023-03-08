@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.SdsadminMapper">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="Sdsadmin">
+        <id column="id" property="id"/>
+        <result column="createBy" property="createBy"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateBy" property="updateBy"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="grades" property="grades"/>
+        <result column="department" property="department"/>
+        <result column="rid" property="rid"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        s
+        .
+        id,
+        s
+        .
+        createBy,
+        s
+        .
+        createTime,
+        s
+        .
+        updateBy,
+        s
+        .
+        updateTime,
+        s
+        .
+        remark,
+        s
+        .
+       grades,
+         s
+        .
+       department,
+        s
+        .
+       rid
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO wy_sdsadmin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">createBy,</if>
+            <if test="updateBy != null">updateBy,</if>
+            <if test="updateTime != null">updateTime,</if>
+            <if test="remark != null">remark,</if>
+            <if test="grades != null">grades,</if>
+            <if test="rid != null">rid,</if>
+            <if test="department != null">department,</if>
+            createTime
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="grades != null">#{grades},</if>
+            <if test="rid != null">#{rid},</if>
+            <if test="department != null">#{department},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+        <!--auto generated Code-->
+        <update id="update">
+            UPDATE wy_sdsadmin
+            <set>
+                <if test="createBy != null">createBy=#{createBy},</if>
+                <if test="updateBy != null">updateBy=#{updateBy},</if>
+                <if test="updateTime != null">updateTime=#{updateTime},</if>
+                <if test="remark != null">remark=#{remark},</if>
+                <if test="grades != null">grades=#{grades},</if>
+                <if test="rid != null">rid=#{rid},</if>
+                <if test="department != null">department=#{department},</if>
+                updateTime = sysdate()
+            </set>
+            WHERE id = #{id}
+        </update>
+
+    <!--auto generated Code-->
+    <select id="selectList" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin s
+        <where>
+            <if test="id != null">AND s.id = #{id}</if>
+            <if test="createBy != null">AND s.createBy = #{createBy}</if>
+            <if test="createTime != null">AND s.createTime = #{createTime}</if>
+            <if test="updateBy != null">AND s.updateBy = #{updateBy}</if>
+            <if test="updateTime != null">AND s.updateTime = #{updateTime}</if>
+            <if test="remark != null">AND s.remark = #{remark}</if>
+            <if test="grades != null">AND s.grades = #{grades}</if>
+            <if test="rid != null">AND s.rid = #{rid}</if>
+            <if test="department != null">AND s.department = #{department}</if>
+        </where>
+    </select>
+
+    <select id="selectBatchIds" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin s
+        WHERE s.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectById" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin s
+        WHERE s.id = #{id}
+    </select>
+
+
+    <!--auto generated Code-->
+    <delete id="deleteById">
+        DELETE
+        FROM wy_sdsadmin
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        DELETE
+        FROM wy_sdsadmin WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

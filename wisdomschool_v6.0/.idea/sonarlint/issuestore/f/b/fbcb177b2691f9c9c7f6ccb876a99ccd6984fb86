@@ -1,0 +1,132 @@
+
+p
+java:S2293Ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(÷ß™¤
+p
+java:S2293Ò"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö»«¤
+p
+java:S2293‰"YReplace the type specification in this constructor call with the diamond operator ("<>").(úË
+p
+java:S2293ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö»«¤
+p
+java:S2293´"YReplace the type specification in this constructor call with the diamond operator ("<>").(÷ß™¤
+p
+java:S2293º"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö»«¤
+u
+java:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293ß"YReplace the type specification in this constructor call with the diamond operator ("<>").(†€¬
+p
+java:S2293î"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293÷"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293š"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293£"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293¤"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+u
+java:S1192‹"YDefine a constant instead of duplicating this literal "ã€(å¾—åˆ†ï¼š_______)ï¼ˆ" 4 times.(ÑÔ½’ıÿÿÿÿ
+c
+java:S1192Ç"GDefine a constant instead of duplicating this literal "000000" 9 times.(î‹ÎÛøÿÿÿÿ
+n
+java:S1192‹"RDefine a constant instead of duplicating this literal "\rå­¦ç”Ÿç­”æ¡ˆï¼š" 3 times.(ÑÔ½’ıÿÿÿÿ
+Q
+java:S1141Ñ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+Q
+java:S1141Û"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+g	java:S117«"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†ù“‘
+3
+java:S1643œ"Use a StringBuilder instead.(ıâœü
+S
+java:S4973ª"<Strings and Boxed types should be compared using "equals()".(ûı„‡
+]
+java:S2184í"FCast one of the operands of this multiplication operation to a "long".(°ùà‘
+f
+java:S2095Í"JUse try-with-resources or close this "XWPFDocument" in a "finally" clause.(Ç¥è±ûÿÿÿÿ
+U
+java:S2387>":"adminService" is the name of a field in "BaseController".(¡¾Ñÿÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(şÓĞG
+W
+java:S1854Ò"@Remove this useless assignment to local variable "userTestList".(Ö»«¤
+U
+java:S1155Ô">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+W	java:S125ì"<This block of commented-out lines of code should be removed.(Í’‹÷øÿÿÿÿ
+n
+java:S3776…"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(¥”ñşÿÿÿÿ
+e
+java:S1854ó"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+W
+java:S1854"@Remove this useless assignment to local variable "userTestList".(Ö»«¤
+R	java:S125–"<This block of commented-out lines of code should be removed.(ÓÁÈ
+5
+java:S2129Ï"Remove this "Long" constructor(ò¬şÍ
+5
+java:S2129Ù"Remove this "Long" constructor(àêµå
+U
+java:S1155‘">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+W
+java:S1854º"@Remove this useless assignment to local variable "userTestList".(Ö»«¤
+U
+java:S1155¼">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+i
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 82 to the 15 allowed.(Š›ß
+W
+java:S1854Æ"@Remove this useless assignment to local variable "userTestList".(şáæ”
+i
+java:S1854ß"RRemove this useless assignment to local variable "coursepaperCoursequestionsList".(†€¬
+b
+java:S1854ã"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854ì"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854ø"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+e
+java:S1854"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+b
+java:S1854"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854˜"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854¤"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+V
+java:S1854¶":Remove this useless assignment to local variable "image1".(÷ã‹—ûÿÿÿÿ
+S
+java:S1854Ç"7Remove this useless assignment to local variable "sdf".(çò™úÿÿÿÿ
+Q
+java:S1854È"5Remove this useless assignment to local variable "s".(úïÃñşÿÿÿÿ
+W	java:S125³"<This block of commented-out lines of code should be removed.(°‘€İùÿÿÿÿ
+H
+java:S1481Å"1Remove this unused "userTestList" local variable.(ĞÚú
+Z
+java:S1155ÿ">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+Z
+java:S1155«">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+R	java:S125¾"<This block of commented-out lines of code should be removed.(ÖÏ¢©
+Q	java:S125å"<This block of commented-out lines of code should be removed.(œÍe
+?	java:S108„")Either remove or fill this block of code.(ÅÏ™È
+W	java:S125Œ"<This block of commented-out lines of code should be removed.(¤„šúÿÿÿÿ
+?	java:S108™")Either remove or fill this block of code.(ÅÏ™È
+G
+java:S1481¶"+Remove this unused "image1" local variable.(÷ã‹—ûÿÿÿÿ
+D
+java:S1481Ç"(Remove this unused "sdf" local variable.(çò™úÿÿÿÿ
+B
+java:S1481È"&Remove this unused "s" local variable.(úïÃñşÿÿÿÿ
+R	java:S125É"<This block of commented-out lines of code should be removed.(üùµ
+B
+java:S1075Ë"&Remove this hard-coded path-delimiter.(ºúºÀÿÿÿÿÿ
+R	java:S125Ì"<This block of commented-out lines of code should be removed.(³÷¿Ù
+N
+java:S1135Ò"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿ
+f
+java:S1128
+"KRemove this unused import 'cn.wstom.exam.mapper.StuOptionExamanswerMapper'.(•ä”Ãşÿÿÿÿ
+g
+java:S1128"LRemove this unused import 'cn.wstom.exam.mapper.TestpaperOptinanswerMapper'.(Äóßïıÿÿÿÿ

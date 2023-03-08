@@ -1,0 +1,28 @@
+
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ò”ƒæûÿÿÿÿ
+J
+java:S3740A"/Provide the parametrized type for this generic.(Ä¤Èıÿÿÿÿ
+J
+java:S3740d"/Provide the parametrized type for this generic.(Ä¤Èıÿÿÿÿ
+F
+java:S3740š"/Provide the parametrized type for this generic.(„úÏÑ
+K
+java:S3740"/Provide the parametrized type for this generic.(¼ö×‚ûÿÿÿÿ
+V	java:S125;"<This block of commented-out lines of code should be removed.(Òøœ°ùÿÿÿÿ
+Q	java:S125E"<This block of commented-out lines of code should be removed.( ë×±
+Q	java:S125H"<This block of commented-out lines of code should be removed.(ÑÈæ
+P
+java:S1854_":Remove this useless assignment to local variable "clbums".(ÎÌ¥¬
+A
+java:S1481_"+Remove this unused "clbums" local variable.(ÎÌ¥¬
+Q	java:S125e"<This block of commented-out lines of code should be removed.(ì—¯
+P	java:S125h"<This block of commented-out lines of code should be removed.(àÕ–7
+V	java:S125j"<This block of commented-out lines of code should be removed.(Ë¯áÂÿÿÿÿÿ
+W	java:S125É"<This block of commented-out lines of code should be removed.(¶Ö…Çùÿÿÿÿ
+W	java:S125Ø"<This block of commented-out lines of code should be removed.(·Şóœùÿÿÿÿ
+n
+java:S3776Š"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(ï‘ááıÿÿÿÿ
+=
+java:S1068"'Remove this unused "log" private field.(ëÕáï
+E
+java:S1144z"*Remove this unused private "trans" method.(ìÁ“şÿÿÿÿ

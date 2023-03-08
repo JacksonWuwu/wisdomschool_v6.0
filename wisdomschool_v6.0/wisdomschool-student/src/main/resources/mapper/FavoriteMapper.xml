@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.FavoriteMapper">
+
+    <resultMap type="Favorite" id="FavoriteResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="userId" column="user_id"/>
+        <result property="infoType" column="info_type"/>
+        <result property="infoId" column="info_id"/>
+    </resultMap>
+
+    <sql id="selectFavorite">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               user_id,
+               info_type,
+               info_id
+        from tb_favorite
+    </sql>
+
+    <!-- 添加收藏信息 -->
+    <insert id="addFavorite">
+        insert into tb_favorite
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null and userId != ''">user_id,</if>
+            <if test="infoType != null and infoType != ''">info_type,</if>
+            <if test="infoId != null and infoId != ''">info_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null and userId != ''">#{userId},</if>
+            <if test="infoType != null and infoType != ''">#{infoType},</if>
+            <if test="infoId != null and infoId != ''">#{infoId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 按id删除收藏信息 -->
+    <delete id="deleteFavoriteById" parameterType="String">
+        delete
+        from tb_favorite
+        where user_id = #{userId}
+          and info_type = #{infoType}
+          and info_id = #{infoId}
+    </delete>
+
+    <!-- 按id查询收藏信息 -->
+    <select id="findFavoriteById" resultMap="FavoriteResult">
+        <include refid="selectFavorite"/>
+        where id=#{id}
+    </select>
+
+    <!-- 查询收藏信息是否存在 -->
+    <select id="checkFavoriteByUser" resultType="Integer">
+        select count(*)
+        from tb_favorite
+        where user_id = #{userId}
+          and info_type = #{infoType}
+          and info_id = #{infoId}
+    </select>
+
+    <!-- 查询用户组总数 -->
+    <select id="getFavoriteCount" resultType="Integer">
+        select count(*) from tb_favorite
+        <where>
+            <if test="userId != null">and user_id = #{userId}</if>
+            <if test="infoType != null">and info_type = #{infoType}</if>
+            <if test="createTime != null">and to_days(create_time)=to_days(#{createTime}</if>
+        </where>
+    </select>
+
+    <!-- 查询收藏列表 -->
+    <select id="getFavoriteList" resultMap="FavoriteResult">
+        <include refid="selectFavorite"/>
+        <where>
+            <if test="userId != null">and user_id = #{userId}</if>
+            <if test="infoType != null">and info_type = #{infoType}</if>
+            <if test="createTime != null">and to_days(create_time)=to_days(#{createTime}</if>
+        </where>
+        order by
+        <if test="orderby != null">${orderby}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+</mapper>

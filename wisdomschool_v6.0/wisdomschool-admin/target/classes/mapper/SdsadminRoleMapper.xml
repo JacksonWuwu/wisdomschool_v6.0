@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.SdsadminRoleMapper">
+
+    <resultMap id="AllColumnMap" type="SdsadminRole">
+        <result column="grades" property="grades"/>
+        <result column="rid" property="rid"/>
+        <result column="sid" property="sid"/>
+        <result column="department" property="department"/>
+    </resultMap>
+    <sql id="all_column">
+        sid,
+        rid,
+        grades,
+        department
+    </sql>
+
+    <select id="selectList" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin_role
+        <where>
+            <if test="grades != null">AND grades = #{grades}</if>
+            <if test="rid != null">AND rid = #{rid}</if>
+            <if test="sid != null">AND sid = #{sid}</if>
+            <if test="department != null">AND department = #{department}</if>
+        </where>
+    </select>
+    <!--auto generated Code-->
+    <insert id="insert" parameterType="SdsadminRole">
+        INSERT INTO wy_sdsadmin_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sid != null">sid,</if>
+            <if test="grades != null">grades,</if>
+            <if test="rid != null">rid,</if>
+            <if test="department != null">department</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sid != null">#{sid},</if>
+            <if test="grades != null">#{grades},</if>
+            <if test="rid != null">#{rid},</if>
+            <if test="department != null">#{department}</if>
+
+        </trim>
+    </insert>
+
+    <select id="selectById" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin_role s
+        WHERE s.sid = #{sid}
+    </select>
+
+    <select id="selectBySid" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM wy_sdsadmin_role s
+        WHERE s.sid = #{sid}
+    </select>
+    <update id="update">
+        UPDATE wy_sdsadmin_role
+        <set>
+            <if test="grades != null">grades=#{grades},</if>
+            <if test="department != null">department=#{department},</if>
+        </set>
+        WHERE sid = #{sid}
+    </update>
+
+    <delete id="deleteById">
+        DELETE
+        FROM wy_sdsadmin_role
+        WHERE sid = #{sid}
+    </delete>
+
+    <delete id="deleteBySid">
+        DELETE
+        FROM wy_sdsadmin_role
+        WHERE sid = #{sid}
+    </delete>
+    <delete id="deleteBatchIds" parameterType="String">
+        DELETE
+        FROM wy_sdsadmin_role WHERE sid in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{sid}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,14 @@
+
+t
+java:S22932"YReplace the type specification in this constructor call with the diamond operator ("<>").(“²½ıùÿÿÿÿ
+v
+java:S1488‡"`Immediately return this expression instead of assigning it to the temporary variable "username".(ÁÍŸL
+q
+java:S1488¥"ZImmediately return this expression instead of assigning it to the temporary variable "id".(€æ¡Ä
+u
+java:S1488Ì"^Immediately return this expression instead of assigning it to the temporary variable "before".(é§÷Ú
+u
+java:S1488Õ"^Immediately return this expression instead of assigning it to the temporary variable "before".(é§÷Ú
+f	java:S116"RRename this field "SUBJECT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı»Â5
+n	java:S116""TRename this field "APPSECRET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½Œƒºÿÿÿÿÿ
+k	java:S116&"QRename this field "EXPIRE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡”ıÿÿÿÿ

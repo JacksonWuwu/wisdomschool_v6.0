@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.RecourseMapper">
+
+    <resultMap type="Recourse" id="RecourseResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="name"/>
+        <result property="tcId" column="tc_id"/>
+        <result property="attrId" column="attr_id"/>
+        <result property="count" column="count"/>
+        <result property="fileName" column="file_name"/>
+        <result property="recourseType" column="recourse_type"/>
+        <result property="ext" column="ext"/>
+        <association property="category" resultMap="RecourseTypeResult" javaType="RecourseType"/>
+    </resultMap>
+    <resultMap type="RecourseType" id="RecourseTypeResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="categoryName"/>
+        <result property="tcId" column="tc_id"/>
+        <result property="order" column="order"/>
+    </resultMap>
+    <sql id="selectRecourseAndTypeVo">
+        select r.id,
+               r.create_by,
+               r.create_time,
+               r.update_by,
+               r.update_time,
+               r.remark,
+               r.version,
+               r.name,
+               r.tc_id,
+               r.attr_id,
+               r.count,
+               r.recourse_type,
+               r.file_name,
+               r.ext,
+               r.category,
+               t.id,
+               t.create_by,
+               t.create_time,
+               t.update_by,
+               t.update_time,
+               t.remark,
+               t.version,
+               t.name categoryName,
+               t.tc_id,
+               t.`order`
+        from tb_recourse r,
+             tb_recourse_type t
+    </sql>
+
+    <select id="getResources" parameterType="Recourse" resultMap="RecourseResult">
+SELECT a.id,a.name,a.ext,a.tc_id,a.create_time,a.attr_id FROM tb_recourse a,tb_clbum b,tb_clbum_course c,tb_student d where b.id=c.cid and d.cid=b.id and d.id=#{studentId} and a.tc_id=c.tcid  ORDER BY create_time desc  LIMIT 10    </select>
+    <select id="getResourcePpt" parameterType="Recourse" resultMap="RecourseResult">
+SELECT a.id,a.name,a.ext,a.tc_id,a.create_time,a.attr_id FROM tb_recourse a,tb_clbum b,tb_clbum_course c,tb_student d where b.id=c.cid and d.cid=b.id and d.id=#{studentId} and a.tc_id=c.tcid and (ext='ppt' or ext='pptx') ORDER BY create_time desc  LIMIT 10    </select>
+    <select id="getResourceVideo" parameterType="Recourse" resultMap="RecourseResult">
+    SELECT a.id,a.name,a.ext,a.tc_id,a.create_time,a.attr_id FROM tb_recourse a,tb_clbum b,tb_clbum_course c,tb_student d where b.id=c.cid and d.cid=b.id and d.id=#{studentId} and a.tc_id=c.tcid and ext='mp4' ORDER BY create_time desc  LIMIT 10
+
+    </select>
+    <select id="selectList" parameterType="Recourse" resultMap="RecourseResult">
+        <include refid="selectRecourseAndTypeVo"/>
+        <where>
+            and r.category = t.id
+            <if test="id != null ">
+                and r.id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and r.create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and r.create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and r.update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and r.update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and r.remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and r.version = #{version}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and r.name like concat('%', #{name}, '%')
+            </if>
+            <if test="tcId != null ">
+                and r.tc_id = #{tcId}
+            </if>
+            <if test="attrId != null  and attrId.trim() != '' ">
+                and r.attr_id = #{attrId}
+            </if>
+            <if test="count != null ">
+                and r.count = #{count}
+            </if>
+            <if test="fileName != null and fileName.trim() != '' ">
+                and r.file_name = #{fileName}
+            </if>
+            <if test="recourseType != null ">
+                and r.recourse_type = #{recourseType}
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                and r.ext = #{ext}
+            </if>
+            <if test="category != null and category.id != null ">
+                and r.category = #{category.id}
+            </if>
+        </where>
+        ORDER BY r.create_time desc
+    </select>
+
+
+    <select id="selectBatchIds" resultMap="RecourseResult">
+        <include refid="selectRecourseAndTypeVo"/>
+        WHERE r.category = t.id and r.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <select id="selectOne" parameterType="Recourse" resultMap="RecourseResult">
+        <include refid="selectRecourseAndTypeVo"/>
+        <where>
+            and r.category = t.id
+            <if test="id != null ">
+                and r.id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and t.create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and t.create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and t.update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and t.update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and t.remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and t.version = #{version}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and t.name = #{name}
+            </if>
+            <if test="tcId != null ">
+                and t.tc_id = #{tcId}
+            </if>
+            <if test="attrId != null  and attrId.trim() != '' ">
+                and t.attr_id = #{attrId}
+            </if>
+            <if test="count != null ">
+                and t.count = #{count}
+            </if>
+            <if test="fileName != null and fileName.trim() != '' ">
+                and t.file_name = #{fileName}
+            </if>
+            <if test="recourseType != null ">
+                and t.recourse_type = #{recourseType}
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                and t.ext = #{ext}
+            </if>
+            <if test="category != null and category.id != null ">
+                and r.category = #{category.id}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectById" parameterType="string" resultMap="RecourseResult">
+        <include refid="selectRecourseAndTypeVo"/>
+        where r.category = t.id and r.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Recourse">
+        insert into tb_recourse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">name
+                ,
+            </if>
+            <if test="tcId != null  ">tc_id
+                ,
+            </if>
+            <if test="attrId != null  and attrId != ''  ">attr_id
+                ,
+            </if>
+            <if test="count != null  ">count
+                ,
+            </if>
+            <if test="recourseType != null  ">recourse_type
+                ,
+            </if>
+            <if test="fileName != null  ">file_name
+                ,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                ext,
+            </if>
+            <if test="category != null and category.id != null ">
+                category,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">#{name}
+                ,
+            </if>
+            <if test="tcId != null  ">#{tcId}
+                ,
+            </if>
+            <if test="attrId != null  and attrId != ''  ">#{attrId}
+                ,
+            </if>
+            <if test="count != null  ">#{count}
+                ,
+            </if>
+            <if test="recourseType != null  ">#{recourseType}
+                ,
+            </if>
+            <if test="fileName != null  ">#{fileName}
+                ,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                #{ext},
+            </if>
+            <if test="category != null and category.id != null ">
+                #{category.id},
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <insert id="addreturn" parameterType="Recourse" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_recourse
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">name
+                ,
+            </if>
+            <if test="tcId != null  ">tc_id
+                ,
+            </if>
+            <if test="attrId != null  and attrId != ''  ">attr_id
+                ,
+            </if>
+            <if test="count != null  ">count
+                ,
+            </if>
+            <if test="recourseType != null  ">recourse_type
+                ,
+            </if>
+            <if test="fileName != null  ">file_name
+                ,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                ext,
+            </if>
+            <if test="category != null and category.id != null ">
+                category,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">#{name}
+                ,
+            </if>
+            <if test="tcId != null  ">#{tcId}
+                ,
+            </if>
+            <if test="attrId != null  and attrId != ''  ">#{attrId}
+                ,
+            </if>
+            <if test="count != null  ">#{count}
+                ,
+            </if>
+            <if test="recourseType != null  ">#{recourseType}
+                ,
+            </if>
+            <if test="fileName != null  ">#{fileName}
+                ,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                #{ext},
+            </if>
+            <if test="category != null and category.id != null ">
+                #{category.id},
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Recourse">
+        update tb_recourse
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                = #{remark},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="name != null  and name != ''  ">name
+                = #{name},
+            </if>
+            <if test="tcId != null  ">tc_id
+                = #{tcId},
+            </if>
+            <if test="attrId != null  and attrId != ''  ">attr_id
+                = #{attrId},
+            </if>
+            <if test="count != null  ">count
+                = #{count},
+            </if>
+            <if test="recourseType != null  ">recourse_type
+                = #{recourseType},
+            </if>
+            <if test="fileName != null  ">file_name
+                = #{fileName},
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                ext = #{ext},
+            </if>
+            <if test="category != null and category.id != null ">
+                r.category = #{category.id},
+            </if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_recourse
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_recourse where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByRecourse" parameterType="Recourse" resultType="String">
+        select id from tb_recourse
+        <where>
+            <if test="name != null ">
+                and name = #{name}
+            </if>
+            <if test="tcId != null ">
+                and tc_id = #{tcId}
+            </if>
+            <if test="attrId != null ">
+                and attr_id = #{attrId}
+            </if>
+            <if test="ext != null ">
+                and ext = #{ext}
+            </if>
+            <if test="fileName != null ">
+                and file_name = #{fileName}
+            </if>
+        </where>
+    </select>
+    <select id="selectByTcid" resultType="Recourse">
+        <include refid="selectRecourseAndTypeVo"/>
+
+        where r.category = t.id and r.tc_id = #{tcid}
+
+        ORDER BY r.create_time desc
+    </select>
+</mapper>

@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.SysUserMapper">
+
+    <resultMap type="SysUser" id="SysUserResult">
+        <id property="id" column="id"/>
+        <result property="loginName" column="login_name"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="sex" column="sex"/>
+        <result property="avatar" column="avatar"/>
+        <result property="salt" column="salt"/>
+        <result property="status" column="status"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="loginIp" column="login_ip"/>
+        <result property="loginDate" column="login_date"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="userType" column="user_type"/>
+        <result property="userAttrId" column="user_attr_id"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="idCardNum" column="id_card_num"/>
+        <result property="nativePlace" column="native_place"/>
+        <result property="political" column="political"/>
+        <result property="homeAddress" column="home_address"/>
+        <result property="formerName" column="former_name"/>
+        <result property="age" column="age"/>
+        <result property="accountType" column="account_type"/>
+        <result property="accountAddress" column="account_address"/>
+        <result property="mobilePhone" column="mobile_phone"/>
+        <result property="attachmentAddr" column="attachment_addr"/>
+        <result property="attachmentName" column="attachment_name"/>
+        <result property="nation" column="nation"/>
+        <result property="version" column="version"/>
+        <result property="remark" column="remark"/>
+        <result property="signature" column="signature"/>
+        <result property="userAttrId" column="user_attr_id"/>
+        <result property="answer" column="answer"/>
+        <result property="topic" column="topic"/>
+        <result property="question" column="question"/>
+        <result property="questionFollow" column="question_follow"/>
+        <result property="share" column="share"/>
+        <result property="comment" column="comment"/>
+        <result property="schoolId" column="school_id"/>
+        <collection property="roles" javaType="java.util.List"
+                    resultMap="RoleResult"/>
+    </resultMap>
+
+    <resultMap type="StatisSysUser" id="StatisSysUserResult">
+<!--        <id property="id" column="id"/>-->
+        <result property="id" column="id"/>
+        <result property="loginName" column="login_name"/>
+        <result property="userName" column="user_name"/>
+        <result property="userType" column="user_type"/>
+        <result property="userAttrId" column="user_attr_id"/>
+        <result property="tcid" column="tcid"/>
+        <collection property="roles" javaType="java.util.List"
+                    resultMap="RoleResult"/>
+    </resultMap>
+
+    <resultMap id="RoleResult" type="SysRole">
+        <id property="id" column="rid"/>
+        <result property="roleName" column="role_name"/>
+        <result property="roleKey" column="role_key"/>
+        <result property="roleSort" column="role_sort"/>
+        <result property="dataScope" column="data_scope"/>
+        <result property="status" column="role_status"/>
+    </resultMap>
+
+    <sql id="userVo">
+        select u.id,
+               u.login_name,
+               u.user_name,
+               u.user_type,
+               u.password,
+               u.email,
+               u.phone_number,
+               u.sex,
+               u.avatar,
+               u.salt,
+               u.status,
+               u.del_flag,
+               u.login_ip,
+               u.login_date,
+               u.create_by,
+               u.create_time,
+               u.signature,
+               u.update_by,
+               u.update_time,
+               u.remark,
+               u.user_attr_id,
+               u.answer,
+               u.topic,
+               u.question,
+               u.question_follow,
+               u.share,
+               u.comment,
+               u.school_id
+        from sys_user u
+    </sql>
+
+    <sql id="userWithRoleVo">
+        select u.id,
+               u.login_name,
+               u.user_name,
+               u.user_type,
+               u.email,
+               u.phone_number,
+               u.sex,
+               u.avatar,
+               u.salt,
+               u.status,
+               u.del_flag,
+               u.login_ip,
+               u.login_date,
+               u.create_by,
+               u.create_time,
+               u.signature,
+               u.update_by,
+               u.update_time,
+               u.remark,
+               u.user_attr_id,
+               u.answer,
+               u.topic,
+               u.question,
+               u.question_follow,
+               u.share,
+               u.comment,
+               u.school_id,
+               r.id,
+               r.role_name,
+               r.role_key,
+               r.role_sort,
+               r.data_scope,
+               r.status as role_status
+        from sys_user u
+			 left join sys_user_role ur on u.id = ur.user_id
+			 left join sys_role r on r.id = ur.role_id
+    </sql>
+
+    <select id="selectList" parameterType="SysUser" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0'
+        <if test="id != null and id != ''">
+            AND u.id = #{id}
+        </if>
+        <if test="password != null and password != ''">
+            AND u.password = #{password}
+        </if>
+        <if test="loginName != null and loginName != ''">
+            AND u.login_name like concat('%', #{loginName}, '%')
+        </if>
+        <if test="userName != null and userName != ''">
+            AND u.user_name like concat('%', #{userName}, '%')
+        </if>
+        <if test="status != null and status != ''">
+            AND u.status = #{status}
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            AND u.phone_number like concat('%', #{phoneNumber}, '%')
+        </if>
+        <if test="userType != null ">
+            AND u.user_type = #{userType}
+        </if>
+        <if test="userAttrId != null and userAttrId != ''">
+            AND u.user_attr_id = #{userAttrId}
+        </if>
+        <if test="signature != null and signature != ''">
+            AND u.signature = #{signature}
+        </if>
+        <if test="answer != null">
+            AND u.answer = #{answer}
+        </if>
+        <if test="topic != null">
+            AND u.topic = #{topic}
+        </if>
+        <if test="question != null">
+            AND u.question = #{question}
+        </if>
+        <if test="questionFollow != null">
+            AND u.question_follow = #{questionFollow}
+        </if>
+        <if test="share != null">
+            AND u.share = #{share}
+        </if>
+        <if test="comment != null">
+            AND u.comment = #{comment}
+        </if>
+         <if test="schoolId != null">
+            AND  u.school_id = #{schoolId}
+        </if>
+        <if test="params != null and params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+            AND date_format(u.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+        </if>
+        <if test="params != null and params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+            AND date_format(u.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+        </if>
+        <!-- 数据范围过滤 -->
+        <!-- #{params.dataScope} -->
+    </select>
+
+    <select id="selectOne" parameterType="SysUser" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0'
+
+        <if test="id != null and id != ''">
+            AND u.id = #{id}
+        </if>
+        <if test="loginName != null and loginName != ''">
+            AND u.login_name like concat('%', #{loginName}, '%')
+        </if>
+        <if test="userName != null and userName != ''">
+            AND u.user_name like concat('%', #{userName}, '%')
+        </if>
+        <if test="status != null and status != ''">
+            AND u.status = #{status}
+        </if>
+        <if test="phoneNumber != null and phoneNumber != ''">
+            AND u.phone_number like concat('%', #{phoneNumber}, '%')
+        </if>
+        <if test="userType != null ">
+            AND u.user_type = #{userType}
+        </if>
+        <if test="userAttrId != null and userAttrId != ''">
+            AND u.user_attr_id = #{userAttrId}
+        </if>
+        <if test="signature != null and signature != ''">
+            AND u.signature = #{signature}
+        </if>
+        <if test="answer != null">
+            AND u.answer = #{answer}
+        </if>
+        <if test="topic != null">
+            AND u.topic = #{topic}
+        </if>
+        <if test="question != null">
+            AND u.question = #{question}
+        </if>
+        <if test="questionFollow != null">
+            AND u.question_follow = #{questionFollow}
+        </if>
+        <if test="share != null">
+            AND u.share = #{share}
+        </if>
+        <if test="comment != null">
+            AND u.comment = #{comment}
+        </if>
+        <if test="schoolId != null">
+            AND u.school_id = #{schoolId}
+        </if>
+        <if test="params != null and params.beginTime != null and params.beginTime != ''"><!-- 开始时间检索 -->
+            AND date_format(u.create_time,'%y%m%d') &gt;= date_format(#{params.beginTime},'%y%m%d')
+        </if>
+        <if test="params != null and params.endTime != null and params.endTime != ''"><!-- 结束时间检索 -->
+            AND date_format(u.create_time,'%y%m%d') &lt;= date_format(#{params.endTime},'%y%m%d')
+        </if>
+        Limit 1
+        <!-- 数据范围过滤 -->
+        <!-- #{params.dataScope} -->
+    </select>
+
+    <select id="selectUserByLoginName" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where u.login_name = #{userName}
+    </select>
+
+    <select id="selectUserByPhoneNumber" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where u.phone_number = #{phoneNumber}
+    </select>
+
+    <select id="selectUserByRoleKey" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where r.role_key = #{roleKey}
+    </select>
+
+    <select id="selectUserByUserAttrId" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where u.user_attr_id = #{userAttrId}
+    </select>
+
+    <select id="selectUserByEmail" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where u.email = #{email}
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from sys_user
+        <where>
+            <if test="loginName != null and loginName != ''">
+                AND login_name = #{loginName}
+            </if>
+            <if test="password != null and password != ''">
+                AND `password` = #{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBatchIds" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0' AND id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectByAttrids" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0' AND user_attr_id IN
+        <foreach collection="list" item="user_attr_id" open="(" separator="," close=")">
+            #{user_attr_id}
+        </foreach>
+    </select>
+
+    <select id="selectUserName" parameterType="SysUser" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0' AND (user_type,user_attr_id) IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            ((#{item.userType},#{item.userAttrId}))
+        </foreach>
+    </select>
+
+
+    <select id="selectOneUserName" parameterType="SysUser" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0' AND (user_type,user_attr_id) IN
+        (((#{userType},#{userAttrId})))
+    </select>
+
+    <select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">
+		select id, phone_number from sys_user where phone_number=#{phoneNumber}
+	</select>
+
+    <select id="checkEmailUnique" parameterType="String" resultMap="SysUserResult">
+		select id, email from sys_user where email=#{email}
+	</select>
+
+    <select id="selectUserSchoolId" parameterType="int" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where school_id=#{schoolId}
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="SysUserResult">
+        <include refid="userWithRoleVo"/>
+        where u.id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from sys_user
+        where id = #{id}
+ 	</delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from sys_user where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="SysUser">
+        update sys_user
+        <set>
+            <if test="loginName != null and loginName != ''">login_name = #{loginName},</if>
+            <if test="userName != null and userName != ''">user_name = #{userName},</if>
+            <if test="email != null and email != ''">email = #{email},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number = #{phoneNumber},</if>
+            <if test="sex != null and sex != ''">sex = #{sex},</if>
+            <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+            <if test="salt != null and salt != ''">salt = #{salt},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="loginIp != null and loginIp != ''">login_ip = #{loginIp},</if>
+            <if test="loginDate != null">login_date = #{loginDate},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="userAttrId != null and userAttrId != ''">user_attr_id = #{userAttrId},</if>
+            <if test="userType != null">user_type = #{userType},</if>
+            <if test="signature != null and signature != ''">signature = #{signature},</if>
+            <if test="answer != null">answer = #{answer},</if>
+            <if test="topic != null">topic = #{topic},</if>
+            <if test="question != null">topic = #{question},</if>
+            <if test="questionFollow != null">question_follow = #{questionFollow},</if>
+            <if test="share != null">`share` = #{share},</if>
+            <if test="comment != null">`comment` = #{comment},</if>
+            <if test="schoolId != null">school_id= #{schoolId},</if>
+            update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
+    <insert id="insert" parameterType="SysUser" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user(
+        <if test="id != null and id != 0">id,</if>
+        <if test="loginName != null and loginName != ''">login_name,</if>
+        <if test="userName != null and userName != ''">user_name,</if>
+        <if test="email != null and email != ''">email,</if>
+        <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+        <if test="sex != null and sex != ''">sex,</if>
+        <if test="password != null and password != ''">password,</if>
+        <if test="salt != null and salt != ''">salt,</if>
+        <if test="status != null and status != ''">status,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="userAttrId != null and userAttrId != ''">user_attr_id,</if>
+        <if test="userType != null">user_type,</if>
+        <if test="signature != null and signature != ''">signature,</if>
+        <if test="answer != null">answer,</if>
+        <if test="topic != null">topic,</if>
+        <if test="question != null">question,</if>
+        <if test="questionFollow != null">question_follow,</if>
+        <if test="share != null">`share`,</if>
+        <if test="comment != null">`comment`,</if>
+        <if test="schoolId != null">school_id,</if>
+        create_time
+        )values(
+        <if test="id != null and id != ''">#{id},</if>
+        <if test="loginName != null and loginName != ''">#{loginName},</if>
+        <if test="userName != null and userName != ''">#{userName},</if>
+        <if test="email != null and email != ''">#{email},</if>
+        <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+        <if test="sex != null and sex != ''">#{sex},</if>
+        <if test="password != null and password != ''">#{password},</if>
+        <if test="salt != null and salt != ''">#{salt},</if>
+        <if test="status != null and status != ''">#{status},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="userAttrId != null and userAttrId != ''">#{userAttrId},</if>
+        <if test="userType != null">#{userType},</if>
+        <if test="signature != null and signature != ''">#{signature},</if>
+        <if test="answer != null">#{answer},</if>
+        <if test="topic != null">#{topic},</if>
+        <if test="question != null">#{question},</if>
+        <if test="questionFollow != null">#{questionFollow},</if>
+        <if test="share != null">#{share},</if>
+        <if test="comment != null">#{comment},</if>
+        <if test="schoolId != null">#{schoolId},</if>
+        sysdate()
+        )
+    </insert>
+
+
+    <!-- 查询是否已关注或者是该用户粉丝 -->
+    <select id="checkUserFans" resultType="Integer">
+        select count(1)
+        from tb_user_fans
+        where user_follow_id = #{userFollowId}
+          and user_fans_id = #{userFansId}
+    </select>
+
+    <!-- 查询是否是互相关注用户，等于2则为互相关注 -->
+    <select id="checkUserMutualFans" resultType="Integer">
+        select count(1)
+        from tb_user_fans
+        where (user_fans_id = #{userFollowId} or user_follow_id = #{userFollowId})
+          and (user_follow_id = #{userFansId} or user_fans_id = #{userFansId})
+        limit 3
+    </select>
+
+    <select id="selectBatchTids" resultMap="SysUserResult">
+        <include refid="userVo"/>
+        where u.del_flag = '0' AND user_attr_id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <select id="selectStudentByCourseIdAndTeacherId" parameterType="string" resultMap="SysUserResult">
+        select u.id,
+        u.login_name,
+        u.user_name,
+        u.user_type,
+        u.email,
+        u.phone_number,
+        u.sex,
+        u.avatar,
+        u.salt,
+        u.status,
+        u.del_flag,
+        u.login_ip,
+        u.login_date,
+        u.create_by,
+        u.create_time,
+        u.signature,
+        u.update_by,
+        u.update_time,
+        u.remark,
+        u.user_attr_id,
+        u.answer,
+        u.topic,
+        u.question,
+        u.question_follow,
+        u.share,
+        u.comment,
+        u.school_id
+        from tb_teacher_course tc,
+        tb_clbum_course cc,
+        tb_student s,
+        sys_user u,
+        tb_clbum cl
+        where cl.id = s.cid
+        and cl.id = cc.cid
+        and u.user_attr_id = s.id
+        and cc.tcid = tc.id
+        and tc.cid = #{courseId}
+        and tc.tid = #{teacherId}
+        <if test="loginName != null and loginName != ''">
+            AND u.login_name like concat('%', #{loginName}, '%')
+        </if>
+        <if test="clbumId != null and clbumId != ''">
+            AND cl.id = #{clbumId}
+        </if>
+    </select>
+
+
+    <select id="selectStudentByCourseIdsAndTeacherIds" parameterType="StatisSysUser" resultMap="StatisSysUserResult">
+        select u.id,
+        u.login_name,
+        u.user_name,
+        u.user_type,
+        u.user_attr_id,
+        tc.id AS tcid
+        from tb_teacher_course tc,
+        tb_clbum_course cc,
+        tb_student s,
+        sys_user u,
+        tb_clbum cl
+        where cl.id = s.cid
+        and cl.id = cc.cid
+        and u.user_attr_id = s.id
+        and cc.tcid = tc.id
+        <if test="loginName != null and loginName != ''">
+            AND u.login_name like concat('%', #{loginName}, '%')
+        </if>
+        <if test="clbumId != null and clbumId != ''">
+            AND cl.id = #{clbumId}
+        </if>
+        <if test="tcids != null and tcids.size>0">
+            and cc.tcid in
+            <foreach collection="tcids" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+
+   <select id="selectStudentByclbumId" parameterType="String" resultMap="SysUserResult">
+       select u.id,
+       u.login_name,
+       u.user_name,
+       u.user_type,
+       u.email,
+       u.phone_number,
+       u.sex,
+       u.avatar,
+       u.salt,
+       u.status,
+       u.del_flag,
+       u.login_ip,
+       u.login_date,
+       u.create_by,
+       u.create_time,
+       u.signature,
+       u.update_by,
+       u.update_time,
+       u.remark,
+       u.user_attr_id,
+       u.answer,
+       u.topic,
+       u.question,
+       u.question_follow,
+       u.share,
+       u.comment,
+       u.school_id
+       from tb_teacher_course tc,
+       tb_clbum_course cc,
+       tb_student s,
+       sys_user u,
+       tb_clbum cl
+       where cl.id = s.cid
+       and cl.id = cc.cid
+       and u.user_attr_id = s.id
+       and cc.tcid = tc.id
+       <if test="loginName != null and loginName != ''">
+           AND u.login_name like concat('%', #{loginName}, '%')
+       </if>
+       <if test="clbumId != null and clbumId != ''">
+           AND cl.id = #{clbumId}
+       </if>
+   </select>
+    <!-- 更新用户密码 -->
+    <update id="updateUserPassword" parameterType="SysUser">
+    update sys_user set password = #{password}, salt = #{salt} where id = #{id}
+  </update>
+
+    <select id="selectByrid" resultMap="SysUserResult">
+        <include refid="userWithRoleVo" />
+        where r.role_key="sds_admin"
+    </select>
+
+    <select id="selectByridTwo" resultMap="SysUserResult">
+        <include refid="userWithRoleVo" />
+        where r.role_key="classadmin"
+    </select>
+</mapper>

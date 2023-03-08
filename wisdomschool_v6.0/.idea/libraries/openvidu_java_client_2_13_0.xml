@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="openvidu-java-client-2.13.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../maven/repository/io/openvidu/openvidu-java-client/2.13.0/openvidu-java-client-2.13.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.AttendanceDetailMapper">
+    <resultMap type="AttendanceDetail" id="AttendanceDetailResult">
+        <result property="id" column="id"/>
+        <result property="aid" column="aid"/>
+        <result property="tcid" column="tcid"/>
+        <result property="sid" column="sid"/>
+        <result property="loginName" column="login_Name"/>
+        <result property="userName" column="user_Name"/>
+        <result property="results" column="results"/>
+    </resultMap>
+    <sql id="selectAttendanceDetailVo">
+        select id,
+               aid,
+               sid,
+               tcid,
+               results
+        from wy_attendance_detail
+    </sql>
+
+    <insert id="insertBatch" parameterType="AttendanceDetail">
+        insert into wy_attendance_detail
+        (
+        aid,
+        sid,
+        tcid
+        )
+        values
+        <foreach collection="list" item="AttendanceDetail" index="index" separator=",">
+            (
+            #{AttendanceDetail.aid},
+            #{AttendanceDetail.sid},
+            #{AttendanceDetail.tcid}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="update" parameterType="AttendanceDetail" >
+        update wy_attendance_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="aid != null  ">aid = #{aid},</if>
+            <if test="tcid != null  ">tcid = #{tcid},</if>
+            <if test="sid != null  ">sid = #{sid},</if>
+            <if test="results != null  ">results = #{results},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <select id="getByattendanceDetail" parameterType="AttendanceDetail" resultMap="AttendanceDetailResult">
+        SELECT d.*,u.login_Name,u.user_Name
+        FROM sys_user u, wy_attendance_detail d
+        <where>
+            u.user_attr_id =d.sid AND u.del_flag = '0'
+            <if test="id != null ">and d.id = #{id}</if>
+            <if test="aid != null ">and d.aid = #{aid}</if>
+            <if test="tcid != null ">and d.tcid = #{tcid}</if>
+            <if test="sid != null ">and d.sid = #{sid}</if>
+            <if test="results != null">and d.results = #{results}</if>
+        </where>
+    </select>
+
+    <select id="selectList" parameterType="AttendanceDetail" resultType="AttendanceDetail">
+        <include refid="selectAttendanceDetailVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="tcid != null ">and tcid = #{tcid}</if>
+            <if test="aid != null ">and aid = #{aid}</if>
+            <if test="sid != null ">and sid = #{sid}</if>
+            <if test="results != null ">and results = #{results}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultType="AttendanceDetail">
+        <include refid="selectAttendanceDetailVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectListBysids" parameterType="java.util.List" resultType="AttendanceDetail">
+        SELECT d.*,u.login_Name,u.user_Name
+        FROM sys_user u,wy_attendance_detail d
+        WHERE u.user_attr_id =d.sid AND u.del_flag = '0' AND d.sid IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectOkListByTcidAndResults" parameterType="Integer" resultType="AttendanceDetail">
+        SELECT *
+        FROM wy_attendance_detail
+        WHERE aid = #{aid} AND results = 1
+    </select>
+
+    <select id="getByAid" parameterType="String" resultMap="AttendanceDetailResult">
+          SELECT d.*,u.login_Name,u.user_Name
+        FROM sys_user u, wy_attendance_detail d
+        WHERE u.user_attr_id =d.sid AND u.del_flag = '0' AND d.aid=#{aid}
+    </select>
+
+    <select id="findAllstudentid" resultType="Integer" parameterType="Integer">
+        select sid
+        from wy_attendance_detail
+        where aid = #{aid}
+    </select>
+
+    <update id="updateByAidAndSid" parameterType="AttendanceDetail">
+         update wy_attendance_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="results != null  ">results = #{results},</if>
+        </trim>
+        where aid = #{aid} AND sid = #{sid}
+    </update>
+
+    <update id="updateBySidAndTcid" parameterType="AttendanceDetail">
+        update wy_attendance_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="results != null  ">results = #{results},</if>
+        </trim>
+        where sid = #{sid} AND tcid = #{tcid}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,29 @@
+
+b
+java:S1192a"LDefine a constant instead of duplicating this literal "expiredDate" 4 times.(ëÚ¿İ
+a
+java:S1192`"FDefine a constant instead of duplicating this literal "token" 4 times.(’Ğ»óøÿÿÿÿ
+i
+java:S1192n"TDefine a constant instead of duplicating this literal "yyyy-MM-dd HH:mm:ss" 4 times.(Òéf
+@
+java:S5411S"*Use the primitive boolean expression here.(®áˆ·
+A
+java:S5411ƒ"*Use the primitive boolean expression here.(®áˆ·
+R
+java:S2387@"<"sysUserService" is the name of a field in "BaseController".(©œâ
+V	java:S125/"<This block of commented-out lines of code should be removed.(³¬»•ùÿÿÿÿ
+Q	java:S125F"<This block of commented-out lines of code should be removed.(Í­Ï¿
+T
+java:S1854€"8Remove this useless assignment to local variable "date".(°Ã¨ùÿÿÿÿ
+R	java:S125æ"<This block of commented-out lines of code should be removed.(‚”ú
+E
+java:S1481€")Remove this unused "date" local variable.(°Ã¨ùÿÿÿÿ
+W	java:S125„"<This block of commented-out lines of code should be removed.(ƒ±¤íûÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(ùš¹­ùÿÿÿÿ
+W	java:S125­"<This block of commented-out lines of code should be removed.(“µìÃùÿÿÿÿ
+R	java:S125°"<This block of commented-out lines of code should be removed.(¡Šíï
+R	java:S125Ç"<This block of commented-out lines of code should be removed.(Ü²Ï÷
+W	java:S125ë"<This block of commented-out lines of code should be removed.(îÁ«³ıÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(øÒï
+W	java:S125š"<This block of commented-out lines of code should be removed.(†ğ¸ıùÿÿÿÿ
+W	java:S125¸"<This block of commented-out lines of code should be removed.(”÷éºüÿÿÿÿ

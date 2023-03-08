@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.CommentMapper">
+
+    <!--
+    ,articleId,parentId,userId, content, countDig, countBury, status;-->
+
+    <resultMap id="commentResult" type="Comment">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="type" column="type"/>
+        <result property="typeId" column="type_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="status" column="status"/>
+        <result property="countDig" column="count_dig"/>
+        <result property="countBury" column="count_bury"/>
+        <result property="replyId" column="reply_id"/>
+        <result property="replyUserId" column="reply_user_id"/>
+    </resultMap>
+
+    <sql id="selectComment">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               type_id,
+               parent_id,
+               user_id,
+               content,
+               status,
+               count_dig,
+               count_bury,
+               count_comment,
+               reply_id,
+               reply_user_id,
+               type
+        from tb_comment
+    </sql>
+
+    <update id="update">
+        UPDATE tb_comment
+        SET reply_id    = #{replyId},
+            update_time = sysdate()
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectBatchIds" parameterType="string" resultMap="commentResult">
+        <include refid="selectComment"/>
+        WHERE id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectById" parameterType="string" resultMap="commentResult">
+        <include refid="selectComment"/>
+        WHERE id = #{id}
+    </select>
+    <select id="listByPids" resultMap="commentResult">
+        <include refid="selectComment"/>
+        WHERE parent_id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <!-- 查询用户是否发布过同样内容 -->
+    <select id="checkArticleComment" resultType="Integer">
+        select count(1) from tb_comment
+        <where>
+            <if test="type!=null">and type = #{type}</if>
+            <if test="typeId!=null and typeId!=''">and type_id = #{typeId}</if>
+            <if test="userId != null and userId !=''">and user_id = #{userId}</if>
+            <if test="content != null and content !=''">and content = #{content}</if>
+        </where>
+    </select>
+
+    <select id="selectByTypeId" resultType="Comment">
+        <include refid="selectComment"/>
+        <where>
+            <if test="type != null">and type = #{type}</if>
+            <if test="typeId!=null and typeId!=''">and type_id = #{typeId}</if>
+            <if test="replyUserId!=null and replyUserId!=''">and reply_user_id = #{replyUserId}</if>
+            <if test="userId != null and userId !=''">and user_id = #{userId}</if>
+            <if test="content != null and content !=''">and content = #{content}</if>
+        </where>
+    </select>
+
+    <!-- 按问题id查询最新的第一条评论内容 -->
+    <select id="selectNewestCommentById" resultMap="commentResult">
+        <include refid="selectComment"/>
+        where type_id = #{typeId} and type = #{type}
+        order by create_time desc,id desc limit 1
+    </select>
+
+
+    <!-- 评论列表 -->
+    <select id="selectCommentList" resultMap="commentResult">
+        <include refid="selectComment"/>
+        <where>
+            <if test="type != null and type !=''">and type=#{type}</if>
+            <if test="typeId != null and typeId !=''">and type_id=#{typeId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="parentId != null and parentId !=''">and parent_id=#{parentId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+        </where>
+        order by
+        <if test="orderby != null">${orderby}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <select id="selectByPid" resultMap="commentResult">
+        <include refid="selectComment"/>
+        where parent_id=#{pid} and type = #{type}
+        order by create_time desc,id desc limit 1
+    </select>
+
+
+    <!-- 评论总数 -->
+    <select id="selectCommentCount" resultType="Integer">
+        select count(1) from tb_comment
+        <where>
+            <if test="type != null and type !=''">and type=#{type}</if>
+            <if test="typeId != null and typeId !=''">and type_id=#{typeId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="parentId != null and parentId !=''">and parent_id=#{parentId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+        </where>
+    </select>
+
+    <!-- 按id删除评论内容 -->
+    <delete id="deleteById" parameterType="string">
+        delete
+        from tb_comment
+        where id = #{id}
+    </delete>
+
+    <!-- 按id删除评论内容 -->
+    <delete id="deleteByTypeId" parameterType="string">
+        delete
+        from tb_comment
+        where type = #{type}
+          and type_id = #{typeId}
+    </delete>
+
+    <!-- 添加评论内容-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_comment
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="type != null">type,</if>
+            <if test="typeId != null and typeId!=''">type_id,</if>
+            <if test="userId != null and userId!=''">user_id,</if>
+            <if test="content != null and content!=''">content,</if>
+            <if test="parentId != null and parentId!=''">parent_id,</if>
+            <if test="replyId != null and replyId!=''">reply_id,</if>
+            <if test="replyUserId != null and replyUserId!=''">reply_user_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="type != null">#{type},</if>
+            <if test="typeId != null and typeId!=''">#{typeId},</if>
+            <if test="userId != null and userId!=''">#{userId},</if>
+            <if test="content != null and content!=''">#{content},</if>
+            <if test="parentId != null and parentId!=''">#{parentId},</if>
+            <if test="replyId != null and replyId!=''">#{replyId},</if>
+            <if test="replyUserId != null and replyUserId!=''">#{replyUserId},</if>
+            sysdate()
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.AdjunctStudentMapper">
+    <resultMap type="AdjunctStudent" id="AdjunctStudentResult">
+        <result property="id" column="id"/>
+        <result property="adjid" column="adjid"/>
+        <result property="cid" column="cid"/>
+        <result property="filename" column="filename"/>
+        <result property="jobcontent" column="jobcontent"/>
+        <result property="stuid" column="stuid"/>
+        <result property="loginName" column="login_Name"/>
+        <result property="userName" column="user_Name"/>
+        <result property="States" column="states"/>
+    </resultMap>
+    <sql id="selectAdjunctStudentVo">
+        select id,
+               cid,
+               adjid,
+               stuid,
+               jobcontent,
+               states,
+               filename
+        from wy_adjunct_student
+    </sql>
+
+    <insert id="insertBatch" parameterType="AdjunctStudent">
+        insert into wy_adjunct_student
+        (
+        cid,
+        adjid,
+        stuid
+        )
+        values
+        <foreach collection="list" item="AdjunctStudent" index="index" separator=",">
+            (
+            #{AdjunctStudent.cid},
+            #{AdjunctStudent.adjid},
+            #{AdjunctStudent.stuid}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="update" parameterType="AdjunctStudent" >
+        update wy_adjunct_student
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="adjid != null  ">adjid = #{adjid},</if>
+            <if test="cid != null  ">cid = #{cid},</if>
+            <if test="jobcontent != null  ">jobcontent = #{jobcontent},</if>
+            <if test="stuid != null  ">stuid = #{stuid},</if>
+            <if test="results != null  ">results = #{results},</if>
+        </trim>
+        where id = #{id}
+    </update>
+    <delete id="deleteByAid">
+        delete from wy_adjunct_student where adjid=#{aid}
+    </delete>
+
+    <select id="selectById" parameterType="String" resultMap="AdjunctStudentResult">
+        select w.id,
+                w.cid,
+               w.adjid,
+               w.jobcontent,
+               w.filename,
+               w.stuid,
+               w.states
+        from wy_adjunct_student w
+        where w.id = #{id}
+    </select>
+
+
+    <select id="selectList" parameterType="AdjunctStudent" resultMap="AdjunctStudentResult">
+        <include refid="selectAdjunctStudentVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="cid != null ">and cid = #{cid}</if>
+            <if test="jobcontent != null ">jobcontent jobcontent = #{jobcontent}</if>
+            <if test="adjid != null ">and adjid = #{adjid}</if>
+            <if test="stuid != null ">and stuid = #{stuid}</if>
+
+        </where>
+    </select>
+
+    <select id="selectListBysids" parameterType="java.util.List" resultMap="AdjunctStudentResult">
+        SELECT a.*,u.login_Name,u.user_Name
+        FROM sys_user u,wy_adjunct_student a
+        WHERE u.user_attr_id =a.stuid AND u.del_flag = '0' AND a.stuid IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectListByaid" parameterType="String" resultMap="AdjunctStudentResult">
+        SELECT a.*,u.login_Name,u.user_Name
+        FROM sys_user u,wy_adjunct_student a
+        WHERE u.user_attr_id =a.stuid AND u.del_flag = '0' AND a.adjid = #{adjid}
+
+    </select>
+
+    <select id="selectListByAdjunctStudent" parameterType="AdjunctStudent" resultMap="AdjunctStudentResult">
+        SELECT a.*,u.login_Name,u.user_Name
+        FROM sys_user u,wy_adjunct_student a
+        <where>
+            u.user_attr_id =a.stuid AND u.del_flag = '0' AND a.adjid = #{adjid}
+            <if test="loginName != null and loginName.trim() != ''">and u.login_Name = #{loginName}</if>
+            <if test="userName != null and userName.trim() != ''">and u.user_Name = #{userName}</if>
+            <if test="stuid != null ">and a.stuid = #{stuid}</if>
+            <if test="cid != null and cid.trim() != ''">and a.cid = #{cid}</if>
+        </where>
+    </select>
+
+
+    <select id="findAllstudentid" resultType="Integer" parameterType="Integer">
+        select sid
+        from wy_adjunct_student
+        where aid = #{aid}
+    </select>
+
+    <update id="updateByAidAndSid" parameterType="AdjunctStudent">
+        update wy_adjunct_student
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="results != null  ">results = #{Results},</if>
+            <if test="States != null  ">states = #{States},</if>
+            <if test="cid != null  ">cid = #{cid},</if>
+            <if test="jobcontent != null  ">jobcontent = #{jobcontent},</if>
+            <if test="filename != null  ">filename = #{filename},</if>
+            <if test="submitline != null  ">submitline = #{submitline},</if>
+        </trim>
+        where adjid = #{adjid} AND stuid = #{stuid}
+    </update>
+
+    <update id="selectBySid" parameterType="AdjunctStudent">
+        select id,
+        cid,
+        adjid,
+        stuid,
+        jobcontent,
+        results
+        from wy_adjunct_student
+        where stuid = #{stuid}
+    </update>
+
+</mapper>

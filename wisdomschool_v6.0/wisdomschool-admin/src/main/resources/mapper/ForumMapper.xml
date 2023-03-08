@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.ForumMapper">
+
+    <resultMap id="forumFullMap" type="Forum">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="tcid" property="tcid"/>
+    </resultMap>
+
+    <sql id="forumFullField">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        `name`,
+        type,
+        description,
+        tcid
+    </sql>
+
+    <sql id="selectForumFullField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               `name`,
+               type,
+               description,
+               tcid
+        from tb_forum
+    </sql>
+
+    <!-- 增加答案信息-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_forum
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="name != null">name,</if>
+            <if test="type != null">type,</if>
+            <if test="description != null">description,</if>
+            <if test="tcid != null">tcid,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="name != null">#{name},</if>
+            <if test="type != null">#{type},</if>
+            <if test="description != null">#{description},</if>
+            <if test="tcid != null">#{tcid},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <select id="selectList" parameterType="Forum" resultMap="forumFullMap">
+        <include refid="selectForumFullField"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="name != null ">and name = #{name}</if>
+            <if test="type != null">and type = #{type}</if>
+            <if test="description != null and description != '' ">and description = #{description}</if>
+            <if test="tcid != null and tcid != '' ">and tcid = #{tcid}</if>
+            <if test="tcid == null or tcid == '' ">and (tcid IS NULL OR tcid = 0)</if>
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="Forum" resultMap="forumFullMap">
+        <include refid="selectForumFullField"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="name != null ">and name = #{name}</if>
+            <if test="type != null">and type = #{type}</if>
+            <if test="description != null and description != '' ">and description = #{description}</if>
+            <if test="tcid != null and tcid != '' ">and tcid = #{tcid}</if>
+            <if test="tcid == null or tcid == '' ">and (tcid IS NULL OR tcid = 0)</if>
+            Limit 1
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="forumFullMap">
+        <include refid="selectForumFullField"/>
+        where id = #{id}
+    </select>
+
+    <update id="update" parameterType="Forum">
+        update tb_forum
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="version != null  ">version = #{version},</if>
+            <if test="name != null ">name = #{name},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="description != null and description != '' ">description = #{description},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_forum
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_forum where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

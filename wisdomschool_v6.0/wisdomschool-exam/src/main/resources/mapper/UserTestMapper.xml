@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.UserTestMapper">
+
+    <resultMap type="UserTest" id="UserTestResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_id"/>
+        <result property="version" column="version"/>
+        <result property="schoolNo" column="school_no"/>
+        <result property="stuEndTime" column="stu_end_time"/>
+        <result property="paperscore" column="score"/>
+        <result property="userId" column="user_id"/>
+        <result property="testPaperId" column="test_paper_id"/>
+        <result property="testName" column="test_name"/>
+        <result property="sysName" column="sys_name"/>
+        <result property="sumbitState" column="sumbit_state"/>
+        <result property="stuStartTime" column="stu_start_time"/>
+        <result property="cId" column="c_id"/>
+        <result property="type" column="type"/>
+        <result property="stuNum" column="stuNum"/>
+        <result property="stuName" column="stuName"/>
+        <result property="headLine" column="headLine"/>
+        <result property="setScored" column="setScored"/>
+        <result property="testTime" column="test_time"/>
+        <result property="tcoName" column="tco_name"/>
+        <result property="madeScore" column="made_score"/>
+        <result property="stuScore" column="stu_score"/>
+        <result property="setExam" column="set_exam"/>
+        <result property="time" column="time"/>
+
+    </resultMap>
+    <resultMap id="GetStu" type="UserTest">
+        <result property="cId" column="c_id"/>
+        <result property="tgId" column="tg_id"/>
+        <result property="tgName" column="tg_name"/>
+        <result property="tcoId" column="tco_id"/>
+        <result property="tcoName" column="tco_name"/>
+        <result property="tscId" column="tsc_id"/>
+        <result property="tsId" column="ts_id"/>
+        <result property="sysName" column="sys_name"/>
+        <result property="suId" column="su_id"/>
+        <result property="tcId" column="tc_id"/>
+        <result property="tcName" column="tc_name"/>
+    </resultMap>
+    <sql id="selectUserTestVo">
+        select id,
+               create_time,
+               create_by,
+               create_id,
+               update_time,
+               update_by,
+               update_id,
+               version,
+               school_no,
+               stu_end_time,
+               user_id,
+               test_paper_id,
+               stu_score,
+               made_score,
+               sumbit_state
+        from tk_user_test
+    </sql>
+    <select id="selectUserTest" parameterType="UserTest" resultMap="UserTestResult">
+        select * from tk_user_test where test_paper_id=#{testPaperId} and user_id=#{userId}
+    </select>
+    <select id="selectListBase" parameterType="UserTest" resultMap="UserTestResult">
+        <include refid="selectUserTestVo"/>
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="stuStartTime != null ">
+                and stu_start_time = #{stuStartTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and school_no = #{schoolNo}
+            </if>
+            <if test="stuEndTime != null  and stuEndTime.trim() != '' ">
+                and stu_end_time = #{stuEndTime}
+            </if>
+            <if test="userId != null  and userId.trim() != '' ">
+                and user_id = #{userId}
+            </if>
+            <if test="testPaperId != null  and testPaperId.trim() != '' ">
+                and test_paper_id = #{testPaperId}
+            </if>
+            <if test="sumbitState != null  and sumbitState.trim() != '' ">
+                and sumbit_state = #{sumbitState}
+            </if>
+            <if test="cId != null  and cId.trim() != '' ">
+                and c_id = #{cId}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectList" parameterType="UserTest" resultMap="UserTestResult">
+        select tut.test_paper_id,tut.id as
+        id,tut.stu_start_time,time,tut.sumbit_state,
+        tut.stu_end_time,ttp.score,tut.user_id,ttp.test_name,su.user_name as
+        sys_name,tut.stu_score
+        from tk_test_paper ttp,
+        tk_user_test tut,
+        tb_student ts,
+        sys_user su
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and tut.id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and tut.create_time = #{createTime}
+            </if>
+            <if test="stuStartTime != null ">
+                and tut.stu_start_time = #{stuStartTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and tut.create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and tut.create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and tut.update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and tut.update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and tut.update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and tut.version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and tut.school_no = #{schoolNo}
+            </if>
+            <if test="stuEndTime != null  and stuEndTime.trim() != '' ">
+                and tut.stu_end_time = #{stuEndTime}
+            </if>
+            <if test="paperscore != null ">
+                and ttp.score = #{paperscore}
+            </if>
+            <if test="userId != null  and userId.trim() != '' ">
+                and tut.user_id = #{userId}
+            </if>
+            <if test="testPaperId != null  and testPaperId.trim() != '' ">
+                and tut.test_paper_id = #{testPaperId}
+            </if>
+            <if test="sumbitState != null  and sumbitState.trim() != '' ">
+                and tut.sumbit_state = #{sumbitState}
+            </if>
+            <if test="cId != null  and cId.trim() != '' ">
+                and tut.c_id = #{cId}
+            </if>
+            <if test="type != null  and type.trim() != '' ">
+                and ttp.type = #{type}
+            </if>
+            <if test="sysName != null and sysName.trim() !='' ">/*  Lin__ */
+                and su.user_name LIKE concat('%', #{sysName}, '%')
+            </if>
+            <if test="tgId != null and tgId.trim() != ''">
+                and ts.gid = #{tgId}
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                and ts.cid = #{tcId}
+            </if>
+
+            and tut.user_id = ts.id
+            and ttp.id = tut.test_paper_id
+            and ts.id = su.user_attr_id
+            ORDER BY tut.test_paper_id    /*  Lin__*/
+        </where>
+    </select>
+
+    <update id="update" parameterType="UserTest">
+        update tk_user_test
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="createId != null  and createId != ''  ">create_id
+                = #{createId},
+            </if>
+            update_time= sysdate(),
+
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="updateId != null  and updateId != ''  ">update_id
+                = #{updateId},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">school_no
+                = #{schoolNo},
+            </if>
+            <if test="stuStartTime != null  ">stu_start_time
+                = #{stuStartTime},
+            </if>
+            <if test="stuEndTime != null  and stuEndTime != ''  ">stu_end_time
+                = #{stuEndTime},
+            </if>
+            <if test="userId != null  and userId != ''  ">user_id
+                = #{userId},
+            </if>
+            <if test="testPaperId != null  and testPaperId != ''  ">test_paper_id
+                = #{testPaperId},
+            </if>
+            <if test="sumbitState != null  and sumbitState != ''  ">sumbit_state
+                = #{sumbitState},
+            </if>
+            <if test="cId != null  and cId != ''  ">c_id
+                = #{cId},
+            </if>
+            <if test="stuScore != null  and stuScore != ''  ">stu_score
+                = #{stuScore},
+            </if>
+            <if test="madeScore != null  and madeScore != ''  ">made_score
+                = #{madeScore},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+    <!-- 获取年级 -->
+    <select id="getStudentInfo" resultMap="GetStu">
+        select distinct tg.id as tg_id,tg.name as tg_name
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_grades tg,
+             tb_teacher tt,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id= #{createId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+    </select>
+
+    <!-- 获取班级 -->
+    <select id="getTcoName" resultMap="GetStu">
+       select distinct tc.id as tc_id,tc.name as tc_name,tg.id as tg_id
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_grades tg,
+             tb_teacher tt,
+			 tb_clbum tc,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id= #{createId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+        AND tcc.cid=tc.id
+    </select>
+
+
+    <!-- 获取班级2  Lin__ -->
+    <select id="getTcoName2" resultMap="GetStu">
+       select distinct tc.id as tc_id,tc.name as tc_name,tg.id as tg_id
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_grades tg,
+             tb_teacher tt,
+			 tb_clbum tc,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id= #{createId}
+        and tg.id=#{tgId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+        AND tcc.cid=tc.id
+    </select>
+
+
+    <!-- 获取学生 -->
+    <select id="getTcoStu" resultMap="GetStu">
+        select tg.id        as tg_id,
+               tg.name      as tg_name,
+               tc.id        as tc_id,
+               ts.id        as ts_id,
+               su.id        as userId,
+               su.user_name as sys_name
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_student ts,
+             sys_user su,
+             tb_grades tg,
+             tb_teacher tt,
+			 tb_clbum tc,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id= #{createId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+        AND tcc.cid=tc.id
+        and ts.id = su.user_attr_id
+        and su.user_type = '2'
+        and tg.id=ts.gid
+        and tc.id=ts.cid
+    </select>
+
+    <!-- 获取年级  期末 -->
+    <select id="getQStudentInfo" resultMap="GetStu">
+        select distinct tg.id as tg_id,tg.name as tg_name
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_grades tg,
+             tb_teacher tt,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+    </select>
+
+    <!-- 获取班级   期末-->
+    <select id="getQTcoName" resultMap="GetStu">
+       select distinct tc.id as tc_id,tc.name as tc_name,tg.id as tg_id
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_grades tg,
+             tb_teacher tt,
+			 tb_clbum tc,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+        AND tcc.cid=tc.id
+    </select>
+
+    <!-- 获取学生   期末-->
+    <select id="getQTcoStu" resultMap="GetStu">
+        select tg.id        as tg_id,
+               tg.name      as tg_name,
+               tc.id        as tc_id,
+               ts.id        as ts_id,
+               su.user_name as sys_name
+        from tb_teacher_course ttc,
+             tb_clbum_course tcc,
+             tb_student ts,
+             sys_user su,
+             tb_grades tg,
+             tb_teacher tt,
+			 tb_clbum tc,
+             tb_course tco
+        where ttc.cid = tco.id
+        and tco.id=#{tcoId}
+        and tt.id=ttc.tid
+        and tcc.tcid=ttc.id
+        AND tcc.gid=tg.id
+        AND tcc.cid=tc.id
+        and ts.id = su.user_attr_id
+        and su.user_type = '2'
+        and tg.id=ts.gid
+        and tc.id=ts.cid
+    </select>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tk_user_test
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_user_test where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="UserTest">
+        insert into tk_user_test
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            create_time,
+            <if test="createId != null  ">create_id
+                ,
+            </if>
+            <if test="createBy != null  ">create_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="updateBy != null  ">update_by
+                ,
+            </if>
+            <if test="updateId != null  ">update_id
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="stuStartTime != null  ">stu_start_time
+                ,
+            </if>
+            <if test="stuEndTime != null  ">stu_end_time
+                ,
+            </if>
+            <if test="testTime != null  ">test_time
+                ,
+            </if>
+            <if test="userId != null  ">user_id
+                ,
+            </if>
+            <if test="testPaperId != null  ">test_paper_id
+                ,
+            </if>
+            <if test="sumbitState != null  ">sumbit_state
+                ,
+            </if>
+
+            <if test="cId != null  ">c_id
+                ,
+            </if>
+            <if test="madeScore != null  ">made_score
+                ,
+            </if>
+            <if test="stuScore != null  ">stu_score
+                ,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            sysdate(),
+            <if test="createId != null  ">#{createId}
+                ,
+            </if>
+            <if test="createBy != null  ">#{createBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="updateBy != null  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateId != null  ">#{updateId}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="stuStartTime != null  ">#{stuStartTime}
+                ,
+            </if>
+            <if test="stuEndTime != null  ">#{stuEndTime}
+                ,
+            </if>
+            <if test="testTime != null  ">#{testTime}
+                ,
+            </if>
+            <if test="userId != null  ">#{userId}
+                ,
+            </if>
+            <if test="testPaperId != null  ">#{testPaperId}
+                ,
+            </if>
+            <if test="sumbitState != null  ">#{sumbitState}
+                ,
+            </if>
+
+            <if test="cId != null  ">#{cId}
+                ,
+            </if>
+            <if test="madeScore != null  ">#{madeScore}
+                ,
+            </if>
+            <if test="stuScore != null  ">#{stuScore}
+                ,
+            </if>
+
+        </trim>
+    </insert>
+
+
+    <insert id="insertBatch">
+        insert into
+        tk_user_test(id,create_time,stu_start_time,stu_end_time,sumbit_state,user_id,test_paper_id,create_id,c_id)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item.id},
+            sysdate(),
+            #{item.stuStartTime},
+            #{item.stuEndTime},
+            #{item.sumbitState},
+            #{item.userId},
+            #{item.testPaperId},
+            #{item.createId},
+            #{item.cId}
+            )
+        </foreach>
+    </insert>
+
+    <select id="findStuExamPaper" parameterType="UserTest" resultMap="UserTestResult">
+        select ttt.id ,su.login_name as stuNum, su.user_name as stuName, ttt.headline as headLine,
+        ttt.test_name, tut.made_score,ttt.score,tut.stu_score,tut.sumbit_state, tut.user_id
+        from tk_user_test tut,
+        tk_test_paper ttt,
+        tb_student ts,
+        sys_user su
+        <where>
+            <if test="id != null  and id != '' ">
+                and tut.id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and tut.create_time = #{createTime}
+            </if>
+            <if test="stuStartTime != null ">
+                and tut.stu_start_time = #{stuStartTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and tut.create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and tut.create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and tut.update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and tut.update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and tut.update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and tut.version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and tut.school_no = #{schoolNo}
+            </if>
+            <if test="stuEndTime != null  and stuEndTime.trim() != '' ">
+                and tut.stu_end_time = #{stuEndTime}
+            </if>
+            <if test="userId != null  and userId.trim() != '' ">
+                and tut.user_id = #{userId}
+            </if>
+            <if test="testPaperId != null  and testPaperId.trim() != '' ">
+                and tut.test_paper_id = #{testPaperId}
+            </if>
+            <if test="sumbitState != null  and sumbitState.trim() != '' ">
+                and tut.sumbit_state = #{sumbitState}
+            </if>
+            <if test="cId != null  and cId.trim() != '' ">
+                and tut.c_id = #{cId}
+            </if>
+            <if test="paperscore != null ">
+                and ttt.score = #{paperscore}
+            </if>
+            <if test="type != null  and type.trim() != '' ">
+                and ttt.type = #{type}
+            </if>
+            <if test="stuName != null and stuName.trim() !='' ">/*  Lin__ */
+                and su.user_name LIKE concat('%', #{stuName}, '%')
+            </if>
+            <if test="tgId != null and tgId.trim() != ''">
+                and ts.gid = #{tgId}
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                and ts.cid = #{tcId}
+            </if>
+            and tut.test_paper_id = ttt.id
+            and tut.user_id = su.id
+            and ts.id = su.user_attr_id
+        </where>
+    </select>
+
+    <select id="getTcoExamPaper" resultMap="UserTestResult" parameterType="UserTest">
+        select ttp.test_name,ttp.headline as headLine ,
+        tut.id,
+        tco.name as tco_name,tut.test_time,tut.user_id,
+        tut.test_paper_id,tut.stu_start_time,tut.stu_end_time,
+        tut.stu_score,ttp.score,ttp.set_exam,ttp.time
+        from tk_test_paper ttp,
+        tk_user_test tut,
+        tb_student ts,
+        tb_course tco,
+        sys_user su
+        <where>
+            <if test="setExam != null  and setExam != '' ">
+                and ttp.set_exam = #{setExam}
+            </if>
+            <if test="type != null  and type != '' ">
+                and ttp.type = #{type}
+            </if>
+            <if test="cId != null  and cId != '' ">
+                and tut.c_id = #{cId}
+            </if>
+            <if test="userId != null  and userId != '' ">
+                and tut.user_id = #{userId}
+            </if>
+            <if test="sumbitState != null  and sumbitState.trim() != '' ">
+                and tut.sumbit_state = #{sumbitState}
+            </if>
+            and ttp.id = tut.test_paper_id
+            and tco.id = tut.c_id
+            and tut.user_id = ts.id
+            and su.user_type = '2'
+            and ts.id = su.user_attr_id
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="UserTestResult">
+        select tut.test_paper_id,tut.id as
+        id,tut.stu_start_time,tut.sumbit_state,
+        tut.stu_end_time,ttp.score,
+        tut.user_id,ttp.test_name,su.user_name as
+        sys_name
+        from tk_test_paper ttp,
+        tk_user_test tut,
+        tb_student ts,
+        sys_user su
+        <where>
+            tut.id = #{id}
+            and tut.user_id = ts.id
+            and ttp.id = tut.test_paper_id
+            and ts.id = su.user_attr_id
+        </where>
+    </select>
+</mapper>

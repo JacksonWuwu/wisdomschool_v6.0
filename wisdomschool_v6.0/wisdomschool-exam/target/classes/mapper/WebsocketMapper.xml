@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.WebsocketMapper">
+
+    <resultMap type="Websocket" id="WebsocketResult">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="tcId" column="tc_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="stuId" column="stu_id"/>
+            <result property="createBy" column="create_by"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="version" column="version"/>
+            <result property="stuNum" column="stu_num"/>
+    </resultMap>
+
+    <sql id="selectWebsocketVo">
+        select  id, name, tc_id, create_time, stu_id, create_by, update_time, update_by, version, stu_num
+        from tk_websocket
+    </sql>
+
+    <select id="selectList" parameterType="Websocket" resultMap="WebsocketResult">
+        <include refid="selectWebsocketVo"/>
+        <where>
+                <if test="id != null ">
+                    and id = #{id}</if>
+                <if test="name != null  and name.trim() != '' ">
+                    and name = #{name}</if>
+                <if test="tcId != null ">
+                    and tc_id = #{tcId}</if>
+                <if test="createTime != null  and createTime.trim() != '' ">
+                    and create_time = #{createTime}</if>
+                <if test="stuId != null ">
+                    and stu_id = #{stuId}</if>
+                <if test="createBy != null  and createBy.trim() != '' ">
+                    and create_by = #{createBy}</if>
+                <if test="updateTime != null ">
+                    and update_time = #{updateTime}</if>
+                <if test="updateBy != null  and updateBy.trim() != '' ">
+                    and update_by = #{updateBy}</if>
+                <if test="version != null ">
+                    and version = #{version}</if>
+                <if test="stuNum != null  and stuNum.trim() != '' ">
+                    and stu_num = #{stuNum}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="WebsocketResult">
+        <include refid="selectWebsocketVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="Websocket">
+        insert into tk_websocket
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">id
+                        ,
+                    </if>
+                    <if test="name != null  and name != ''  ">name
+                        ,
+                    </if>
+                    <if test="tcId != null  ">tc_id
+                        ,
+                    </if>
+                    create_time,
+
+                    <if test="stuId != null  ">stu_id
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        ,
+                    </if>
+                    <if test="version != null  ">version
+                        ,
+                    </if>
+                    <if test="stuNum != null  and stuNum != ''  ">stu_num
+                        ,
+                    </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">#{id}
+                        ,
+                    </if>
+                    <if test="name != null  and name != ''  ">#{name}
+                        ,
+                    </if>
+                    <if test="tcId != null  ">#{tcId}
+                        ,
+                    </if>
+                    sysdate(),
+
+                    <if test="stuId != null  ">#{stuId}
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">#{createBy}
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">#{updateTime}
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                        ,
+                    </if>
+                    <if test="version != null  ">#{version}
+                        ,
+                    </if>
+                    <if test="stuNum != null  and stuNum != ''  ">#{stuNum}
+                        ,
+                    </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Websocket">
+        update tk_websocket
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="name != null  and name != ''  ">name
+                        = #{name},
+                    </if>
+                    <if test="tcId != null  ">tc_id
+                        = #{tcId},
+                    </if>
+                    <if test="createTime != null  and createTime != ''  ">create_time
+                        = #{createTime},
+                    </if>
+                    <if test="stuId != null  ">stu_id
+                        = #{stuId},
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        = #{createBy},
+                    </if>
+                 update_time= sysdate(),
+
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        = #{updateBy},
+                    </if>
+                    <if test="version != null  ">version
+                        = #{version},
+                    </if>
+                    <if test="stuNum != null  and stuNum != ''  ">stu_num
+                        = #{stuNum},
+                    </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from tk_websocket where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_websocket where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

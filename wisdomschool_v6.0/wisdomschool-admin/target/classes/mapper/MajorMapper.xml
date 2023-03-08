@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.MajorMapper">
+
+    <resultMap type="Major" id="MajorResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="name"/>
+        <result property="did" column="did"/>
+    </resultMap>
+
+    <sql id="selectMajorVo">
+        select m.id,
+               m.create_by,
+               m.create_time,
+               m.update_by,
+               m.update_time,
+               m.remark,
+               m.version,
+               m.name,
+               m.did
+        from tb_major m
+    </sql>
+
+    <select id="selectList" parameterType="Major" resultMap="MajorResult">
+        <include refid="selectMajorVo"/>
+        <where>
+            <if test="id != null ">and m.id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and m.create_by = #{createBy}</if>
+            <if test="createTime != null ">and m.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and m.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and m.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and m.remark = #{remark}</if>
+            <if test="version != null ">and m.version = #{versiom}</if>
+            <if test="name != null  and name.trim() != '' ">and m.name = #{name}</if>
+            <if test="did != null and did != '' ">and m.did = #{did}</if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="MajorResult">
+        <include refid="selectMajorVo"/>
+        where m.id = #{id}
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from tb_major
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="did != null and did != ''">
+                AND did = #{did}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert"
+            parameterType="Major">
+        insert into tb_major
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            <if test="name != null  and name != ''  ">name,</if>
+            <if test="did != null and did != '' ">did,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            <if test="name != null  and name != ''  ">#{name},</if>
+            <if test="did != null and did != '' ">#{did},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Major">
+        update tb_major
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="version != null  ">version = #{version},</if>
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="did != null and did != '' ">did = #{did},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_major
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_major where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

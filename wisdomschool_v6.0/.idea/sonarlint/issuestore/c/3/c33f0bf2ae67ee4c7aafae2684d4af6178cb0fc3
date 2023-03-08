@@ -1,0 +1,71 @@
+
+a	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(ò”ƒæûÿÿÿÿ
+\	java:S112ü"FDefine and throw a dedicated exception instead of using a generic one.(“¢Ë¬
+a	java:S112Ù"FDefine and throw a dedicated exception instead of using a generic one.(ò”ƒæûÿÿÿÿ
+\	java:S112Ò"FDefine and throw a dedicated exception instead of using a generic one.(èÉ›™
+a	java:S112å"FDefine and throw a dedicated exception instead of using a generic one.(ò¸•óøÿÿÿÿ
+E
+java:S3740a"/Provide the parametrized type for this generic.(ş«Ïù
+K
+java:S3740¹"/Provide the parametrized type for this generic.(œîİ¨ıÿÿÿÿ
+K
+java:S3740Ñ"/Provide the parametrized type for this generic.(ÀÆöùÿÿÿÿ
+K
+java:S3740Û"/Provide the parametrized type for this generic.(şÑé–ûÿÿÿÿ
+K
+java:S3740Û"/Provide the parametrized type for this generic.(şÑé–ûÿÿÿÿ
+K
+java:S3740ı"/Provide the parametrized type for this generic.(òÊ™Şûÿÿÿÿ
+F
+java:S3740È"/Provide the parametrized type for this generic.(’Äâ‰
+E
+java:S3740‚"/Provide the parametrized type for this generic.(·™é1
+`
+java:S1192Ê"IDefine a constant instead of duplicating this literal "userTest" 4 times.(•˜Æ
+h
+java:S1192¶"LDefine a constant instead of duplicating this literal "chapterName" 4 times.(†ûÜ¡øÿÿÿÿ
+i
+java:S1192¼"MDefine a constant instead of duplicating this literal "resourceName" 4 times.(û’…áøÿÿÿÿ
+]
+java:S1192å"GDefine a constant instead of duplicating this literal "userId" 6 times.(Šı˜}
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(â¢¢§
+W
+java:S2387/"<"sysUserService" is the name of a field in "BaseController".(ƒ§´ùÿÿÿÿ
+Q	java:S125_"<This block of commented-out lines of code should be removed.(³­Ô
+H
+java:S1602ˆ",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ
+R	java:S125‹"<This block of commented-out lines of code should be removed.(Ò»èú
+C
+java:S1602¿",Remove useless curly braces around statement(ÁÇèõ
+C
+java:S1602È",Remove useless curly braces around statement(ë§€æ
+i
+java:S3776ü"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(“¢Ë¬
+H
+java:S1602Š",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(şÓĞG
+H
+java:S1602—",Remove useless curly braces around statement(˜ƒÛÈûÿÿÿÿ
+i
+java:S3776Ò"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(èÉ›™
+H
+java:S1602à",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ
+Q	java:S125ã"<This block of commented-out lines of code should be removed.(şÓĞG
+ˆ
+java:S1130¦"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(¥Ö—†øÿÿÿÿ
+H
+java:S1602­",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ
+ˆ
+java:S1130å"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ò¸•óøÿÿÿÿ
+H
+java:S1602ì",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ
+A
+java:S2114Š"%Remove or correct this "addAll" call.(ÄßÛ¤üÿÿÿÿ
+C
+java:S1602•",Remove useless curly braces around statement(—úÍ°
+C
+java:S1602³",Remove useless curly braces around statement(÷ œì
+C
+java:S1602´",Remove useless curly braces around statement(­Àõæ
+H
+java:S1602Õ",Remove useless curly braces around statement(‰êÚâøÿÿÿÿ

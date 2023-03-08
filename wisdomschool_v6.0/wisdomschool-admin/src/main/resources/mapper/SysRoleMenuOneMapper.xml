@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.SysRoleMenuOneMapper">
+
+    <resultMap type="SysRoleMenuOne" id="SysRoleMenuResult">
+        <result property="roleId"     column="role_id"      />
+        <result property="menuId"     column="menu_id"      />
+        <result property="schoolId"     column="school_id"      />
+    </resultMap>
+
+    <delete id="deleteRoleMenuByRoleOneId" parameterType="SysRoleMenuOne">
+		delete from sys_role_menu where role_id=#{roleId} and school_id=#{schoolId}
+	</delete>
+
+    <select id="selectCountRoleMenuOneByMenuId" resultType="Integer">
+	    select count(1) from sys_role_menu where menu_id=#{menuId}
+	</select>
+
+    <delete id="deleteRoleMenuOne" parameterType="String">
+        delete from sys_role_menu where role_id in
+        <foreach collection="array" item="roleId" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+    <insert id="batchRoleMenuOne">
+        insert into sys_role_menu(role_id, menu_id,school_id) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.roleId},#{item.menuId},#{item.schoolId})
+        </foreach>
+    </insert>
+
+</mapper>

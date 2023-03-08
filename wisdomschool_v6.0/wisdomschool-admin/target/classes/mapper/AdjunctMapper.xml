@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.AdjunctMapper">
+
+    <resultMap type="Adjunct" id="AdjunctResult">
+        <result property="id" column="id"/>
+        <result property="cid" column="cid"/>
+        <result property="adjunctname" column="adjunctname"/>
+        <result property="deadline" column="deadline"/>
+        <result property="starline" column="starline"/>
+        <result property="timeout" column="timeout"/>
+        <result property="jobcontent" column="jobcontent"/>
+        <result property="rid" column="rid"/>
+        <result property="States" column="states"/>
+        <result property="filename" column="filename"/>
+        <result property="tcid" column="tcid"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <resultMap type="AdjunctVo" id="AdjunctVoResult">
+        <result property="adjunctname" column="adjunctname"/>
+        <result property="jobcontent" column="jobcontent"/>
+        <result property="filename" column="filename"/>
+        <result property="stuid" column="stuid"/>
+        <result property="name" column="name"/>
+        <result property="loginName" column="login_Name"/>
+        <result property="userName" column="user_Name"/>
+        <result property="results" column="results"/>
+    </resultMap>
+
+    <sql id="selectAdjunctVo">
+        select w.id,
+               w.cid,
+               w.adjunctname,
+               w.deadline,
+               w.starline,
+               w.timeout,
+               w.jobcontent,
+               w.states,
+               w.rid,
+               w.filename,
+               w.tcid,
+                w.create_time
+        from wy_adjunct w,tb_teacher_course t
+    </sql>
+
+    <select id="selectList" parameterType="Adjunct" resultMap="AdjunctResult">
+        <include refid="selectAdjunctVo"/>
+        <where>
+            w.tcid=t.id
+            <if test="id != null ">and w.id = #{id}</if>
+            <if test="cid != null ">and w.cid = #{cid}</if>
+            <if test="adjunctname != null and adjunctname!=''">and w.adjunctname = #{adjunctname}</if>
+            <if test="deadline != null ">and w.deadline = #{deadline}</if>
+            <if test="starline != null ">and w.starline = #{starline}</if>
+            <if test="timeout != null and timeout != ''">and w.timeout = #{timeout}</if>
+            <if test="jobcontent != null ">and w.jobcontent = #{jobcontent}</if>
+            <if test="States != null ">and w.states = #{States}</if>
+            <if test="tcid != null ">and w.tcid = #{tcid}</if>
+            <if test="filename != null ">and w.filename = #{filename}</if>
+            <if test="rid != null ">and w.rid = #{rid}</if>
+        </where>
+    </select>
+
+    <select id="listAll" parameterType="Adjunct" resultMap="AdjunctVoResult">
+        SELECT was.stuid,
+             was.results,
+            wa.adjunctname,
+            wa.jobcontent,
+            wa.filename,
+            u.login_Name,
+            u.user_Name,
+            tc.name
+        FROM sys_user u,
+            wy_adjunct_student was,
+            wy_adjunct wa,
+            tb_clbum tc
+        WHERE u.user_attr_id =was.stuid
+            AND u.del_flag = '0'
+            AND was.adjid=wa.id
+            AND was.cid=tc.id
+        <if test="tcid != null ">and wa.tcid = #{tcid}</if>
+    </select>
+
+
+
+
+    <select id="selectById" parameterType="String" resultMap="AdjunctResult">
+        select w.id,
+               w.cid,
+               w.adjunctname,
+               w.deadline,
+               w.starline,
+               w.timeout,
+               w.jobcontent,
+               w.states,
+               w.rid,
+               w.filename,
+               w.tcid,
+                w.create_time
+        from wy_adjunct w
+        where w.id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="Adjunct">
+        insert into wy_adjunct
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="adjunctname != null  ">adjunctname,</if>
+            <if test="deadline != null  ">deadline,</if>
+            <if test="starline != null ">starline,</if>
+            <if test="timeout != null ">timeout,</if>
+            <if test="jobcontent != null  ">jobcontent,</if>
+            <if test="States != null ">states,</if>
+            <if test="tcid != null ">tcid,</if>
+            <if test="filename != null ">filename,</if>
+            <if test="rid != null ">rid,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="adjunctname != null  ">#{adjunctname},</if>
+            <if test="deadline != null">#{deadline},</if>
+            <if test="starline != null ">#{starline},</if>
+            <if test="timeout != null ">#{timeout},</if>
+            <if test="jobcontent != null  ">#{jobcontent},</if>
+            <if test="States != null ">#{states},</if>
+            <if test="tcid != null  ">#{tcid},</if>
+            <if test="filename != null  ">#{filename},</if>
+            <if test="rid != null  ">#{rid},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <insert id="addreturn" parameterType="Adjunct" useGeneratedKeys="true" keyProperty="id">
+        insert into wy_adjunct
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="adjunctname != null  ">adjunctname,</if>
+            <if test="deadline != null  ">deadline,</if>
+            <if test="starline != null ">starline,</if>
+            <if test="timeout != null ">timeout,</if>
+            <if test="jobcontent != null  ">jobcontent,</if>
+            <if test="States != null ">states,</if>
+            <if test="tcid != null ">tcid,</if>
+            <if test="filename != null ">filename,</if>
+            <if test="rid != null ">rid,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="adjunctname != null  ">#{adjunctname},</if>
+            <if test="deadline != null">#{deadline},</if>
+            <if test="starline != null ">#{starline},</if>
+            <if test="timeout != null ">#{timeout},</if>
+            <if test="jobcontent != null  ">#{jobcontent},</if>
+            <if test="States != null ">#{states},</if>
+            <if test="tcid != null  ">#{tcid},</if>
+            <if test="filename != null  ">#{filename},</if>
+            <if test="rid != null  ">#{rid},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+
+    <update id="update" parameterType="Attendance" >
+        update wy_adjunct
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cid != null "> cid = #{cid},</if>
+            <if test="adjunctname != null "> adjunctname = #{adjunctname},</if>
+            <if test="deadline != null "> deadline = #{deadline},</if>
+            <if test="starline != null "> starline = #{starline},</if>
+            <if test="timeout != null and timeout != ''">and timeout = #{timeout},</if>
+            <if test="jobcontent != null "> jobcontent = #{jobcontent},</if>
+            <if test="States != null "> states = #{States},</if>
+            <if test="tcid != null "> tcid = #{tcid},</if>
+            <if test="filename != null "> filename = #{filename},</if>
+            <if test="rid != null "> rid = #{rid}</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from wy_adjunct
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="Integer">
+        delete from wy_adjunct where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

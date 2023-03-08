@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.MyQuestionsMapper">
+    <resultMap type="MyQuestions" id="MyQuestionsResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_Id"/>
+        <result property="update_by" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_Id"/>
+        <result property="version" column="version"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="parsing" column="parsing"/>
+        <result property="qexposed" column="qexposed"/>
+        <result property="qmaxexposure" column="qmaxexposure"/>
+        <result property="ststatus" column="ststatus"/>
+        <result property="year" column="year"/>
+        <result property="chapterId" column="chapterId"/>
+        <result property="jchapterId" column="jchapterId"/>
+        <result property="titleTypeId" column="titleTypeId"/>
+        <result property="xzsubjectsId" column="xzsubjectsId"/>
+        <result property="myoptionAnswerArr" column="myoptionAnswerArr"/>
+        <result property="difficulty" column="difficulty"/>
+        <result column="title_type_name" property="titleTypeName"/>
+        <result column="titleTypeNum" property="titleTypeNum"/>
+        <result column="subjectsName" property="subjectsName"/>
+        <result column="subjectsId" property="subjectsId"/>
+        <result column="chapterName" property="chapterName"/>
+        <result column="departmentName" property="departmentName"/>
+        <result column="professionalName" property="professionalName"/>
+        <result column="templateNum" property="templateNum"/>
+        <result column="pubilcTitleId" property="pubilcTitleId"/>
+    </resultMap>
+    <resultMap type="MyQuestions" id="EditMyQuestionsResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="createId"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_time"/>
+        <result property="version" column="version"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="parsing" column="parsing"/>
+        <result property="qexposed" column="qexposed"/>
+        <result property="qmaxexposure" column="qmaxexposure"/>
+        <result property="ststatus" column="ststatus"/>
+        <result property="year" column="year"/>
+        <result property="chapterId" column="chapterId"/>
+        <result property="titleTypeId" column="titleTypeId"/>
+        <result property="xzsubjectsId" column="xzsubjectsId"/>
+        <result property="myoptionAnswerArr" column="myoptionAnswerArr"/>
+        <result property="difficulty" column="difficulty"/>
+        <result column="titleTypeNum" property="titleTypeNum"/>
+        <result column="title_type_name" property="titleTypeName"/>
+        <result column="subjectsName" property="subjectsName"/>
+        <result column="chapterName" property="chapterName"/>
+        <result property="chapterId" column="chapterId"/>
+        <result property="jchapterId" column="jchapterId"/>
+        <result column="chapterName2" property="chapterName2"/>
+        <result column="departmentName" property="departmentName"/>
+        <result column="professionalName" property="professionalName"/>
+        <result column="templateNum" property="templateNum"/>
+        <result column="pubilcTitleId" property="pubilcTitleId"/>
+        <result column="ststatus" property="ststatus"/>
+    </resultMap>
+    <select id="selectQuestionByTid" resultMap="MyQuestionsResult">
+        select * from tk_my_questions where titleTypeId=#{titleTypeId} and xzsubjectsId=#{xzsubjectsId}
+    </select>
+    <select id="selectExamQuestion1" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+    <select id="selectExamQuestion2" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+    <select id="selectExamQuestion3" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+    <select id="selectExamQuestion4" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+    <select id="selectExamQuestion5" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+    <select id="selectExamQuestion6" resultMap="MyQuestionsResult">
+         select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.create_id = #{createId}
+        and tq.xzsubjectsId = #{xzsubjectsId}
+        and tq.titleTypeId=#{titleTypeNum}
+    </select>
+
+    <select id="selectList" resultMap="MyQuestionsResult">
+        select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        <if test="templateNum != null and templateNum.trim()  != ''">
+            AND ttt.templateNum= #{templateNum}
+        </if>
+        <if test="createBy != null and createBy.trim()  != ''">
+            AND tq.create_by= #{createBy}
+        </if>
+        <if test="createId != null and createId.trim()  != ''">
+            AND tq.create_Id= #{createId}
+        </if>
+        <if test="title != null and title.trim()  != ''">
+            AND tq.title like concat('%', #{title}, '%')
+        </if>
+        <if test="subjectsName != null and subjectsName.trim()  != ''">
+            AND tb.name = #{subjectsName},
+        </if>
+        <if test="subjectsId != null and subjectsId.trim()  != ''">
+            AND tq.xzsubjectsId = #{subjectsId}
+        </if>
+        <if test="xzsubjectsId != null and xzsubjectsId.trim()  != ''">
+            AND tq.xzsubjectsId = #{xzsubjectsId}
+        </if>
+        <if test="titleTypeName != null and titleTypeName.trim()  != ''">
+            AND tmt.titleTypeName= #{titleTypeName},
+        </if>
+        <if test="titleTypeId != null and titleTypeId.trim()  != ''">
+            AND tmt.id = #{titleTypeId}
+        </if>
+        <if test="chapterId != null and chapterId.trim()  != ''">
+            AND tq.chapterId = #{chapterId}
+        </if>
+        <if test="jchapterId != null and jchapterId.trim()  != ''">
+            AND tc.id = #{jchapterId}
+        </if>
+        <if test="ststatus != null">
+            AND tq.ststatus = #{ststatus}
+        </if>
+        <if test="difficulty != null and difficulty.trim()  != ''">
+            AND tq.difficulty = #{difficulty}
+        </if>
+    </select>
+    <delete id="deleteById" parameterType="String">
+        delete from tk_my_questions where id =  #{id}
+    </delete>
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_my_questions where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <insert id="insert" parameterType="MyQuestions">
+        insert into tk_my_questions
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            create_time,
+            <if test="createBy != null and createBy!=''">create_by,</if>
+            <if test="createId != null and createId!=''">create_Id,</if>
+            <if test="updateTime != null and updateTime!=''">update_time,</if>
+            <if test="updateBy != null and updateBy!=''">update_by,</if>
+            <if test="updateId != null and updateId!=''">update_Id,</if>
+            <if test="version != null and version!=''">version,</if>
+            <if test="difficulty != null and difficulty!=''">difficulty,</if>
+            <if test="parsing != null and parsing!=''">parsing,</if>
+            <if test="qexposed != null and qexposed!=''">qexposed,</if>
+            <if test="qmaxexposure != null and qmaxexposure!=''">qmaxexposure,</if>
+            <if test="ststatus != null and ststatus!=''">ststatus,</if>
+            <if test="title != null and title!=''">title,</if>
+            <if test="year != null and year!=''">year,</if>
+            <if test="jchapterId != null and jchapterId!=''">chapterId,</if>
+            <if test="titleTypeId != null and titleTypeId!=''">titleTypeId,</if>
+            <if test="xzsubjectsId != null and xzsubjectsId!=''">xzsubjectsId,</if>
+            <if test="myoptionAnswerArr != null and myoptionAnswerArr!=''">myoptionAnswerArr,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            sysdate(),
+            <if test="createBy != null and createBy!=''">#{createBy},</if>
+            <if test="createId != null and createId!=''">#{createId},</if>
+            <if test="updateTime != null and updateTime!=''">#{updateTime},</if>
+            <if test="updateBy != null and updateBy!=''">#{updateBy},</if>
+            <if test="updateId != null and updateId!=''">#{updateId},</if>
+            <if test="version != null and version!=''">#{version},</if>
+            <if test="difficulty != null and difficulty!=''">#{difficulty},</if>
+            <if test="parsing != null and parsing!=''">#{parsing},</if>
+            <if test="qexposed != null and qexposed!=''">#{qexposed},</if>
+            <if test="qmaxexposure != null and qmaxexposure!=''">#{qmaxexposure},</if>
+            <if test="ststatus != null and ststatus!=''">#{ststatus},</if>
+            <if test="title != null and title!=''">#{title},</if>
+            <if test="year != null and year!=''">#{year},</if>
+            <if test="jchapterId != null and jchapterId!=''">#{jchapterId},</if>
+            <if test="titleTypeId != null and titleTypeId!=''">#{titleTypeId},</if>
+            <if test="xzsubjectsId != null and xzsubjectsId!=''">#{xzsubjectsId},</if>
+            <if test="myoptionAnswerArr != null and myoptionAnswerArr!=''">#{myoptionAnswerArr},</if>
+        </trim>
+    </insert>
+    <select id="selectById" parameterType="String" resultMap="EditMyQuestionsResult">
+select tq.id,
+       tq.year,
+       tq.parsing,
+       tq.version,
+       tq.ststatus,
+       tq.chapterId    as jchapterId,
+       tb.pid          as chapterId,
+       tq.myoptionAnswerArr,
+       tq.qexposed,
+       tq.questionscore,
+       tq.qmaxexposure,
+       tq.title,
+       tq.difficulty,
+       tq.xzsubjectsId as xzsubjectsId,
+       ttt.id          as pubilcTitleId,
+       tq.titleTypeId,
+       tmt.title_type_name,
+       ttt.titleTypeNum
+from tb_chapter tb,
+     tk_my_questions tq,
+     tk_title_type ttt,
+     tk_my_title_type tmt
+where tq.chapterId = tb.id
+  and tq.titleTypeId = tmt.id
+  and tmt.public_title_id = ttt.id
+  and tq.id =#{id}
+    </select>
+    <update id="update" parameterType="MyQuestions">
+        update tk_my_questions
+        <set>
+            <if test=" id!= null and id != ''">id= #{id},</if>
+            <if test=" createTime!= null and createTime != ''">create_time= #{createTime},</if>
+            <if test=" createBy!= null and createBy != ''">create_by= #{createBy},</if>
+            <if test=" createId!= null and createId != ''">create_id= #{createId},</if>
+            <if test=" updateBy!= null and updateBy != ''">update_by= #{updateBy},</if>
+            update_time= sysdate(),
+            <if test=" updateId!= null and updateId != ''">update_id= #{updateId},</if>
+            <if test=" version!= null and version != ''">version= #{version},</if>
+            <if test=" difficulty!= null and  difficulty!= ''">difficulty = #{difficulty},</if>
+            <if test=" qexposed!= null and qexposed != ''">qexposed= #{qexposed},</if>
+            <if test="qmaxexposure != null and qmaxexposure != ''">qmaxexposure= #{qmaxexposure},</if>
+            <if test="ststatus != null and ststatus != ''">ststatus= #{ststatus},</if>
+            <if test=" title!= null and title != ''">title= #{title},</if>
+            <if test="year != null and year != ''">year= #{year},</if>
+            <if test=" jchapterId!= null and  jchapterId!= ''">chapterId= #{jchapterId},</if>
+            <if test=" titleTypeId!= null and titleTypeId  != ''">titleTypeId = #{titleTypeId},</if>
+            <if test="xzsubjectsId!= null and  xzsubjectsId!= ''">xzsubjectsId= #{xzsubjectsId},</if>
+            <if test="parsing!= null and  parsing!= ''">parsing= #{parsing},</if>
+            <if test=" myoptionAnswerArr!= null and myoptionAnswerArr != ''">myoptionAnswerArr= #{myoptionAnswerArr},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="selectBatchIds" resultMap="MyQuestionsResult">
+        select tq.id,
+               xs.subjectsName,
+               tq.title,
+               tt.titleTypeName,
+               tq.difficulty,
+               tq.year,
+               xs.departmentName,
+              xs.professionalName,
+               tt.titleTypeBZ ,
+               tq.parsing,
+               tq.xzsubjectsId,
+               tq.chapterId,
+               tq.titleTypeId,
+               tq.version,
+               tq.ststatus,tq.myoptionAnswerArr,tq.create_time
+        from tk_my_questions tq,tk_title_Type tt,tk_my_xzsubjects xs where tq.xzsubjectsId=xs.id and
+        tq.titleTypeId=tt.id
+        <if test="title != null and title != ''">
+            AND tq.title like concat('%', #{title}, '%')
+        </if>
+        <if test="departmentName != null and departmentName != ''">
+            AND xs.departmentName like concat('%', #{departmentName}, '%')
+        </if>
+        <if test="professionalName != null and professionalName != ''">
+            AND xs.professionalName like concat('%', #{professionalName}, '%')
+        </if>
+        <if test="subjectsName != null and subjectsName != ''">
+            AND xs.subjectsName like concat('%', #{subjectsName}, '%')
+        </if>
+        <if test="titleTypeName != null and titleTypeName != ''">
+            AND tt.titleTypeName like concat('%', #{titleTypeName}, '%')
+        </if>
+        AND tt.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+
+    <select id="selectBatchByChapterIds" resultMap="MyQuestionsResult">
+        select tq.id,
+        tb.name as subjectsName,
+        tq.title,
+        tmt.title_type_name,
+        tq.difficulty,
+        tq.year,
+        tq.parsing,
+        tq.xzsubjectsId,
+        tq.chapterId as jchapterId ,
+        tq.titleTypeId,
+        tq.qexposed,
+        tq.qmaxexposure,
+        tq.ststatus,
+        tc.id as chapterId,
+        tc.name as chapterName,
+        tq.create_time,
+        tq.myoptionAnswerArr,
+        tq.questionscore,
+        tq.version,
+        tq.year,
+        ttt.templateNum,
+        ttt.titleTypeNum,
+        ttt.id as pubilcTitleId
+        from tk_my_questions tq,
+        tb_course tb,
+        tk_my_title_type tmt,
+        tb_chapter tc,
+        tk_title_type ttt
+        where tq.xzsubjectsId = tb.id
+        and tq.titleTypeId = tmt.id
+        and tq.chapterId = tc.id
+        and tmt.public_title_id = ttt.id
+        and tq.chapterId in
+        <foreach collection="list" item="ids" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </select>
+
+</mapper>

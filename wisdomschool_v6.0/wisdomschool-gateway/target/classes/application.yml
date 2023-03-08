@@ -1,0 +1,67 @@
+server:
+  port: 8086
+#  ssl:
+#    enabled: true
+#    key-alias: openvidu-selfsigned
+#    key-store: classpath:openvidu-selfsigned.jks
+#    key-store-password: openvidu
+#    key-store-type: JKS
+spring:
+  application:
+    name: wisdomschool-gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      httpclient:
+        ssl:
+          use-insecure-trust-manager: true
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务进路由
+      routes:
+        #后台管理服务
+        - id: wisdomschool-admin-service
+          uri: lb://wisdomschool-admin-service
+          predicates:
+            - Path=/admin/**,/monitor/**,/front/**,/teacher/**,/system/**,/student/**,/recourse/**,/jiaowu/**,/common/**,/js/**,/badialog/**,/css/**,/dialogs/**,/dist/**,/file/**,/fonts/**,/huaban/**,/img/**,/lang/**,/themes/**,/third-party/**,/loginIndex,/examLogin,/favicon.ico,/htmlTemp/**,/sdsadmin/**
+
+        #存储服务
+        - id: wisdomschool-storage-service
+          uri: lb://wisdomschool-storage-service
+          predicates:
+            - Path=/storage/**,/showCondensedPicture
+
+
+        #考试服务
+        - id: wisdomschool-exam-service
+          uri: lb:https://wisdomschool-exam-service
+          predicates:
+            - Path=/exam/**,/school/**,/ueditor/**,/upload
+        #考试websocket
+        - id: wisdomschool-websocket-service
+          uri: lb:wss://wisdomschool-exam-service
+          predicates:
+            - Path=/wsk
+
+        #学生端服务
+        - id: wisdomschool-student-service
+          uri: lb://wisdomschool-student-service
+          predicates:
+            - Path=/student/**,/user/**,/front/**,/studentIndex,/account/**
+
+
+        #考试监控服务
+        - id: wisdomschool-monitor-service
+          uri: lb:https://wisdomschool-monitor-service
+          predicates:
+            - Path=/examMonitor/**
+
+
+        #人脸识别服务
+        - id: wisdomschool-face-service
+          uri: lb://wisdomschool-face-service
+          predicates:
+            - Path=/face/**
+

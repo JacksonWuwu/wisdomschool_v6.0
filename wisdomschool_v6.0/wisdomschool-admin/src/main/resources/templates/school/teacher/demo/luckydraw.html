@@ -1,0 +1,294 @@
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="zn">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="zn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>课微助</title>
+    <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
+    <link rel="shortcut icon" th:href="@{/static/ui2/dist/img/pagelogo.ico}">
+    <!-- Toggles CSS -->
+    <link th:href="@{/static/ui2/vendors4/jquery-toggles/css/toggles.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/static/ui2/vendors4/jquery-toggles/css/themes/toggles-light.css}" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link th:href="@{/static/ui2/dist/css/style.css}" rel="stylesheet" type="text/css">
+    <!-- ION CSS -->
+    <link th:href="@{/static/ui2/vendors4/ion-rangeslider/css/ion.rangeSlider.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/static/ui2/vendors4/ion-rangeslider/css/ion.rangeSlider.skinHTML5.css}"  rel="stylesheet" type="text/css">
+    <!-- select2 CSS -->
+    <link th:href="@{/static/ui2/vendors4/select2/dist/css/select2.min.css}"  rel="stylesheet" type="text/css" />
+    <!-- Pickr CSS -->
+    <link th:href="@{/static/ui2/vendors4/pickr-widget/dist/pickr.min.css}"  rel="stylesheet" type="text/css" />
+    <!-- Daterangepicker CSS -->
+    <link th:href="@{/static/ui2/vendors4/daterangepicker/daterangepicker.css}"  rel="stylesheet" type="text/css" />
+    <!-- Bootstrap table CSS -->
+    <link th:href="@{/static/ui2/vendors4/bootstrap-table/dist/bootstrap-table.min.css}" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body style="background: rgb(30,34,35);">
+<div class="hk-wrapper hk-vertical-nav" style="background: rgb(30,34,35);">
+    <nav class="navbar navbar-expand-xl navbar-dark fixed-top hk-navbar" style="background: #2A8E9D;height: 58px;">
+        <img th:src="@{/static/ui2/dist/img/logoone.png}" height="40" width="98">
+        <div class="collapse navbar-collapse " style="margin-left: 10px">
+            <ul class="navbar-nav ml-0  " style="width: 150px;" id="otherCourseName">
+                <li class="nav-item dropdown show">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="true" style="width:150px;float: left;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;-o-text-overflow: ellipsis;" >
+                        <font style="vertical-align: inherit;font-size:20px;"  id="thisCourseName">
+                        </font>
+                    </a>
+                    <div class="dropdown-menu text-center" id="selectCourse">
+                        <a>
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;color: #2A8E9D;">切换课程</font>
+                            </font>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ol class="breadcrumb breadcrumb-light bg-transparent" style="height:21px;">
+                <li class="breadcrumb-item"><a href="#" id="courseDetailhref" style="color:white">课堂首页</a></li>
+                <li class="breadcrumb-item"><a href="/front/index" style="color:white">首页</a></li>
+                <li class="breadcrumb-item active" aria-current="page" style="color:white">作业</li>
+            </ol>
+        </div>
+        <ul class="navbar-nav align-items-center flex-row">
+            <li class="nav-item ml-2">
+                <a class="nav-link" href="#">
+                    <i class="font-24 fa fa-university ml-1"></i>
+                </a>
+                <a>
+                    <p style="font-size:15px;color:white;margin-top: 0px">我的课堂</p>
+                </a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link" href="#"><i class="font-24 fa fa-cubes ml-1"></i></a>
+                <a>
+                    <p style="font-size:15px;color:white;margin-top: 0px">我的资源</p>
+                </a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link" href="#"><i class="font-24 fa fa-bullhorn ml-1"></i></a>
+                <a>
+                    <p style="font-size:15px;color:white;margin-top: 0px">发布通知</p>
+                </a>
+            </li>
+            <li class="nav-item ml-2">
+                <a class="nav-link" href="#"><i class="font-24 fa fa-question-circle-o ml-1"></i></a>
+                <a>
+                    <p style="font-size:15px;color:white;margin-top: 0px">用户手册</p>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link d-flex align-items-center dropdown-toggle no-caret" href="#" id="userAuthdrpColor3" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm">
+                        <img th:src="@{/static/ui2/dist/img/yonghutouxiang.png}"  alt="用户" class="avatar-img rounded-circle">
+                    </div>
+                    <span class="font-12 text-capitalize ml-10">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit; font-size:15px;color:white">
+										<span sec:authentication="name"></span>
+									</font>
+								</font><i class="zmdi zmdi-chevron-down pl-5"></i>
+							</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userAuthdrpColor3">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModalEmail">
+                        <i class="fa fa-user"></i>
+                        个人信息
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-key"></i>
+                        修改密码
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-bell"></i>
+                        最新通知
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-terminal"></i>
+                        产品日志
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-play-circle"></i>
+                        使用向导
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fa fa-power-off"></i>
+                        退出系统
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="conetentBox_00008">
+        <div class="wrapper_00042">
+            <div class="title_00030">点名提问</div>
+        </div>
+    </div>
+    <div class="conetentBox_00009">
+        <div class="wrapper_00043" id="userform">
+            <div class="wrapper_00044">
+                <div class="avatar avatar-xxl" id="userimg">
+                    <img src="/static/ui2/dist/img/artsix.png" alt="user" class="avatar-img rounded-circle" >
+                </div>
+            </div>
+            <div class="wrapper_00045">
+                <div class="title_00031" id="name">姓名</div>
+            </div>
+            <div class="wrapper_00046">
+                <div class="title_00032" id="number">学号</div>
+            </div>
+        </div>
+        <div class="wrapper_00047" id="btn">
+            <button id="startLuckyBtn" type="button" class="btn btn-primary btn-block btn-rounded" style="font-size: 30px;">点击随机</button>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script th:src="@{/static/ui2/vendors4/jquery/dist/jquery.min.js}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/static/ui2/vendors4/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/static/ui2/vendors4/bootstrap/dist/js/bootstrap.min.js}"></script>
+
+    <!-- Slimscroll JavaScript -->
+    <script th:src="@{/static/ui2/dist/js/jquery.slimscroll.js}"></script>
+
+    <!-- Fancy Dropdown JS -->
+    <script th:src="@{/static/ui2/dist/js/dropdown-bootstrap-extended.js}"></script>
+
+    <!-- FeatherIcons JavaScript -->
+    <script th:src="@{/static/ui2/dist/js/feather.min.js}"></script>
+
+    <!-- Toggles JavaScript -->
+    <script th:src="@{/static/ui2/vendors4/jquery-toggles/toggles.min.js}"></script>
+    <script th:src="@{/static/ui2/dist/js/toggle-data.js}"></script>
+
+    <!-- Init JavaScript -->
+    <script th:src="@{/static/ui2/dist/js/init.js}"></script>
+    <script th:src="@{/static/layer/layer.js}"></script>
+
+
+    <!-- Bootstrap-table JavaScript -->
+    <script th:src="@{/static/ui2/vendors4/bootstrap-table/dist/bootstrap-table.min.js}"></script>
+
+    <!-- Peity JavaScript -->
+    <script th:src="@{/static/ui2/vendors4/peity/jquery.peity.min.js}"></script>
+    <script th:src="@{/static/ui2/dist/js/peity-data.js}"></script>
+    <!-- Easy pie chart JS -->
+    <script th:src="@{/static/ui2/vendors4/easy-pie-chart/dist/jquery.easypiechart.min.js}"></script>
+    <!--<script th:src="@{/static/ui2/dist/js/easypiechart-data.js}"></script>-->
+    <!-- Qrcode JavaScript -->
+    <script th:src="@{/static/qrcode/qrcode.js}"></script>
+
+
+</body>
+<script type="text/javascript" th:inline="javascript">
+    var courseid= '[[${courseid}]]';
+    var studentform;
+    var howmanypeople;
+    var dongtai=0;
+    var myVar=0;
+    //页面初始化
+    $(function () {
+        //初始化页面数据
+        showOtherCourseName();
+        luckypeopleform();
+        //设置导航栏课堂首页跳转链接
+        var ahref='/front/course/frontCourseDetail?courseid='+courseid;
+        $("#courseDetailhref").attr('href',ahref);
+        //初始化删除章节确认按钮
+        $("#startLuckyBtn").click(function () {
+            startlucky();
+        });
+        $("#stopLuckyBtn").click(function () {
+            stoplucky();
+        });
+
+    });
+
+    //初始化导航栏课堂下拉框
+    function showOtherCourseName() {
+
+        console.log(courseid);
+        $.ajax({
+            type: "POST",
+            url: "/front/course/getCourse",
+            dataType: "JSON",
+            success: function(data) {
+                console.log(data);
+                for(var i=0;i<data.length;i++){
+                    if (data[i].id==courseid){
+                        $("#thisCourseName").append(data[i].name);
+                        $("#courseImg").css("background-image","url("+data[i].imgUrl+")");
+                    }else {
+                        var child='<a class="dropdown-item" style="width:150px;float: left;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;-o-text-overflow: ellipsis;" href="/front/course/frontCourseDetail?courseid='+data[i].id+'">'
+                            +'<font style="vertical-align: inherit;">'
+                            +'<font style="vertical-align: inherit;">'+data[i].name
+                            +'</font>'
+                            +'</a>';
+                        $("#selectCourse").append(child);
+                    }
+                }
+            },
+            error: function() {
+                alert("服务器连接失败");
+            }
+        });
+    }
+    function luckypeopleform() {
+        console.log("aaaaa");
+        $.ajax({
+            type: "GET",
+            url: "/front/luckydraw/drawform?courseid="+courseid,
+            dataType: "JSON",
+            success: function(data) {
+                studentform=data;
+                howmanypeople=data.length-1;
+                dongtai=data.length-1;
+            },
+            error: function() {
+                alert("服务器连接失败");
+            }
+        });
+    }
+    function stoplucky() {
+        clearInterval(myVar);
+        $("#stopLuckyBtn").remove();
+        $("#btn").append(' <button id="startLuckyBtn" onclick="startlucky()" type="button" class="btn btn-primary btn-block btn-rounded" style="font-size: 30px;">点击随机</button>');
+    }
+    function startlucky() {
+        myVar = setInterval(function(){updateone() }, 0.05*1000);
+        $("#startLuckyBtn").remove();
+        $("#btn").append(' <button id="stopLuckyBtn" onclick="stoplucky()" type="button" class="btn btn-primary btn-block btn-rounded" style="font-size: 30px;">停止</button>');
+    }
+    //更新一次
+    function updateone() {
+        if (dongtai==-1){
+            dongtai=howmanypeople;
+        }
+        $("#name").empty();
+        $("#name").append(studentform[dongtai][0]);
+        $("#number").empty();
+        $("#number").append(studentform[dongtai][1]);
+        $("#userimg").empty();
+        $("#userimg").append(
+            '<img src="'+
+            studentform[dongtai][2]+
+            '" alt="user" class="avatar-img rounded-circle" >');
+        dongtai=dongtai-1;
+    }
+
+
+
+
+</script>
+</html>

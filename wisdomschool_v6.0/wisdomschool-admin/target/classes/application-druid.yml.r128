@@ -1,0 +1,58 @@
+# 数据源配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      # 主库数据源
+      master:
+        url: jdbc:mysql://localhost:3306/db_wisdomschool_v2?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true
+        username: root
+        password: 123456
+      # 从库数据源
+      slave:
+        # 从数据源开关/默认关闭
+        enabled: false
+        url:
+        username:
+        password:
+      # 初始连接数
+      initial-size: 10
+      # 最大连接池数量
+      max-active: 100
+      # 最小连接池数量
+      min-idle: 10
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      #打开PSCache，并且指定每个连接上PSCache的大小,
+      #如果用Oracle，则把poolPreparedStatements配置为true，
+      #mysql可以配置为false。分库分表较多的数据库，建议配置为false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒,
+      #有两个含义：
+      #1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接;
+      #2) testWhileIdle的判断依据
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，
+      #如果空闲时间大于timeBetweenEvictionRunsMillis，
+      #执行validationQuery检测连接是否有效
+      test-while-idle: true
+      #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-borrow: false
+      #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /monitor/druid/*
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true

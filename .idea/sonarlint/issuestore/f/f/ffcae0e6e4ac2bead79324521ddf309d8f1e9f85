@@ -1,0 +1,29 @@
+
+n	java:S116"YRename this field "SUBMIT_SUCCESS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(žèñ‡
+s	java:S116 "YRename this field "SUBMIT_FAILURE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀÌ¿ûþÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(žèñ‡
+<
+java:S1170 "!Make this final field static too.(ÀÌ¿ûþÿÿÿÿ
+^
+java:S4488)"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Èð¡‚
+c
+java:S4488/"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ŸÑìÆúÿÿÿÿ
+`
+java:S4488I"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ü¬ÊÒ
+Q	java:S125K"<This block of commented-out lines of code should be removed.(ÞÒ‘ú
+V	java:S125P"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ
+^
+java:S4488["HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(„³Ø®
+c
+java:S4488f"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(“¨Ðéùÿÿÿÿ
+e
+java:S4488p"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¼©ÐÔþÿÿÿÿ
+M
+java:S1135v"2Complete the task associated to this TODO comment.(Ÿèóýÿÿÿÿ
+`
+java:S4488}"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¤±óÝ
+N
+java:S1135ƒ"2Complete the task associated to this TODO comment.(Ÿèóýÿÿÿÿ
+M
+java:S1068 "2Remove this unused "SUBMIT_FAILURE" private field.(ÀÌ¿ûþÿÿÿÿ

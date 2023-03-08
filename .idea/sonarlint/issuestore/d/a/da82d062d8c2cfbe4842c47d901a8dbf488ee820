@@ -1,0 +1,9 @@
+
+r	java:S116"]Rename this field "COMMENT_TYPE_REPLY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½á€©
+v	java:S116"\Rename this field "COMMENT_TYPE_DECK" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šÆŸùÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(½á€©
+<
+java:S1170"!Make this final field static too.(šÆŸùÿÿÿÿ
+`
+java:S44889"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÖëÕ

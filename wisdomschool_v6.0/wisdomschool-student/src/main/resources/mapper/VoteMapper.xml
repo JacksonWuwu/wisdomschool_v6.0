@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.VoteMapper">
+    <resultMap type="Vote" id="VoteResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_Id"/>
+        <result property="update_by" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_Id"/>
+        <result property="version" column="version"/>
+        <result property="ststatus" column="ststatus"/>
+        <result property="xzsubjectsId" column="xzsubjectsId"/>
+        <result property="myoptionAnswerArr" column="myoptionAnswerArr"/>
+        <result property="optionSize" column="optionSize"/>
+        <result column="subjectsName" property="subjectsName"/>
+    </resultMap>
+    <resultMap type="Vote" id="EditVoteResult">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="createId"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_time"/>
+        <result property="version" column="version"/>
+        <result property="ststatus" column="ststatus"/>
+        <result property="xzsubjectsId" column="xzsubjectsId"/>
+        <result property="myoptionAnswerArr" column="myoptionAnswerArr"/>
+        <result property="optionSize" column="optionSize"/>
+        <result column="subjectsName" property="subjectsName"/>
+    </resultMap>
+
+    <select id="selectList" resultMap="VoteResult">
+        select wv.id,
+            tb.name as subjectsName,
+            wv.title,
+            wv.xzsubjectsId,
+            wv.ststatus,
+            wv.create_time,
+            wv.myoptionAnswerArr,
+            wv.optionSize,
+            wv.version
+        from wy_vote wv,
+            tb_course tb
+        where wv.xzsubjectsId = tb.id
+            <if test="createBy != null and createBy.trim()  != ''">
+                AND wv.create_by= #{createBy}
+            </if>
+            <if test="createId != null and createId.trim()  != ''">
+                AND wv.create_Id= #{createId}
+            </if>
+            <if test="title != null and title.trim()  != ''">
+                AND wv.title like concat('%', #{title}, '%')
+            </if>
+            <if test="subjectsName != null and subjectsName.trim()  != ''">
+                AND tb.name = #{subjectsName},
+            </if>
+            <if test="subjectsId != null and subjectsId.trim()  != ''">
+                AND wv.xzsubjectsId = #{subjectsId}
+            </if>
+            <if test="xzsubjectsId != null and xzsubjectsId.trim()  != ''">
+                AND wv.xzsubjectsId = #{xzsubjectsId}
+            </if>
+            <if test="ststatus != null">
+                AND wv.ststatus = #{ststatus}
+            </if>
+    </select>
+
+    <select id="listbyVoteOptionSubmit" parameterType="VoteOptionSubmit" resultType="VoteOptionSubmit">
+        select wv.id,
+        wv.stuid,
+        wv.voteId,
+        wv.stuOptionAnswer,
+        wv.stuAnswer,
+        wv.stuAnswerVo,
+        wv.optionSize,
+        wv.ststatus
+        from wy_vote_student wv
+        <where>
+        <if test="id != null ">
+            AND wv.id= #{id}
+        </if>
+        <if test="stuid != null ">
+            AND wv.stuid= #{stuid}
+        </if>
+        <if test="voteId != null ">
+            AND wv.voteId = #{voteId}
+        </if>
+        <if test="stuAnswerVo != null">
+            AND wv.stuAnswerVo = #{stuAnswerVo}
+        </if>
+        </where>
+    </select>
+
+    <insert id="savevoteOptionSubmitsBatch" parameterType="VoteOptionSubmit">
+        insert into wy_vote_student
+        (
+        voteId,
+        stuid
+        )
+        values
+        <foreach collection="list" item="VoteOptionSubmit" index="index" separator=",">
+            (
+            #{VoteOptionSubmit.voteId},
+            #{VoteOptionSubmit.stuid}
+            )
+        </foreach>
+    </insert>
+
+
+    <delete id="deleteById" parameterType="String">
+        delete from wy_vote where id =  #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from wy_vote where id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <insert id="insert" parameterType="Vote">
+        insert into wy_vote
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            create_time,
+            <if test="createBy != null and createBy!=''">create_by,</if>
+            <if test="createId != null and createId!=''">create_Id,</if>
+            <if test="updateTime != null and updateTime!=''">update_time,</if>
+            <if test="updateBy != null and updateBy!=''">update_by,</if>
+            <if test="updateId != null and updateId!=''">update_Id,</if>
+            <if test="version != null and version!=''">version,</if>
+            <if test="ststatus != null and ststatus!=''">ststatus,</if>
+            <if test="title != null and title!=''">title,</if>
+            <if test="optionSize != null and optionSize!=''">optionSize,</if>
+            <if test="xzsubjectsId != null and xzsubjectsId!=''">xzsubjectsId,</if>
+            <if test="myoptionAnswerArr != null and myoptionAnswerArr!=''">myoptionAnswerArr,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            sysdate(),
+            <if test="createBy != null and createBy!=''">#{createBy},</if>
+            <if test="createId != null and createId!=''">#{createId},</if>
+            <if test="updateTime != null and updateTime!=''">#{updateTime},</if>
+            <if test="updateBy != null and updateBy!=''">#{updateBy},</if>
+            <if test="updateId != null and updateId!=''">#{updateId},</if>
+            <if test="version != null and version!=''">#{version},</if>
+            <if test="ststatus != null and ststatus!=''">#{ststatus},</if>
+            <if test="title != null and title!=''">#{title},</if>
+            <if test="optionSize != null and optionSize!=''">#{optionSize},</if>
+            <if test="xzsubjectsId != null and xzsubjectsId!=''">#{xzsubjectsId},</if>
+            <if test="myoptionAnswerArr != null and myoptionAnswerArr!=''">#{myoptionAnswerArr},</if>
+        </trim>
+    </insert>
+
+
+    <select id="selectById" parameterType="String" resultMap="EditVoteResult">
+        select wv.id,
+               wv.version,
+               wv.ststatus,
+               wv.myoptionAnswerArr,
+               wv.title,
+               wv.optionSize,
+               wv.xzsubjectsId as xzsubjectsId
+        from wy_vote wv
+        where  wv.id =#{id}
+    </select>
+
+    <select id="getonebyVoteOptionSubmit" parameterType="VoteOptionSubmit" resultType="VoteOptionSubmit">
+        select wv.id,
+            wv.stuid,
+            wv.voteId,
+            wv.stuOptionAnswer,
+            wv.stuAnswer,
+            wv.stuAnswerVo,
+            wv.optionSize,
+            wv.ststatus
+        from wy_vote_student wv
+        where wv.stuid= #{stuid} AND wv.voteId = #{voteId}
+    </select>
+
+
+
+    <update id="update" parameterType="Vote">
+        update wy_vote
+        <set>
+            <if test=" id!= null and id != ''">id= #{id},</if>
+            <if test=" createTime!= null and createTime != ''">create_time= #{createTime},</if>
+            <if test=" createBy!= null and createBy != ''">create_by= #{createBy},</if>
+            <if test=" createId!= null and createId != ''">create_id= #{createId},</if>
+            <if test=" updateBy!= null and updateBy != ''">update_by= #{updateBy},</if>
+             <if test=" optionSize!= null and optionSize != ''">optionSize= #{optionSize},</if>
+
+            update_time= sysdate(),
+            <if test=" updateId!= null and updateId != ''">update_id= #{updateId},</if>
+            <if test=" version!= null and version != ''">version= #{version},</if>
+            <if test="ststatus != null and ststatus != ''">ststatus= #{ststatus},</if>
+            <if test=" title!= null and title != ''">title= #{title},</if>
+            <if test="xzsubjectsId!= null and  xzsubjectsId!= ''">xzsubjectsId= #{xzsubjectsId},</if>
+            <if test=" myoptionAnswerArr!= null and myoptionAnswerArr != ''">myoptionAnswerArr= #{myoptionAnswerArr},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="updataVoteStudent" parameterType="VoteOptionSubmit">
+        update wy_vote_student
+        <set>
+            <if test=" stuOptionAnswer!= null and stuOptionAnswer != ''">stuOptionAnswer= #{stuOptionAnswer},</if>
+            <if test=" optionSize!= null and optionSize != ''">optionSize= #{optionSize},</if>
+            <if test=" stuAnswer!= null and stuAnswer != ''">stuAnswer= #{stuAnswer},</if>
+            <if test=" stuAnswerVo!= null and stuAnswerVo != ''">stuAnswerVo= #{stuAnswerVo},</if>
+            <if test="ststatus != null and ststatus != ''">ststatus= #{ststatus},</if>
+        </set>
+        where stuid = #{stuid} AND voteId = #{voteId}
+    </update>
+
+
+</mapper>

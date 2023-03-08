@@ -1,0 +1,130 @@
+
+\	java:S112ø"FDefine and throw a dedicated exception instead of using a generic one.(Œ‹ª
+a	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(ß…Ö¸úÿÿÿÿ
+F
+java:S3740Ú"/Provide the parametrized type for this generic.(·›˜Š
+K
+java:S3740Û"/Provide the parametrized type for this generic.(Öª™Ïÿÿÿÿÿ
+F
+java:S3740â"/Provide the parametrized type for this generic.(—ö”î
+F
+java:S3740Š"/Provide the parametrized type for this generic.(—ö”î
+F
+java:S3740¨"/Provide the parametrized type for this generic.(·›˜Š
+o
+java:S2293v"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+p
+java:S2293§"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+p
+java:S2293’"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+u
+java:S2293–"YReplace the type specification in this constructor call with the diamond operator ("<>").(á¾¾çüÿÿÿÿ
+p
+java:S2293©"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŒŠÉà
+p
+java:S2293¾"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŒŠÉà
+]
+java:S1192ƒ"FDefine a constant instead of duplicating this literal "UTF-8" 3 times.(ÕÄÚ‚
+^
+java:S1192s"HDefine a constant instead of duplicating this literal "option=" 3 times.(Âº‰ì
+]
+java:S1192”"FDefine a constant instead of duplicating this literal "10000" 3 times.(ö§Î
+g	java:S117ø"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ‹ª
+g	java:S117ô"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢úõ
+g	java:S117É"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢úõ
+8
+java:S1643Œ"Use a StringBuilder instead.(ÑÔË†øÿÿÿÿ
+8
+java:S1643ª"Use a StringBuilder instead.(ÑÔË†øÿÿÿÿ
+3
+java:S1643à"Use a StringBuilder instead.(æß¬ü
+8
+java:S1643å"Use a StringBuilder instead.(öñÀúÿÿÿÿ
+3
+java:S1643í"Use a StringBuilder instead.(ÉÍ‹
+3
+java:S1643õ"Use a StringBuilder instead.(šÍ–ê
+3
+java:S1643ø"Use a StringBuilder instead.(–Ï“¼
+8
+java:S1643ÿ"Use a StringBuilder instead.(»ıÙËúÿÿÿÿ
+R
+java:S1854v"<Remove this useless assignment to local variable "myoalist".(’Õ­Í
+C
+java:S1481v"-Remove this unused "myoalist" local variable.(’Õ­Í
+n
+java:S3776Ÿ"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ıı¸ÿÿÿÿÿ
+W
+java:S1854¥";Remove this useless assignment to local variable "myoaStr".(º«…ÿşÿÿÿÿ
+Z
+java:S1155Ä">Use isEmpty() to check whether the collection is empty or not.(ó²È‰üÿÿÿÿ
+W
+java:S1117Ï"@Rename "optionAnswer" which hides the field declared at line 62.(À€¿³
+d	java:S100ø"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ‹ª
+ƒ
+java:S1130ø"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Œ‹ª
+i
+java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Í÷ñ²
+U
+java:S1155¤">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+i
+java:S3776¾"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(´Êƒ¼
+W	java:S125À"<This block of commented-out lines of code should be removed.(»ÑÂ–úÿÿÿÿ
+W	java:S125Â"<This block of commented-out lines of code should be removed.(®âĞ­ıÿÿÿÿ
+U
+java:S1155Ï">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+S
+java:S1854’"<Remove this useless assignment to local variable "myoalist".(’Õ­Í
+D
+java:S1481’"-Remove this unused "myoalist" local variable.(’Õ­Í
+i
+java:S3776À"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ÚëÚ¡
+^
+java:S1854Ú"BRemove this useless assignment to local variable "myOptionAnswer".(ÑãÎŞúÿÿÿÿ
+Q
+java:S1854©":Remove this useless assignment to local variable "allSem".(ŒŠÉà
+I
+java:S1135Í"2Complete the task associated to this TODO comment.(¯Š·•
+a
+java:S4488Ü"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ĞüçÏ
+f
+java:S4488ë"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ášÖøÿÿÿÿ
+f
+java:S4488ù"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ƒî¼Íşÿÿÿÿ
+f
+java:S4488’"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ë¥¤×şÿÿÿÿ
+a
+java:S4488 "JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ÿÊ±
+f
+java:S4488µ"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(ú©ˆâşÿÿÿÿ
+Q
+java:S1854¾":Remove this useless assignment to local variable "allSem".(ŒŠÉà
+o
+java:S3776Ø"SRefactor this method to reduce its Cognitive Complexity from 140 to the 15 allowed.(‚š¸ùıÿÿÿÿ
+X
+java:S1854Ù"<Remove this useless assignment to local variable "errorMsg".(ŸÊÉûÿÿÿÿ
+W
+java:S1854™";Remove this useless assignment to local variable "dataone".(»äş¶øÿÿÿÿ
+I
+java:S1481Ù"-Remove this unused "errorMsg" local variable.(ŸÊÉûÿÿÿÿ
+d
+java:S1871¡"MThis branch's code block is the same as the block for the branch on line 919.(¥€İ˜
+i
+java:S1871¾"MThis branch's code block is the same as the block for the branch on line 949.(†Å™ ıÿÿÿÿ
+c
+java:S1871Û"MThis branch's code block is the same as the block for the branch on line 978.( öo
+R	java:S125"<This block of commented-out lines of code should be removed.(¸é
+X
+java:S1128	"=Remove this unused import 'cn.wstom.exam.feign.AdminService'.(Û–ŸÉúÿÿÿÿ
+h
+java:S1128"RRemove this unused import 'org.apache.shiro.authz.annotation.RequiresPermissions'.(ëÇ«º
+L
+java:S1144±"5Remove this unused private "transMyTitleType" method.(»”éÎ
+L
+java:S1144¸"5Remove this unused private "transMyQuestions" method.(ùÖÛç
+T
+java:S1144¾"8Remove this unused private "transMyOptionAnswer" method.(·ê§úÿÿÿÿ
+G
+java:S1144Ä"0Remove this unused private "transCourse" method.(ª®‚µ
+M
+java:S1144Ê"1Remove this unused private "transChapter" method.(‰çõòıÿÿÿÿ

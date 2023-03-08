@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.LeadMapper">
+
+    <resultMap type="Lead" id="LeadResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="tcId" column="tc_id"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <sql id="selectLeadVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               tc_id,
+               content
+        from tb_lead
+    </sql>
+
+    <select id="selectList" parameterType="Lead" resultMap="LeadResult">
+        <include refid="selectLeadVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="tcId != null  and tcId.trim() != '' ">and tc_id = #{tcId}</if>
+            <if test="content != null and content != '' ">and content = #{content}</if>
+        </where>
+    </select>
+    <select id="selectOne" parameterType="Lead" resultMap="LeadResult">
+        <include refid="selectLeadVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="tcId != null  and tcId.trim() != '' ">and tc_id = #{tcId}</if>
+            <if test="content != null and content != '' ">and content = #{content}</if>
+            Limit 1
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="LeadResult">
+        <include refid="selectLeadVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="Lead">
+        insert into tb_lead
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            <if test="tcId != null  and tcId != ''  ">tc_id,</if>
+            <if test="content != null and content != '' ">content,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            <if test="tcId != null  and tcId != ''  ">#{tcId},</if>
+            <if test="content != null and content != '' ">#{content},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Lead">
+        update tb_lead
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="version != null  ">version = #{version},</if>
+            <if test="tcId != null  and tcId != ''  ">tc_id = #{tcId},</if>
+            <if test="content != null and content != '' ">content = #{content},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_lead
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_lead where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

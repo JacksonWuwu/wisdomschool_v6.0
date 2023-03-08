@@ -1,0 +1,144 @@
+server:
+  port: 18003
+
+spring:
+  application:
+    name: wisdomschool-student-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    #类型
+    content-type: text/html
+    #文件后缀
+    suffix: .ftl
+    #路径
+    template-loader-path: classpath:/templates/
+    settings:
+      classic_compatible: true
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/wisdomschool-test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  type-aliases-package: cn.wstom.student.entity
+  mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true  #开启优化，如果开启优化，在分页页码结果没有数据的时候,会显示有数据的页码数据
+  supportMethodsArguments: true #是否支持接口参数来传递分页参数，默认false
+  pageSizeZero: false #pageSize=0 返回所有
+  params: count=countSql
+
+# 项目相关配置
+wstom:
+  # 名称
+  name: wstom
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2018
+  # 获取ip地址开关
+  addressEnabled: true
+  # 项目根路径
+  #  contextPath: http://113.105.139.109:8080
+  #contextPath: http://10.20.55.124:8085
+  contextPath: http://localhost:8086
+  #storageContextPath: http://10.20.55.124:8081/storage
+  storageContextPath: http://localhost:8086
+  # apk地址
+  #  apk: E:\js\release\app-release.apk
+  apk: H:\mystorage\js\release\app-release.apk
+  apkName: app-release.apk
+
+  wxstorageContextPath: localhost:8081/storage
+  site:
+    site-name: WSTOM
+    seo-description: 往死里学
+    seo-keywords: SPOC,学习网,课程,学习
+    seo-title: 课程学习网
+    site-bean: 粤ICP备120094xx号-x
+    site-footer-code: xxx 版权所有
+    site-logo: xxx
+    site-url: /
+  #文件存放配置
+  file:
+    # 允许的后缀名(以","分隔)
+    allow-ext: mp3,mp4,mov,webm,ogg,ppt,pptx,xlsx,xls,doc,docx,zip,rar,pdf,jpg
+    # 存储介质，支持local、ftp和storage
+    storage-media: storage
+    #    storage-path: C:\college\wstom\file
+    storage-path: D:\javaproject\wisdomschool_v6.0\mystorage\college\wstom\file
+    #    storage-path: /root/soft/course/wstom/file
+    storage-url: http://localhost:8081/storage
+    #    storage-url: http://10.20.55.124:8081/storage
+    studentadjust-url: http://localhost:8081/
+    #    studentadjust-url: http://10.20.55.124:8081/
+    # storage-media为ftp时生效
+    ftp:
+      #ip地址
+      ip:
+      #端口
+      port:
+      #用户名
+      username:
+      #密码
+      password:
+      #存放路径
+      dir:
+
+# 防止XSS攻击
+xss:
+  # 过滤开关
+  enabled: true
+  # 排除链接（多个用逗号分隔）
+  excludes: /system/notice/*
+  # 匹配链接
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+# 代码生成
+gen:
+  # 作者
+  author: dws
+  # 默认生成包路径 module 需改成自己的模块名称 如 system monitor tool
+  packageName: cn.wstom.module
+  # 自动去除表前缀，默认是true
+  autoRemovePre: true
+  # 表前缀(类名不会包含表前缀)
+  tablePrefix: sys_
+
+
+
+
+#solr服务器连接设置
+solr:
+  serverUrl: "http://127.0.0.1:8983/solr/info"
+
+# 微信公众号配置，可配置多个
+wx:
+  mp:
+    configs:
+      - appId: wx37847780767eaf5c
+        secret: 3d130e96d3790ae98cd1aa0b7da281cb
+        token: lwy
+        aesKey:
+  path: http://localhost:8089
+  appId: wx37847780767eaf5c
+  secret: 3d130e96d3790ae98cd1aa0b7da281cb
+  storageContextPath: http://liangwy.cn.utools.club/storage
+  templateId:
+    adjunctStatus: HClVbNCgO1tHnkgGOx1ZFDWy1hPa9wj9VSNP-bsx-Tw
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 60000

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wstom.admin.mapper.SchoolMapper">
+
+    <resultMap type="School" id="SchoolResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="website" column="website"/>
+        <result property="location" column="location"/>
+        <result property="nature" column="nature"/>
+        <result property="affiliation" column="affiliation"/>
+        <result property="administrator" column="administrator"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+
+    </resultMap>
+
+    <sql id="selectSchoolVo">
+           select
+                   s.id,
+                   s.name,
+                   s.type,
+                   s.website,
+                   s.location,
+                   s.nature,
+                   s.affiliation,
+                   s.administrator,
+                   s.create_by,
+                   s.create_time,
+                   s.update_by,
+                   s.update_time
+             from lzt_school s
+    </sql>
+
+    <select id="selectList" parameterType="School" resultMap="SchoolResult">
+        <include refid="selectSchoolVo"/>
+        <where>
+            <if test="id != null ">and s.id = #{id}</if>
+            <if test="name != null  and name.trim() != '' ">and s.name = #{name}</if>
+            <if test="type != null  and type.trim() != '' ">and s.type = #{type}</if>
+            <if test="website != null  and website.trim() != '' ">and s.website = #{website}</if>
+            <if test="location != null  and location.trim() != '' ">and s.location = #{location}</if>
+            <if test="nature != null  and nature.trim() != '' ">and s.nature = #{nature}</if>
+            <if test="affiliation != null  and affiliation.trim() != '' ">and s.affiliation = #{affiliation}</if>
+            <if test="administrator != null and administrator.trim() != '' ">and s.administrator = #{administrator}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and s.create_by = #{createBy}</if>
+            <if test="createTime != null ">and s.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and s.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and s.update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="SchoolResult">
+        <include refid="selectSchoolVo"/>
+        where s.id = #{id}
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from lzt_school
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+            <if test="administrator != null and administrator != ''">
+                AND administrator = #{administrator}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="School">
+        insert into lzt_school
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null  ">name,</if>
+            <if test="type != null  ">type,</if>
+            <if test="website != null  ">website,</if>
+            <if test="location != null  ">location,</if>
+            <if test="nature != null  ">nature,</if>
+            <if test="affiliation != null  ">affiliation,</if>
+            <if test="administrator != null  ">administrator,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="createTime != null  and createTime != ''  ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null  ">#{name},</if>
+            <if test="type != null  ">#{type},</if>
+            <if test="website != null  ">#{website},</if>
+            <if test="location != null  ">#{location},</if>
+            <if test="nature != null  ">#{nature},</if>
+            <if test="affiliation != null  ">#{affiliation},</if>
+            <if test="administrator != null  ">#{administrator},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="createTime != null  and createTime != ''  ">sysdate(),</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">sysdate()</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="School">
+        update lzt_school
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="website != null  and website != ''  ">website = #{website},</if>
+            <if test="location != null  and location != ''  ">location = #{location},</if>
+            <if test="nature != null  and nature != ''  ">nature = #{nature},</if>
+            <if test="affiliation != null  and affiliation != ''  ">affiliation = #{affiliation},</if>
+            <if test="administrator != null ">administrator = #{administrator},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from lzt_school
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from lzt_school where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+
+
+</mapper>

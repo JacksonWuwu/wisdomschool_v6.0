@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 4, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/dmaku-demo.css" />
+
+	  <style>
+		  .qr-scanner .box {
+			  width: 54.5vw;
+			  height: 52.7vw;
+			  max-width: 54.5vh;
+			  max-height: 52.7vh;
+			  position: relative;
+			  left: 50%;
+			  top: 28vh;
+			  transform: translate(-50%, -50%);
+			  overflow: hidden;
+			  border: 0.1rem solid rgba(0, 255, 51, 0.2);
+		  }
+		  #video2{
+			  width: 54vw;
+			  height: 54vw;
+			  max-width: 54vh;
+			  max-height: 54vh;
+			  position: absolute;
+			  left: 50%;
+			  top: 31.4vh;
+			  transform: translate(-50%, -50%);
+
+		  }
+
+		  .qr-scanner .line {
+			  height: calc(100% - 2px);
+			  width: 100%;
+			  background: linear-gradient(180deg, rgba(0, 255, 51, 0) 43%, #40B6E0 211%);
+			  border-bottom: 3px solid #40B6E0;
+			  transform: translateY(-100%);
+			  animation: radar-beam 2s infinite;
+			  animation-timing-function: cubic-bezier(0.53, 0, 0.43, 0.99);
+			  animation-delay: 1.4s;
+		  }
+
+		  .qr-scanner .box:after,
+		  .qr-scanner .box:before,
+		  .qr-scanner .angle:after,
+		  .qr-scanner .angle:before {
+			  content: '';
+			  display: block;
+			  position: absolute;
+			  width: 3vw;
+			  height: 3vw;
+			  border: 0.2rem solid transparent;
+		  }
+
+		  .qr-scanner .box:after,
+		  .qr-scanner .box:before {
+			  top: 0;
+			  border-top-color: #40B6E0;
+		  }
+
+		  .qr-scanner .angle:after,
+		  .qr-scanner .angle:before {
+			  bottom: 0;
+			  border-bottom-color: #40B6E0;
+		  }
+
+		  .qr-scanner .box:before,
+		  .qr-scanner .angle:before {
+			  left: 0;
+			  border-left-color: #40B6E0;
+		  }
+
+		  .qr-scanner .box:after,
+		  .qr-scanner .angle:after {
+			  right: 0;
+			  border-right-color: #40B6E0;
+		  }
+
+		  @keyframes radar-beam {
+			  0% {
+				  transform: translateY(-100%);
+			  }
+
+			  100% {
+				  transform: translateY(0);
+			  }
+		  }
+	
+	  </style>
+  </head>
+  <body>
+    <div class="container-fluid " >
+	<div class="row" >
+		<div class="col-md-12"  >
+			<h2 class="text-center mb-4 mt-3 text-primary" >
+				人脸识别系统
+			</h2>
+		</div>
+	</div>
+	
+	<div style="background-image: url('./images/background.jpg');">
+	<div class="row pr-4 pb-3 pt-1"  >
+		<div class="col-md-6 text-center p-4"  >
+
+			<div class="row" >
+				<div class="col-md-12" >
+					<div class="row">
+						<div class="col-md-12">
+						</div>
+					</div>
+					<div class="row" >
+						<div class="col-md-12" >
+							<div class="row h-100" >
+								<div class="col-md-12 text-center"  >
+									<div id="video" class="row " style='display: block'>
+										<h4 class="text-center mb-3" style="color: white;">请将人脸放到正式中间</h4>
+										<canvas id='canvas2' width='400px' height='400px' style='display: none'></canvas>
+										<video id='video2'   autoplay='autoplay' style='margin-top: 20px'></video>
+										<div class="qr-scanner">
+											<div class="box">
+												<div class="line"></div>
+												<div class="angle"></div>
+											</div>
+										</div>
+
+									</div>
+									<div id="picture" class="row" style='display: none'>
+									<h4 class="text-center" style="color: white;">点击图片区域上传文件</h4>
+									<input style='display: none' type='file' name='file1' id='file1' multiple='multiple' /><br>
+									<img class="figure-img img-fluid rounded img-thumbnail" src='images/shibie.jpg' onclick='chooseFile()' id='img0' style='width: 25vw;height: 23vw;'>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 text-center p-4" <!--style="border-width:1px 1px 1px 1px;border-style:solid;border-color:#40B6E0;border-radius: 8px;"--> >
+			<div class="row  w-100 h-50 m-0 mb-3 " >
+				<div class="col-md-5 h-100 p-4 " style="border-width:1px 0 1px 1px;border-style:solid;border-color:#40B6E0;border-radius: 8px 0 0 8px">
+					<img class="img-fluid rounded border h-100 img-thumbnail" id="nowimg" src="https://tse3-mm.cn.bing.net/th/id/OIP-C.WsVs_1wXmbVZ1543fXUHbwAAAA?pid=ImgDet&rs=1"
+									style="width: 15vw;height: 15vw;"/>
+					<h5 class="text-center " style="color: white;">现场采集照片</h5>
+				</div>
+				<div class="col-md-2 h-100 p-2 nav flex-column justify-content-center bg-light text-center " style="border-width:1px 0 1px 0;border-style:solid;border-color:#40B6E0;">
+					<h4 class="text-center text-warning" id="similar">相似度</h4>
+					<h4 class="text-center text-danger ">
+						<div class="dmaku-container">
+    						<div class="circleChart" id="1" data-value="47" style="color:white"></div>
+						</div>
+					</h4>
+				</div>
+				<div class="col-md-5 h-100 p-4 " style="border-width:1px 1px 1px 0;border-style:solid;border-color:#40B6E0;border-radius: 0 8px 8px 0">
+					<img class=" img-fluid rounded border h-100 img-thumbnail" id="dbimg"  src="https://tse3-mm.cn.bing.net/th/id/OIP-C.WsVs_1wXmbVZ1543fXUHbwAAAA?pid=ImgDet&rs=1"
+						 style="width: 15vw;height: 15vw;"/>
+					<h5 class="text-center " style="color: white;">身份信息照片</h5>
+				</div>
+			</div>
+			<div class="row w-100 h-50 m-0 mb-2 p-0" >
+				<div class="col-md-12 text-center text-info nav flex-column justify-content-center mb-3" style="border: #40B6E0 1px solid;border-radius: 8px" >
+					<div>
+					  <label class="font-weight-bold h3 ">学号:</label>
+					   <span class="font-weight-bold h3" id="loginName">20183350544</span>
+					</div>
+					<div>
+						<label class="font-weight-bold h3">姓名:</label>
+						<span class="font-weight-bold h3 " id="userName">王小明</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" >
+			<div class="col-md-4 text-center" >
+				<button type="button" class="btn btn-lg btn-outline-success  mt-4 mb-4"
+						onclick="getMedia2()" >
+					摄像头识别
+				</button>
+			</div>
+			<div class="col-md-4 text-center" >
+				<button type="button" class="btn btn-lg btn-outline-success  mt-4 mb-4"
+						onclick="imageTo()">
+					照片识别
+				</button>
+			</div>
+			<div class="col-md-4 text-center" >
+			<button type="button" class="btn  btn-lg btn-outline-success  mt-4 mb-4"  >
+				提交
+			</button>
+			</div>
+	</div>
+</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="./js/circleChart.min.js"></script>
+    <script type="text/javascript">
+
+
+     $(document).ready(function(){
+	        getMedia2()
+       });
+
+		function chooseFile() {
+			$("#file1").trigger('click');
+		}
+		let constraints = {
+			video: {width: 500, height: 500},
+		};
+		function getMedia2() {
+			$("#video").css("display","block")
+			$("#picture").css("display","none");
+
+			//获得video摄像头区域
+			let video = document.getElementById("video2");
+			//这里介绍新的方法，返回一个 Promise对象
+			// 这个Promise对象返回成功后的回调函数带一个 MediaStream 对象作为其参数
+			// then()是Promise对象里的方法
+			// then()方法是异步执行，当then()前的方法执行完后再执行then()内部的程序
+			// 避免数据没有获取到
+			let promise = navigator.mediaDevices.getUserMedia(constraints);
+			promise.then(function (MediaStream) {
+				video.srcObject = MediaStream;
+				video.play();
+			});
+			// var t1 = window.setTimeout(function() {
+			//     chooseFileChangeComp()
+			// },2000)
+		}
+		function imageTo()
+		{
+			$("#picture").css("display","block")
+			$("#video").css("display","none")
+
+		}
+
+		$(".circleChart#1").circleChart({
+            size:100,
+            text: 0,
+            onDraw: function(el, circle) {
+                circle.text(Math.round(circle.value) + "%");
+            }
+        });
+	</script>
+  </body>
+</html>

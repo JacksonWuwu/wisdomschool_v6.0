@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.ShuatiHistoryMapper">
+
+    <resultMap type="ShuatiHistory" id="ShuatiHistoryResult">
+        <id property="id" column="id"/>
+        <result property="titleId" column="title_id"/>
+        <result property="userId" column="user_Id"/>
+        <result property="stuanswer" column="stuanswer"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="selectList" parameterType="ShuatiHistory" resultMap="ShuatiHistoryResult">
+        select  id,title_id,user_id,stuanswer,create_time from tk_shuati_history
+    </select>
+
+    <select id="selectByUserId" parameterType="String" resultMap="ShuatiHistoryResult">
+         select  id,title_id,user_id,stuanswer,create_time from tk_shuati_history
+        where user_id = #{userId}
+    </select>
+    <insert id="insert"
+            parameterType="ShuatiHistory">
+        insert into tk_shuati_history
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="titleId != null  ">title_id
+                ,
+            </if>
+            <if test="userId != null  ">user_id
+                ,
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">stuanswer
+                ,
+            </if>
+            <if test="createTime != null  ">create_time
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="titleId != null  ">#{titleId}
+                ,
+            </if>
+            <if test="userId != null  ">#{userId}
+                ,
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">#{stuanswer}
+                ,
+            </if>
+            <if test="createTime != null  ">sysdate()
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="insertBatch">
+        INSERT INTO tk_shuati_history(
+        title_id, create_time, user_id,stuanswer
+        )VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.titleId},
+            sysdate(),
+            #{item.userId},
+            #{item.stuanswer}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

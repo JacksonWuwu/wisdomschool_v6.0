@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.NotifyMapper">
+
+    <resultMap id="messageResult" type="Notify">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="sourceUserId" column="source_user_id"/>
+        <result property="targetUserId" column="target_user_id"/>
+        <result property="content" column="content"/>
+        <result property="hasView" column="has_view"/>
+        <result property="isAdmin" column="is_admin"/>
+    </resultMap>
+
+    <sql id="message_colum">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        source_user_id,
+        target_user_id,
+        content,
+        has_view,
+        is_admin
+    </sql>
+
+    <sql id="selectMessageVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               source_user_id,
+               target_user_id,
+               content,
+               has_view,
+               is_admin
+        from tb_message
+    </sql>
+    <insert id="insert" parameterType="Notify">
+        insert into tb_message
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            <if test="sourceUserId != null">source_user_id,</if>
+            <if test="targetUserId != null">target_user_id,</if>
+            <if test="content != null">content,</if>
+            <if test="hasView != null">has_view,</if>
+            <if test="isAdmin != null">is_admin,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            <if test="sourceUserId != null">sourceUserId,</if>
+            <if test="targetUserId != null">targetUserId,</if>
+            <if test="content != null">content,</if>
+            <if test="hasView != null">hasView,</if>
+            <if test="isAdmin != null">isAdmin,</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <select id="selectList" parameterType="Channel" resultMap="messageResult">
+        <include refid="selectMessageVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="sourceUserId != null">and sourceUserId</if>
+            <if test="targetUserId != null">and targetUserId</if>
+            <if test="content != null">and content</if>
+            <if test="hasView != null">and hasView</if>
+            <if test="isAdmin != null">and isAdmin</if>
+        </where>
+    </select>
+</mapper>

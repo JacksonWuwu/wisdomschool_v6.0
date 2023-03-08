@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.IntegralDetailMapper">
+
+    <resultMap type="IntegralDetail" id="IntegralDetailResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="integralId" column="integral_id"/>
+        <result property="type" column="type"/>
+        <result property="credit" column="credit"/>
+        <result property="typeName" column="type_name"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <sql id="selectIntegralDetailVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               user_id,
+               user_name,
+               integral_id,
+               type,
+               credit,
+               type_name,
+               content
+        from tb_integral_detail
+    </sql>
+
+    <sql id="all_colum">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        user_id,
+        user_name,
+        integral_id,
+        type,
+        credit,
+        type_name,
+        content
+    </sql>
+
+    <select id="selectList" parameterType="IntegralDetail" resultMap="IntegralDetailResult">
+        <include refid="selectIntegralDetailVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="userId != null  and userId.trim() != '' ">
+                and user_id = #{userId}
+            </if>
+            <if test="userName != null  and userName.trim() != '' ">
+                and user_name = #{userName}
+            </if>
+            <if test="integralId != null  and integralId.trim() != '' ">
+                and integral_id = #{integralId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="credit != null ">
+                and credit = #{credit}
+            </if>
+            <if test="typeName != null ">
+                and type_name = #{typeName}
+            </if>
+            <if test="content != null ">
+                and content = #{content}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="IntegralDetail" resultMap="IntegralDetailResult">
+        <include refid="selectIntegralDetailVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="userId != null  and userId.trim() != '' ">
+                and user_id = #{userId}
+            </if>
+            <if test="userName != null  and userName.trim() != '' ">
+                and user_name = #{userName}
+            </if>
+            <if test="integralId != null  and integralId.trim() != '' ">
+                and integral_id = #{integralId}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="credit != null ">
+                and credit = #{credit}
+            </if>
+            <if test="typeName != null ">
+                and type_name = #{typeName}
+            </if>
+            <if test="content != null ">
+                and content = #{content}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="IntegralDetailResult">
+        <include refid="selectIntegralDetailVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectBatchIntegral" parameterType="String" resultMap="IntegralDetailResult">
+        SELECT t1.user_id, t1.user_name, (count(t1.credit) - (select count(t2.credit) from tb_integral_detail t2 WHERE
+        t2.type = 1 and t2.user_id = t1.user_id)) credit
+        FROM tb_integral_detail t1 where t1.user_id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        GROUP BY t1.user_id ORDER BY credit desc
+    </select>
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from tb_integral_detail
+        <where>
+            <if test="userId != null and userId != ''">
+                AND user_id = #{userId}
+            </if>
+            <if test="userName != null and userName != ''">
+                AND `user_name` = #{userName}
+            </if>
+            <if test="integralId != null and integralId != ''">
+                AND `integral_id` = #{integralId}
+            </if>
+            <if test="credit != null and credit != ''">
+                AND `credit` = #{credit}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                AND `create_time` = #{createTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectWeekIntegral" parameterType="String" resultMap="IntegralDetailResult">
+        SELECT t1.user_id,
+               t1.user_name,
+               (count(t1.credit) - (select count(t2.credit)
+                                    from tb_integral_detail t2
+                                    WHERE t2.type = 1
+                                      and t2.user_id = t1.user_id)) credit
+        FROM tb_integral_detail t1
+        where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(t1.create_time)
+        GROUP BY t1.user_id
+        ORDER BY credit desc
+    </select>
+
+    <insert id="insert"
+            parameterType="IntegralDetail">
+        insert into tb_integral_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="userId != null  and userId != ''  ">user_id
+                ,
+            </if>
+            <if test="userName != null  and userName != ''  ">user_name
+                ,
+            </if>
+            <if test="integralId != null  and integralId != ''  ">integral_id
+                ,
+            </if>
+            <if test="type != null">type
+                ,
+            </if>
+            <if test="credit != null  ">credit
+                ,
+            </if>
+            <if test="typeName != null  ">type_name
+                ,
+            </if>
+            <if test="content != null  ">content
+                ,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createTime != null  ">#{createTime}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="userId != null  and userId != ''  ">#{userId}
+                ,
+            </if>
+            <if test="userName != null  and userName != ''  ">#{userName}
+                ,
+            </if>
+            <if test="integralId != null  and integralId != ''  ">#{integralId}
+                ,
+            </if>
+            <if test="type != null">#{type}
+                ,
+            </if>
+            <if test="credit != null  ">#{credit}
+                ,
+            </if>
+            <if test="typeName != null  ">#{typeName}
+                ,
+            </if>
+            <if test="content != null  ">#{content}
+                ,
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_integral_detail
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_integral_detail where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

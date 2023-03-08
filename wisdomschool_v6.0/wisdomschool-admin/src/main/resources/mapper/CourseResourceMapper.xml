@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.CourseResourceMapper">
+
+    <resultMap type="CourseResource" id="CourseResourceResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="rid" column="rid"/>
+        <result property="resourceType" column="resource_type"/>
+        <result property="cid" column="cid"/>
+        <result property="order" column="order"/>
+        <result property="name" column="name"/>
+        <result property="ext" column="ext"/>
+    </resultMap>
+
+    <sql id="selectCourseResourceVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               rid,
+               resource_type,
+               cid,
+               `order`,
+               `name`,
+               ext,
+               tc_id
+        from tb_course_resource
+    </sql>
+
+    <sql id="all_colum">
+        cr
+        .
+        id,
+        cr
+        .
+        create_by,
+        cr
+        .
+        create_time,
+        cr
+        .
+        update_by,
+        cr
+        .
+        update_time,
+        cr
+        .
+        remark,
+        cr
+        .
+        version,
+        cr
+        .
+        rid,
+        cr
+        .
+        resource_type,
+        cr
+        .
+        cid,
+        cr
+        .
+        `order`,
+        cr
+        .
+        `name`,
+        cr
+        .
+        ext,
+        cr
+        .
+        tc_id
+    </sql>
+
+    <select id="selectList" parameterType="CourseResource" resultMap="CourseResourceResult">
+        <include refid="selectCourseResourceVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="rid != null and rid.trim() != '' ">
+                and rid = #{rid}
+            </if>
+            <if test="resourceType != null">
+                and resource_type = #{resourceType}
+            </if>
+            <if test="cid != null and cid.trim() != '' ">
+                and cid = #{cid}
+            </if>
+            <if test="order != null ">
+                and `order` = #{order}
+            </if>
+            <if test="name != null and name.trim() != '' ">
+                and `name` = #{name}
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                and `ext` = #{ext}
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                and tc_id = #{tcId}
+            </if>
+        </where>
+        order by `order` DESC
+    </select>
+
+    <select id="selectOne" parameterType="CourseResource" resultMap="CourseResourceResult">
+        <include refid="selectCourseResourceVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="rid != null and rid.trim() != '' ">
+                and rid = #{rid}
+            </if>
+            <if test="resourceType != null">
+                and resource_type = #{resourceType}
+            </if>
+            <if test="cid != null and cid.trim() != '' ">
+                and cid = #{cid}
+            </if>
+            <if test="order != null ">
+                and `order` = #{order}
+            </if>
+            <if test="name != null and name.trim() != ''">
+                and `name` = #{name}
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                and `ext` = #{ext}
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                and `tc_id` = #{tcId}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="CourseResourceResult">
+        <include refid="selectCourseResourceVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="CourseResource">
+        insert into tb_course_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+
+            <if test="rid != null  and rid != ''  ">rid
+                ,
+            </if>
+            <if test="resourceType != null">resource_type
+                ,
+            </if>
+            <if test="cid != null and cid != '' ">cid
+                ,
+            </if>
+            <if test="order != null  ">`order`
+                ,
+            </if>
+            <if test="name != null and name.trim() != ''">
+                `name`,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                `ext`,
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                `tc_id`,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createTime != null  ">#{createTime}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+
+            <if test="rid != null and rid != '' ">#{rid}
+                ,
+            </if>
+            <if test="resourceType != null">#{resourceType}
+                ,
+            </if>
+            <if test="cid != null  and cid != ''  ">#{cid}
+                ,
+            </if>
+            <if test="order != null ">#{order}
+                ,
+            </if>
+            <if test="name != null and name.trim() != ''">#{name},
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                #{ext},
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                #{tcId},
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <insert id="insertBackId"
+            parameterType="CourseResource" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+        insert into tb_course_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+
+            <if test="rid != null  and rid != ''  ">rid
+                ,
+            </if>
+            <if test="resourceType != null">resource_type
+                ,
+            </if>
+            <if test="cid != null and cid != '' ">cid
+                ,
+            </if>
+            <if test="order != null  ">`order`
+                ,
+            </if>
+            <if test="name != null and name.trim() != ''">
+                `name`,
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                `ext`,
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                `tc_id`,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createTime != null  ">#{createTime}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+
+            <if test="rid != null and rid != '' ">#{rid}
+                ,
+            </if>
+            <if test="resourceType != null">#{resourceType}
+                ,
+            </if>
+            <if test="cid != null  and cid != ''  ">#{cid}
+                ,
+            </if>
+            <if test="order != null ">#{order}
+                ,
+            </if>
+            <if test="name != null and name.trim() != ''">#{name},
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                #{ext},
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                #{tcId},
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="CourseResource">
+        update tb_course_resource
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                = #{remark},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+
+            <if test="rid != null and rid.trim() != '' ">
+                rid = #{rid},
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType},
+            </if>
+            <if test="cid != null and cid.trim() != '' ">
+                cid = #{cid},
+            </if>
+            <if test="order != null ">
+                `order` = #{order},
+            </if>
+            <if test="name != null and name.trim() != ''">
+                `name` = #{name},
+            </if>
+            <if test="ext != null and ext.trim() != '' ">
+                `ext` = #{ext},
+            </if>
+            <if test="tcId != null and tcId.trim() != '' ">
+                `tc_id` = #{tcId},
+            </if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_course_resource
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_course_resource where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectByCidAndSid" resultMap="CourseResourceResult">
+        SELECT
+        <include refid="all_colum"/>
+        FROM tb_teacher_course tc, tb_clbum_course cc, tb_student s, tb_course_resource cr
+        where s.id = #{userId} and tc.cid = #{courseId} and cc.tcid = tc.id
+        and cc.cid = s.cid and cr.tc_id = cc.tcid and cr.cid = #{courseId}
+    </select>
+</mapper>

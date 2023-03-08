@@ -1,0 +1,56 @@
+package cn.wstom.admin.entity;
+
+import cn.wstom.admin.entity.BaseEntity;
+
+import lombok.Data;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
+/**
+ * 教师课程表 tb_teacher_course_exam
+ *
+ * @author hyb
+ * @date 2019-01-29
+ */
+@Data
+public class TeacherCourseExam extends BaseEntity {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 教师id
+     */
+    private String tid;
+    /**
+     * 课程id
+     */
+    private String cid;
+
+    /**
+     * 课程简介
+     */
+    private String courseBriefIntroduction;
+
+    /**
+     * 预览图
+     */
+    private Integer testPaperOneId;
+
+    public TeacherCourseExam(String tid, String cid) {
+        this.tid = tid;
+        this.cid = cid;
+    }
+
+    public TeacherCourseExam() {
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("tid", tid)
+                .append("cid", cid)
+                .append("courseBriefIntroduction", courseBriefIntroduction)
+                .append("testPaperOneId", testPaperOneId)
+                .append("id", id)
+                .toString();
+    }
+}

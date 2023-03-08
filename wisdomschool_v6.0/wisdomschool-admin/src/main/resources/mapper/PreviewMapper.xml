@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.PreviewMapper">
+
+    <resultMap type="Preview" id="PreviewResult">
+        <result property="id" column="id"/>
+        <result property="tcid" column="tcid"/>
+        <result property="cid" column="cid"/>
+        <result property="state" column="state"/>
+        <result property="chapterids" column="chapter_id"/>
+        <result property="recourserid" column="recourser_id"/>
+        <result property="endtime" column="end_time"/>
+        <result property="starttime" column="start_time"/>
+        <result property="previewname" column="previewname"/>
+    </resultMap>
+
+    <resultMap type="PreviewChapter" id="PreviewChapterResult">
+        <result property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="chapterids" column="chapter_id"/>
+    </resultMap>
+
+    <sql id="selectPreviewVo">
+        select id,
+                tcid,
+                cid,
+                state,
+                chapter_id,
+                recourser_id,
+                previewname,
+                end_time,
+                start_time
+        from wy_preview w
+    </sql>
+
+    <select id="selectList" parameterType="Preview" resultMap="PreviewResult">
+        <include refid="selectPreviewVo"/>
+        <where>
+            <if test="id != null ">and w.id = #{id}</if>
+            <if test="tcid != null ">and w.tcid = #{tcid}</if>
+            <if test="cid != null and cid!=''">and w.cid = #{cid}</if>
+            <if test="state != null ">and w.state = #{state}</if>
+            <if test="previewname != null and previewname!=''">and w.previewname = #{previewname}</if>
+            <if test="chapterids != null ">and w.chapter_id = #{chapterids}</if>
+            <if test="recourserid != null ">and w.recourser_id = #{recourserid}</if>
+            <if test="endtime != null ">and w.end_time = #{endtime}</if>
+            <if test="starttime != null ">and w.start_time = #{starttime}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="PreviewResult">
+        <include refid="selectPreviewVo"/>
+        where w.id = #{id}
+    </select>
+
+
+    <select id="listforcid" parameterType="Preview" resultType="String">
+        select id
+        from wy_preview w
+        <where>
+            <if test="id != null ">and w.id = #{id}</if>
+            <if test="tcid != null ">and w.tcid = #{tcid}</if>
+            <if test="cid != null ">and w.cid = #{cid}</if>
+            <if test="state != null ">and w.state = #{state}</if>
+            <if test="previewname != null ">and w.previewname = #{previewname}</if>
+            <if test="chapterids != null ">and w.chapter_id = #{chapterids}</if>
+            <if test="recourserid != null ">and w.recourser_id = #{recourserid}</if>
+            <if test="endtime != null ">and w.end_time = #{endtime}</if>
+            <if test="starttime != null ">and w.start_time = #{starttime}</if>
+        </where>
+    </select>
+
+    <select id="listfolistBySidAndTcidrcid" parameterType="PreviewStudent" resultType="String">
+         select pid
+        from wy_preview_student w
+        <where>
+            <if test="id != null ">and w.id = #{id}</if>
+            <if test="tcid != null ">and w.tcid = #{tcid}</if>
+            <if test="sid != null ">and w.sid = #{sid}</if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="Preview">
+        insert into wy_preview
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="tcid != null  ">tcid,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="state != null  ">state,</if>
+            <if test="chapterids != null  ">chapter_id,</if>
+            <if test="previewname != null  ">previewname,</if>
+            <if test="endtime != null  ">endtime,</if>
+            <if test="starttime != null ">starttime</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="tcid != null  ">#{tcid},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="state != null  ">#{state},</if>
+            <if test="chapterids != null  ">#{chapterids},</if>
+            <if test="previewname != null  ">#{previewname},</if>
+            <if test="endtime != null">#{endtime},</if>
+            <if test="starttime != null ">#{starttime}</if>
+        </trim>
+    </insert>
+
+
+    <insert id="addreturn" parameterType="Preview" useGeneratedKeys="true" keyProperty="id">
+        insert into wy_preview
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="tcid != null  ">tcid,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="state != null  ">state,</if>
+            <if test="chapterids != null  ">chapter_id,</if>
+            <if test="previewname != null  ">previewname,</if>
+            <if test="endtime != null  ">endtime,</if>
+            <if test="starttime != null ">starttime</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="tcid != null  ">#{tcid},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="state != null  ">#{state},</if>
+            <if test="chapterids != null  ">#{chapterids},</if>
+            <if test="previewname != null  ">#{previewname},</if>
+            <if test="endtime != null">#{endtime},</if>
+            <if test="starttime != null ">#{starttime}</if>
+        </trim>
+    </insert>
+
+    <insert id="insertPreviewChapter" parameterType="PreviewChapter">
+        insert into wy_preview_chapter
+        (
+        pid,
+        chapter_id
+        )
+        values
+        <foreach collection="list" item="PreviewChapter" index="index" separator=",">
+            (
+            #{PreviewChapter.pid},
+            #{PreviewChapter.chapterid}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertPreviewStudent" parameterType="PreviewStudent">
+        insert into wy_preview_student
+        (
+        pid,
+        sid,
+        tcid
+        )
+        values
+        <foreach collection="list" item="PreviewStudent" index="index" separator=",">
+            (
+            #{PreviewStudent.pid},
+            #{PreviewStudent.sid},
+            #{PreviewStudent.tcid}
+            )
+        </foreach>
+    </insert>
+
+
+    <update id="update" parameterType="Attendance" >
+        update wy_preview
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="tcid != null "> tcid = #{tcid},</if>
+            <if test="cid != null "> cid = #{cid},</if>
+            <if test="state != null "> state = #{state},</if>
+            <if test="chapterids != null "> chapter_id = #{chapterids},</if>
+            <if test="previewname != null "> previewname = #{previewname},</if>
+            <if test="endtime != null "> endtime = #{endtime},</if>
+            <if test="starttime != null "> starttime = #{starttime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from wy_preview
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="Integer">
+        delete from wy_preview where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

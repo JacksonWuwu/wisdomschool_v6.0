@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.student.mapper.DiscussMapper">
+
+    <resultMap id="discussFullMap" type="Discuss">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="view" property="view"/>
+        <result column="content" property="content"/>
+        <result column="essence" property="essence"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="reply_count" property="replyCount"/>
+        <result column="title" property="title"/>
+        <result column="type" property="type"/>
+        <result column="user_type" property="userType"/>
+    </resultMap>
+
+
+    <sql id="discussFullField">
+        d
+        .
+        id,
+        d
+        .
+        create_by,
+        d
+        .
+        create_time,
+        d
+        .
+        update_by,
+        d
+        .
+        update_time,
+        d
+        .
+        remark,
+        d
+        .
+        version,
+        d
+        .
+        view,
+        d
+        .
+        content,
+        d
+        .
+        essence,
+        d
+        .
+        ip_addr,
+        d
+        .
+        thumbs_up,
+        d
+        .
+        reply_count,
+        d
+        .
+        title,
+        d
+        .
+        type,
+        d
+        .
+        user_type,
+        d
+        .
+        forum_id,
+        d
+        .
+        last_reply_id
+    </sql>
+
+    <sql id="selectDiscussFullField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               view,
+               content,
+               essence,
+               ip_addr,
+               thumbs_up,
+               reply_count,
+               title,
+               type,
+               user_type,
+               forum_id,
+               last_reply_id
+        from tb_discuss
+    </sql>
+
+    <!-- 增加答案信息-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_discuss
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="view">view,</if>
+            <if test="content">content,</if>
+            <if test="essence">essence,</if>
+            <if test="ipAddr">ip_addr,</if>
+            <if test="thumbsUp">thumbs_up,</if>
+            <if test="replyCount">reply_count,</if>
+            <if test="title">title,</if>
+            <if test="type">type,</if>
+            <if test="userType">user_type,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="view">#{view},</if>
+            <if test="content">#{content},</if>
+            <if test="essence">#{essence},</if>
+            <if test="ipAddr">#{ipAddr},</if>
+            <if test="thumbsUp">#{thumbsUp},</if>
+            <if test="replyCount">#{replyCount},</if>
+            <if test="title">#{title},</if>
+            <if test="type">#{type},</if>
+            <if test="userType">#{userType},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+    <select id="selectList" parameterType="Discuss" resultMap="discussFullMap">
+        <include refid="selectDiscussFullField"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="view">and view = #{view}</if>
+            <if test="content">and content = #{content}</if>
+            <if test="essence">and essence = #{essence}</if>
+            <if test="ipAddr">and ip_addr = #{ipAddr}</if>
+            <if test="thumbsUp">and thumbs_up = #{thumbsUp}</if>
+            <if test="replyCount">and reply_count = #{replyCount}</if>
+            <if test="title">and title = #{title}</if>
+            <if test="type">and type = #{type}</if>
+            <if test="userType">and user_type = #{userType}</if>
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="Discuss" resultMap="discussFullMap">
+        <include refid="selectDiscussFullField"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and remark = #{remark}</if>
+            <if test="version != null ">and version = #{versiom}</if>
+            <if test="view">and view = #{view}</if>
+            <if test="content">and content = #{content}</if>
+            <if test="essence">and essence = #{essence}</if>
+            <if test="ipAddr">and ip_addr = #{ipAddr}</if>
+            <if test="thumbsUp">and thumbs_up = #{thumbsUp}</if>
+            <if test="replyCount">and reply_count = #{replyCount}</if>
+            <if test="title">and title = #{title}</if>
+            <if test="type">and type = #{type}</if>
+            <if test="userType">and user_type = #{userType}</if>
+            Limit 1
+        </where>
+    </select>
+
+    <select id="selectById" resultMap="discussFullMap">
+        <include refid="selectDiscussFullField"/>
+        where id = #{id}
+    </select>
+
+    <update id="update" parameterType="Discuss">
+        update tb_discuss
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="version != null  ">version = #{version},</if>
+            <if test="view">view = #{view},</if>
+            <if test="content">content = #{content},</if>
+            <if test="essence">essence = #{essence},</if>
+            <if test="ipAddr">ip_addr = #{ipAddr},</if>
+            <if test="thumbsUp">thumbs_up = #{thumbsUp},</if>
+            <if test="replyCount">reply_count = #{replyCount},</if>
+            <if test="title">title = #{title},</if>
+            <if test="type">type = #{type},</if>
+            <if test="userType">user_type = #{userType},</if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_discuss
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_discuss where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.PptChapterUserMapper">
+
+    <resultMap type="PptChapterUser" id="PptChapterUserResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="userId" column="user_id"/>
+        <result property="resourceChapterId" column="resource_chapter_Id"/>
+        <result property="cout" column="cout"/>
+        <result property="tcid" column="tcid"/>
+    </resultMap>
+
+    <sql id="selectPptChapterUserVo">
+        select  id, create_time, create_by, user_id, resource_chapter_Id,  cout,tcid
+        from wy_ppt_chapter_user
+    </sql>
+
+    <select id="listbycrids" parameterType="java.util.List" resultMap="PptChapterUserResult">
+        <include refid="selectPptChapterUserVo"/>
+        where resource_chapter_Id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="listbycridsAndsid" parameterType="PptChapterUser" resultMap="PptChapterUserResult">
+        <include refid="selectPptChapterUserVo"/>
+        where user_id=#{userId} and resource_chapter_Id in
+        <foreach collection="crids" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+
+    <select id="selectList" parameterType="PptChapterUser" resultMap="PptChapterUserResult">
+        <include refid="selectPptChapterUserVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}</if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}</if>
+            <if test="userId != null ">
+                and user_id = #{userId}</if>
+            <if test="resourceChapterId != null ">
+                and resource_chapter_Id = #{resourceChapterId}</if>
+            <if test="cout != null ">
+                and cout = #{cout}</if>
+            <if test="tcid != null ">
+                and tcid = #{tcid}</if>
+            <if test="crids != null and crids.size>0">
+                and resource_chapter_Id in
+                <foreach collection="crids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="PptChapterUserResult">
+        <include refid="selectPptChapterUserVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="getBySidRid" parameterType="PptChapterUser" resultMap="PptChapterUserResult">
+        <include refid="selectPptChapterUserVo"/>
+        where user_id = #{userId} and resource_chapter_Id = #{resourceChapterId}
+    </select>
+
+    <insert id="insert"
+            parameterType="PptChapterUser">
+        insert into wy_ppt_chapter_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createTime != null  ">create_time
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="userId != null  ">user_id
+                ,
+            </if>
+            <if test="resourceChapterId != null  ">resource_chapter_Id
+                ,
+            </if>
+            <if test="cout != null  ">cout
+                ,
+            </if>
+            <if test="tcid != null  ">tcid
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createTime != null  ">#{createTime}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="userId != null  ">#{userId}
+                ,
+            </if>
+            <if test="resourceChapterId != null  ">#{resourceChapterId}
+                ,
+            </if>
+            <if test="cout != null  ">#{cout}
+                ,
+            </if>
+            <if test="tcid != null  ">#{tcid}
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="PptChapterUser">
+        update wy_ppt_chapter_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="userId != null  ">user_id
+                = #{userId},
+            </if>
+            <if test="resourceChapterId != null  ">resource_chapter_Id
+                = #{resourceChapterId},
+            </if>
+            <if test="cout != null  ">cout
+                = #{cout},
+            </if>
+            <if test="tcid != null  ">tcid
+                = #{tcid},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from wy_ppt_chapter_user where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from wy_ppt_chapter_user where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/seetaface.iml" filepath="$PROJECT_DIR$/.idea/seetaface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-admin/wisdomschool-admin.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-admin/wisdomschool-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-common/wisdomschool-common.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-common/wisdomschool-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-exam/wisdomschool-exam.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-exam/wisdomschool-exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-face/wisdomschool-face.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-face/wisdomschool-face.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-gateway/wisdomschool-gateway.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-gateway/wisdomschool-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-monitor/wisdomschool-monitor.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-monitor/wisdomschool-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-storage/wisdomschool-storage.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-storage/wisdomschool-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-student/wisdomschool-student.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool-student/wisdomschool-student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool_v6.0.iml" filepath="$PROJECT_DIR$/wisdomschool_v6.0/wisdomschool_v6.0.iml" />
+    </modules>
+  </component>
+</project>

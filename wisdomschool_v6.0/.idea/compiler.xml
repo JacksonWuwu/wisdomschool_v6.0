@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wisdomschool-student" />
+        <module name="wisdomschool-common" />
+        <module name="wisdomschool-admin" />
+        <module name="wisdomschool-face" />
+        <module name="wisdomschool-storage" />
+        <module name="wisdomschool-exam" />
+        <module name="wisdomschool-monitor" />
+        <module name="wisdomschool-gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wisdomschool-admin" target="1.8" />
+      <module name="wisdomschool-common" target="1.8" />
+      <module name="wisdomschool-exam" target="1.8" />
+      <module name="wisdomschool-face" target="1.8" />
+      <module name="wisdomschool-gateway" target="1.8" />
+      <module name="wisdomschool-monitor" target="1.8" />
+      <module name="wisdomschool-storage" target="1.8" />
+      <module name="wisdomschool-student" target="1.8" />
+      <module name="wisdomschool_v6.0" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="wisdomschool-common" options="-verbose -bootclasspath &quot;$PROJECT_DIR$/../../../../../Program Files/Java/jdk1.8.0_261/jre/lib/rt.jar;$PROJECT_DIR$/../../../../../Program Files/Java/jdk1.8.0_261/jre/lib/jce.jar&quot;" />
+    </option>
+  </component>
+</project>

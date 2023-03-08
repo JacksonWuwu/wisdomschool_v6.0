@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.MyTitleTypeMapper">
+
+    <resultMap type="MyTitleType" id="MyTitleTypeResult">
+            <result property="id" column="id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateId" column="update_id"/>
+            <result property="version" column="version"/>
+            <result property="publicTitleId" column="public_title_id"/>
+            <result property="titleTypeName" column="title_type_name"/>
+            <result property="cid" column="cid"/>
+            <result property="cname" column="name"/>
+            <result property="publicTitleName" column="titleTypeName"/>
+        <result property="templateNum" column="templateNum"/>
+    </resultMap>
+
+    <sql id="selectMyTitleTypeVo">
+        select  id, create_time, create_by, create_id, update_time, update_by, update_id, version, public_title_id, title_type_name, cid
+        from tk_my_title_type
+    </sql>
+    <sql id="select">
+        select
+            mt.id,
+            mt.create_time,
+            mt.create_by,
+            mt.create_id,
+            mt.update_time,
+            mt.update_by,
+            mt.update_id,
+            mt.version,
+            mt.public_title_id,
+            mt.title_type_name,
+            mt.cid,
+            t.titleTypeName,
+            c.name,
+            t.templateNum as templateNum
+        from tk_my_title_type mt
+        left join tk_title_type t on 	mt.public_title_id = t.id
+        left join tb_course c on c.id = mt.cid
+    </sql>
+
+
+    <select id="selectList" parameterType="MyTitleType" resultMap="MyTitleTypeResult">
+        <include refid="select"/>
+        <where>
+                <if test="id != null and id.trim() != ''">
+                    and mt.id = #{id}</if>
+                <if test="createTime != null and createTime.trim() != ''">
+                    and mt.create_time = #{createTime}</if>
+                <if test="createBy != null  and createBy.trim() != '' ">
+                    and mt.create_by = #{createBy}</if>
+                <if test="createId != null and createId.trim() != ''">
+                    and mt.create_id = #{createId}</if>
+                <if test="updateTime != null and updateTime.trim() != ''">
+                    and mt.update_time = #{updateTime}</if>
+                <if test="updateBy != null  and updateBy.trim() != '' ">
+                    and mt.update_by = #{updateBy}</if>
+                <if test="updateId != null and updateId.trim() != ''">
+                    and mt.update_id = #{updateId}</if>
+                <if test="version != null and version.trim() != ''">
+                    and mt.version = #{version}</if>
+                <if test="publicTitleId != null  and publicTitleId.trim() != '' ">
+                    and mt.public_title_id = #{publicTitleId}</if>
+                <if test="titleTypeName != null  and titleTypeName.trim() != '' ">
+                    and mt.title_type_name = #{titleTypeName}</if>
+                <if test="cid != null and cid.trim() != ''">
+                    and mt.cid = #{cid}</if>
+                <if test="cname != null and cname.trim() != ''">
+                and cname = #{name}</if>
+                <if test="publicTitleName != null and publicTitleName.trim() != ''">
+                and titleTypeName = #{publicTitleName}</if>
+        </where>
+    </select>
+
+    <select id="findTitleTypeLimit" parameterType="MyTitleType" resultMap="MyTitleTypeResult">
+        <include refid="select"/>
+        <where>
+               and t.templateNum in('1','2','3','4')
+            <if test="id != null and id.trim() != ''">
+                and mt.id = #{id}</if>
+            <if test="createTime != null and createTime.trim() != ''">
+                and mt.create_time = #{createTime}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and mt.create_by = #{createBy}</if>
+            <if test="createId != null and createId.trim() != ''">
+                and mt.create_id = #{createId}</if>
+            <if test="updateTime != null and updateTime.trim() != ''">
+                and mt.update_time = #{updateTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and mt.update_by = #{updateBy}</if>
+            <if test="updateId != null and updateId.trim() != ''">
+                and mt.update_id = #{updateId}</if>
+            <if test="version != null and version.trim() != ''">
+                and mt.version = #{version}</if>
+            <if test="publicTitleId != null  and publicTitleId.trim() != '' ">
+                and mt.public_title_id = #{publicTitleId}</if>
+            <if test="titleTypeName != null  and titleTypeName.trim() != '' ">
+                and mt.title_type_name = #{titleTypeName}</if>
+            <if test="cid != null and cid.trim() != ''">
+                and mt.cid = #{cid}</if>
+            <if test="cname != null and cname.trim() != ''">
+                and cname = #{name}</if>
+            <if test="publicTitleName != null and publicTitleName.trim() != ''">
+                and titleTypeName = #{publicTitleName}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="MyTitleTypeResult">
+        <include refid="select"/>
+        where mt.id = #{id}
+    </select>
+
+    <select id="selectByCId" parameterType="String" resultMap="MyTitleTypeResult">
+        <include refid="select"/>
+        where mt.cid = #{id}
+    </select>
+    <select id="selectByCIdAndTId" parameterType="String" resultMap="MyTitleTypeResult">
+        <include refid="select"/>
+        where mt.cid = #{cid} and mt.create_id = #{tid}
+    </select>
+    <insert id="insert"
+            parameterType="MyTitleType">
+        insert into tk_my_title_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">id
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        ,
+                    </if>
+                    <if test="createId != null  ">create_id
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        ,
+                    </if>
+                    <if test="updateId != null  ">update_id
+                        ,
+                    </if>
+                    <if test="version != null  ">version
+                        ,
+                    </if>
+                    <if test="publicTitleId != null  and publicTitleId != ''  ">public_title_id
+                        ,
+                    </if>
+                    <if test="titleTypeName != null  and titleTypeName != ''  ">title_type_name
+                        ,
+                    </if>
+                    <if test="cid != null  ">cid
+                        ,
+                    </if>
+                    create_time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">#{id}
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">#{createBy}
+                        ,
+                    </if>
+                    <if test="createId != null  ">#{createId}
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">#{updateTime}
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                        ,
+                    </if>
+                    <if test="updateId != null  ">#{updateId}
+                        ,
+                    </if>
+                    <if test="version != null  ">#{version}
+                        ,
+                    </if>
+                    <if test="publicTitleId != null  and publicTitleId != ''  ">#{publicTitleId}
+                        ,
+                    </if>
+                    <if test="titleTypeName != null  and titleTypeName != ''  ">#{titleTypeName}
+                        ,
+                    </if>
+                    <if test="cid != null  ">#{cid}
+                        ,
+                    </if>
+                    SYSDATE()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="MyTitleType">
+        update tk_my_title_type
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        = #{updateBy},
+                    </if>
+                    <if test="version != null  ">version
+                        = #{version},
+                    </if>
+                    <if test="publicTitleId != null  and publicTitleId != ''  ">public_title_id
+                        = #{publicTitleId},
+                    </if>
+                    <if test="titleTypeName != null  and titleTypeName != ''  ">title_type_name
+                        = #{titleTypeName},
+                    </if>
+                    <if test="cid != null  ">cid
+                        = #{cid},
+                    </if>
+                    update_time = SYSDATE()
+
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from tk_my_title_type where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_my_title_type where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

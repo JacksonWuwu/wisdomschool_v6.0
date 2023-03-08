@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.FeedMapper">
+    <!-- 添加用户feed信息 -->
+    <insert id="addUserFeed" parameterType="String">
+        insert into tb_feed
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="infoType != null">info_type,</if>
+            <if test="infoId != null">info_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="infoType != null">#{infoType},</if>
+            <if test="infoId != null">#{infoId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 按用户feed信息 -->
+    <delete id="deleteUserFeed">
+        delete
+        from tb_feed
+        where user_id = #{userId}
+          and info_type = #{infoType}
+          and info_id = #{infoId}
+    </delete>
+
+    <!-- 修改该用户feed信息的审核状态 -->
+    <update id="updateuUserFeedById" parameterType="String">
+        update tb_feed
+        set status = #{status}
+        where info_type = #{infoType}
+          and info_id = #{infoId}
+    </update>
+
+    <!-- 查询该用户feed是否存在 -->
+    <select id="checkUserFeed" resultType="int">
+        select count(1)
+        from tb_feed
+        where user_id = #{userId}
+          and info_type = #{infoType}
+          and info_id = #{infoId}
+    </select>
+
+    <!-- 查询用户信息流总数 -->
+    <select id="getUserFeedCount" resultType="int">
+        SELECT count(1)
+        from tb_feed f
+        WHERE (f.user_id = #{userId} or exists(select user_follow_id from tb_user_fans where user_fans_id = #{userId}))
+          and f.status = 0
+    </select>
+
+    <resultMap id="feedFullField" type="Feed">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="info_type" property="infoType"/>
+        <result column="info_id" property="infoId"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+    </resultMap>
+
+    <!-- 查询用户信息流列表 -->
+    <select id="getUserFeedList" resultMap="feedFullField">
+        select f.id,
+               f.user_id,
+               f.info_type,
+               f.info_id,
+               f.create_by,
+               f.create_time,
+               f.update_by,
+               f.update_time,
+               f.remark,
+               f.version
+        from tb_feed f
+        WHERE (f.user_id = #{userId} or exists(select user_follow_id from tb_user_fans where user_fans_id = #{userId}))
+          and f.info_type = #{infoType}
+          and status = 0
+        order by f.id desc
+        limit #{offset},#{rows}
+    </select>
+</mapper>

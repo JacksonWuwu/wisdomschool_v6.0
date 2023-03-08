@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.BannerMapper">
+
+    <resultMap type="Banner" id="BannerResult">
+            <result property="id" column="id"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createTime" column="create_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="remark" column="remark"/>
+            <result property="title" column="title"/>
+            <result property="cover" column="cover"/>
+            <result property="url" column="url"/>
+    </resultMap>
+
+    <sql id="selectBannerVo">
+        select  id, create_by, create_time, update_by, update_time, remark, title, cover, url
+        from tb_banner
+    </sql>
+
+    <select id="selectList" parameterType="Banner" resultMap="BannerResult">
+        <include refid="selectBannerVo"/>
+        <where>
+                <if test="id != null ">
+                    and id = #{id}</if>
+                <if test="createBy != null  and createBy.trim() != '' ">
+                    and create_by = #{createBy}</if>
+                <if test="createTime != null ">
+                    and create_time = #{createTime}</if>
+                <if test="updateBy != null  and updateBy.trim() != '' ">
+                    and update_by = #{updateBy}</if>
+                <if test="updateTime != null ">
+                    and update_time = #{updateTime}</if>
+                <if test="remark != null  and remark.trim() != '' ">
+                    and remark = #{remark}</if>
+                <if test="title != null  and title.trim() != '' ">
+                    and title = #{title}</if>
+                <if test="cover != null  and cover.trim() != '' ">
+                    and cover = #{cover}</if>
+                <if test="url != null  and url.trim() != '' ">
+                    and url = #{url}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="BannerResult">
+        <include refid="selectBannerVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="Banner">
+        insert into tb_banner
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">id
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        ,
+                    </if>
+                    <if test="createTime != null  ">create_time
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        ,
+                    </if>
+                    <if test="remark != null  and remark != ''  ">remark
+                        ,
+                    </if>
+                    <if test="title != null  and title != ''  ">title
+                        ,
+                    </if>
+                    <if test="cover != null  and cover != ''  ">cover
+                        ,
+                    </if>
+                    <if test="url != null  and url != ''  ">url
+                        ,
+                    </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">#{id}
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">#{createBy}
+                        ,
+                    </if>
+                    <if test="createTime != null  ">#{createTime}
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">#{updateTime}
+                        ,
+                    </if>
+                    <if test="remark != null  and remark != ''  ">#{remark}
+                        ,
+                    </if>
+                    <if test="title != null  and title != ''  ">#{title}
+                        ,
+                    </if>
+                    <if test="cover != null  and cover != ''  ">#{cover}
+                        ,
+                    </if>
+                    <if test="url != null  and url != ''  ">#{url}
+                        ,
+                    </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Banner">
+        update tb_banner
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        = #{createBy},
+                    </if>
+                    <if test="createTime != null  ">create_time
+                        = #{createTime},
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        = #{updateBy},
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        = #{updateTime},
+                    </if>
+                    <if test="remark != null  and remark != ''  ">remark
+                        = #{remark},
+                    </if>
+                    <if test="title != null  and title != ''  ">title
+                        = #{title},
+                    </if>
+                    <if test="cover != null  and cover != ''  ">cover
+                        = #{cover},
+                    </if>
+                    <if test="url != null  and url != ''  ">url
+                        = #{url},
+                    </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from tb_banner where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_banner where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

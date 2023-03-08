@@ -1,0 +1,182 @@
+
+E
+java:S3740?"/Provide the parametrized type for this generic.(Ç¦Ö„
+E
+java:S3740?"/Provide the parametrized type for this generic.(Ç¦Ö„
+F
+java:S3740ú"/Provide the parametrized type for this generic.(Ñ†˜ƒ
+F
+java:S3740ú"/Provide the parametrized type for this generic.(Ñ†˜ƒ
+u
+java:S2293„"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+u
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+u
+java:S2293Æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(øÉŠÓşÿÿÿÿ
+p
+java:S2293Ç"YReplace the type specification in this constructor call with the diamond operator ("<>").(†€¬
+u
+java:S2293È"YReplace the type specification in this constructor call with the diamond operator ("<>").(æäâşÿÿÿÿ
+u
+java:S2293Ò"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293Ú"YReplace the type specification in this constructor call with the diamond operator ("<>").(†€¬
+u
+java:S2293è"YReplace the type specification in this constructor call with the diamond operator ("<>").(øÉŠÓşÿÿÿÿ
+p
+java:S2293›"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+u
+java:S2293œ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆå¹ÿÿÿÿÿ
+p
+java:S2293£"YReplace the type specification in this constructor call with the diamond operator ("<>").(‡È¹¶
+p
+java:S2293À"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ë½ğ´
+u
+java:S2293Á"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸‰ƒ‚şÿÿÿÿ
+u
+java:S2293×"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+u
+java:S2293ä"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+p
+java:S2293¦"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ë½ğ´
+u
+java:S2293§"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸‰ƒ‚şÿÿÿÿ
+u
+java:S2293¾"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤¢Ö÷ûÿÿÿÿ
+u
+java:S2293Ë"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤¢Ö÷ûÿÿÿÿ
+a
+java:S1192è"JDefine a constant instead of duplicating this literal "testPaper" 5 times.(ÌÇñä
+d
+java:S1192µ"HDefine a constant instead of duplicating this literal "paperId" 3 times.(Ÿù¬ùÿÿÿÿ
+l	java:S117Á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸‰ƒ‚şÿÿÿÿ
+l	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸‰ƒ‚şÿÿÿÿ
+R
+java:S4973ş"<Strings and Boxed types should be compared using "equals()".(€¿€ 
+X
+java:S4973—"<Strings and Boxed types should be compared using "equals()".(Äıíİùÿÿÿÿ
+S
+java:S4973ÿ"<Strings and Boxed types should be compared using "equals()".(ßŒ’Ç
+R
+java:S4973œ"<Strings and Boxed types should be compared using "equals()".(€¿€ 
+X
+java:S4973¥"<Strings and Boxed types should be compared using "equals()".(Äıíİùÿÿÿÿ
+o	java:S116A"URename this field "PAGER_TYPE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÌïÚıÿÿÿÿ
+U
+java:S2387.":"adminService" is the name of a field in "BaseController".(¡¾Ñÿÿÿÿÿ
+<
+java:S1170A"!Make this final field static too.(õÌïÚıÿÿÿÿ
+Z
+java:S1155š">Use isEmpty() to check whether the collection is empty or not.(Ô«›İúÿÿÿÿ
+U
+java:S1155£">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+M
+java:S1854¹"6Remove this useless assignment to local variable "gd".(Ç¡²ª
+R
+java:S1854¸"6Remove this useless assignment to local variable "sj".(±£‹Ùÿÿÿÿÿ
+C
+java:S1481¸"'Remove this unused "sj" local variable.(±£‹Ùÿÿÿÿÿ
+>
+java:S1481¹"'Remove this unused "gd" local variable.(Ç¡²ª
+R	java:S125¼"<This block of commented-out lines of code should be removed.(•çò 
+d	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òûïÊ
+f
+java:S4488¡"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(¸½ğØùÿÿÿÿ
+i
+java:S3776æ"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(‚øù
+d
+java:S1854„"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+d
+java:S1854"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+i
+java:S3776Â"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(ãóÔñ
+O
+java:S1854ş"8Remove this useless assignment to local variable "bili".(¬•Ø
+P
+java:S1854ı"9Remove this useless assignment to local variable "score".(µ”‰Â
+U
+java:S1155Ô">Use isEmpty() to check whether the collection is empty or not.( €×Ÿ
+Z
+java:S1155ä">Use isEmpty() to check whether the collection is empty or not.(óïÔ½üÿÿÿÿ
+Z
+java:S1155ï">Use isEmpty() to check whether the collection is empty or not.(ï©«ÿÿÿÿÿ
+Z
+java:S1155¾">Use isEmpty() to check whether the collection is empty or not.(Ô«›İúÿÿÿÿ
+i
+java:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(Á­Š¿
+i
+java:S1854Ú"RRemove this useless assignment to local variable "coursepaperCoursequestionsList".(†€¬
+b
+java:S1854Ş"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+j
+java:S1854è"NRemove this useless assignment to local variable "testpaperTestquestionsList".(øÉŠÓşÿÿÿÿ
+b
+java:S1854ë"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+T
+java:S1854õ"8Remove this useless assignment to local variable "name".(…ù¿¤ûÿÿÿÿ
+W
+java:S1854ô";Remove this useless assignment to local variable "mmapcid".(€Ÿ—½üÿÿÿÿ
+S
+java:S1854ı"7Remove this useless assignment to local variable "toa".(—Ï‡Êùÿÿÿÿ
+_
+java:S1854˜"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+h
+java:S1854£"QRemove this useless assignment to local variable "coursetestStuoptionanswerList".(‡È¹¶
+H
+java:S1481ô",Remove this unused "mmapcid" local variable.(€Ÿ—½üÿÿÿÿ
+E
+java:S1481õ")Remove this unused "name" local variable.(…ù¿¤ûÿÿÿÿ
+Z
+java:S1155ƒ">Use isEmpty() to check whether the collection is empty or not.(œ¡¹çûÿÿÿÿ
+U
+java:S1155•">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+Z
+java:S1155©">Use isEmpty() to check whether the collection is empty or not.(¹è œûÿÿÿÿ
+n
+java:S3776¼"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ƒÇ‰—úÿÿÿÿ
+T
+java:S1854¾"=Remove this useless assignment to local variable "testPaper".(µö‡„
+d
+java:S1854×"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+d
+java:S1854ä"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+`
+java:S1854ï"DRemove this useless assignment to local variable "stuQuestionScore".(—øø¸úÿÿÿÿ
+U
+java:S1155Ò">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+U
+java:S1155İ">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+U
+java:S1155ê">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+Q
+java:S1481ï"5Remove this unused "stuQuestionScore" local variable.(—øø¸úÿÿÿÿ
+n
+java:S3776‚"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(ëÈëÊıÿÿÿÿ
+T
+java:S1854¤"=Remove this useless assignment to local variable "testPaper".(µö‡„
+e
+java:S1854¾"IRemove this useless assignment to local variable "stuQuestionScoreList2".(¤¢Ö÷ûÿÿÿÿ
+e
+java:S1854Ë"IRemove this useless assignment to local variable "stuQuestionScoreList2".(¤¢Ö÷ûÿÿÿÿ
+\
+java:S1854Ö"ERemove this useless assignment to local variable "stuQuestionScore3".(»Ì–§
+U
+java:S1155ˆ">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+U
+java:S1155¹">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+U
+java:S1155Ä">Use isEmpty() to check whether the collection is empty or not.(‹Îîê
+U
+java:S1155Ñ">Use isEmpty() to check whether the collection is empty or not.(‹Îîê
+M
+java:S1481Ö"6Remove this unused "stuQuestionScore3" local variable.(»Ì–§
+Y
+java:S1854æ"=Remove this useless assignment to local variable "testPaper".(–ÿİ¿øÿÿÿÿ
+J
+java:S1481æ".Remove this unused "testPaper" local variable.(–ÿİ¿øÿÿÿÿ
+Z
+java:S1155ë">Use isEmpty() to check whether the collection is empty or not.(Ô«›İúÿÿÿÿ
+T
+java:S1854‘"=Remove this useless assignment to local variable "testPaper".(µö‡„
+U
+java:S1155Œ">Use isEmpty() to check whether the collection is empty or not.(àÂÈÈ

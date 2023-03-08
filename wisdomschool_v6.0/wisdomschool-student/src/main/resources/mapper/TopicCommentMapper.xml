@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.student.mapper.TopicCommentMapper">
+
+    <resultMap id="commentResult" type="TopicComment">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="create_name" property="createName"/>
+        <result column="content" property="content"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="type" property="type"/>
+        <result column="topic_id" property="topicId"/>
+    </resultMap>
+
+    <select id="selectList" parameterType="TopicComment" resultMap="commentResult">
+        select id, create_by, create_time, content, update_by, update_time, remark, version, topic_id, create_name, thumbs_up, 'reply' as type
+        from tb_reply
+        <where>
+            <if test="createBy != null  and createBy.trim() != '' ">and create_by = #{createBy}</if>
+            <if test="topicId != null and topicId != '' ">and topic_id = #{topic.id}</if>
+            <if test="ipAddr != null and ipAddr.trim() != ''">and ip_addr = #{ipAddr}</if>
+            <if test="content != null and content.trim() != '' ">and content LIKE CONCAT('%', #{content},'%')</if>
+            <if test="createName != null and createName.trim() != '' ">and create_name LIKE CONCAT('%', #{createName},'%')</if>
+        </where>
+        union all
+
+        select  td.id, td.create_by, td.create_time, td.content, td.update_by, td.update_time, td.remark, td.version, r.id, td.create_name, td.thumbs_up, 'deck' as type
+        from tb_deck td, tb_reply r
+        <where>
+            and td.reply_id = r.id
+            <if test="createBy != null  and createBy.trim() != '' ">and td.create_by = #{createBy}</if>
+            <if test="topicId != null and topicId != '' ">and r.topic_id = #{topic.id}</if>
+            <if test="ipAddr != null and ipAddr.trim() != ''">and td.ip_addr = #{ipAddr}</if>
+            <if test="content != null and content.trim() != '' ">and td.content LIKE CONCAT('%', #{content},'%')</if>
+            <if test="createName != null and createName.trim() != '' ">and td.create_name LIKE CONCAT('%', #{createName},'%')</if>
+        </where>
+        <!--<if test="order_by != null and order_by != '' ">ORDER BY #{order_by}</if>-->
+        <!--Limit 1-->
+    </select>
+</mapper>

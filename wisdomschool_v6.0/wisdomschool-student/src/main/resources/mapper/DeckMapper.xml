@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.student.mapper.DeckMapper">
+    <!-- 增加话题信息-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Deck">
+        insert into tb_deck
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="modifyName != null">modify_name,</if>
+            <if test="content != null">content,</if>
+            <if test="ipAddr != null">ip_addr,</if>
+            <if test="thumbsUp != null">thumbs_up,</if>
+            <if test="toUserId != null">to_user_id,</if>
+            <if test="toUserName != null">to_user_name,</if>
+            <if test="toUserType != null">to_user_type,</if>
+            <if test="userType != null">user_type,</if>
+            <if test="tcid != null">tcid,</if>
+            <if test="reply != null and reply.id != null">reply_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="modifyName != null">#{modifyName},</if>
+            <if test="content != null">#{content},</if>
+            <if test="ipAddr != null">#{ipAddr},</if>
+            <if test="thumbsUp != null">#{thumbsUp},</if>
+            <if test="toUserId != null">#{toUserId},</if>
+            <if test="toUserName != null">#{toUserName},</if>
+            <if test="toUserType != null">#{toUserType},</if>
+            <if test="userType != null">#{userType},</if>
+            <if test="tcid != null">#{tcid},</if>
+            <if test="reply != null and reply.id != null">#{reply.id},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+    <!-- 添加话题分类信息-->
+    <!--<sql id="">
+        select  id, create_by, create_time, update_by, update_time, remark, version,
+               create_name, modify_name, content, ip_addr, thumbs_up,
+               to_user_id, to_user_name, to_user_type, user_type, reply_id
+        from tb_deck
+    </sql>-->
+
+    <!-- 按话题id删除信息 -->
+    <delete id="deleteById">
+        delete
+        from tb_deck
+        where id = #{id}
+    </delete>
+    <delete id="deckDelete">
+        delete from tb_deck where id=#{deckId}
+    </delete>
+
+    <!-- 按id查询话题信息 -->
+    <select id="selectById" resultMap="topicResult">
+        <include refid="selectTopic"/>
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+    <sql id="topicField">
+        t
+        .
+        id,
+        t
+        .
+        create_by,
+        t
+        .
+        create_time,
+        t
+        .
+        update_by,
+        t
+        .
+        update_time,
+        t
+        .
+        remark,
+        t
+        .
+        version,
+        t
+        .
+        create_name,
+        t
+        .
+        modify_name,
+        t
+        .
+        browse,
+        t
+        .
+        content,
+        t
+        .
+        essence,
+        t
+        .
+        ip_addr,
+        t
+        .
+        thumbs_up,
+        t
+        .
+        reply_count,
+        t
+        .
+        title,
+        t
+        .
+        type,
+        t
+        .
+        user_type,
+        t
+        .
+        forum_id,
+        t
+        .
+        last_reply_id,
+        t
+        .
+        tcid
+    </sql>
+    <sql id="forumField">
+        f
+        .
+        id,
+        f
+        .
+        create_by,
+        f
+        .
+        create_time,
+        f
+        .
+        update_by,
+        f
+        .
+        update_time,
+        f
+        .
+        remark,
+        f
+        .
+        version,
+        f
+        .
+        name,
+        f
+        .
+        type,
+        f
+        .
+        description,
+        f
+        .
+        tcid
+    </sql>
+
+    <sql id="selectTopic">
+        select t.id,
+               t.create_by,
+               t.create_time,
+               t.update_by,
+               t.update_time,
+               t.remark,
+               t.version,
+               t.create_name,
+               t.modify_name,
+               t.browse,
+               t.content,
+               t.essence,
+               t.ip_addr,
+               t.thumbs_up,
+               t.reply_count,
+               t.title,
+               t.type,
+               t.user_type,
+               t.forum_id,
+               t.last_reply_id,
+               t.tcid
+        from tb_topic t
+    </sql>
+
+    <sql id="replyField">
+        r
+        .
+        id,
+        r
+        .
+        create_by,
+        r
+        .
+        create_time,
+        r
+        .
+        update_by,
+        r
+        .
+        update_time,
+        r
+        .
+        remark,
+        r
+        .
+        version,
+        r
+        .
+        create_name,
+        r
+        .
+        modify_name,
+        r
+        .
+        adopt,
+        r
+        .
+        content,
+        r
+        .
+        ip_addr,
+        r
+        .
+        thumbs_up,
+        r
+        .
+        user_type,
+        r
+        .
+        topic_id,
+        r
+        .
+        tcid
+    </sql>
+
+    <sql id="deckField">
+        k
+        .
+        id,
+        k
+        .
+        create_by,
+        k
+        .
+        create_time,
+        k
+        .
+        update_by,
+        k
+        .
+        update_time,
+        k
+        .
+        remark,
+        k
+        .
+        version,
+        k
+        .
+        create_name,
+        k
+        .
+        modify_name,
+        k
+        .
+        content,
+        k
+        .
+        ip_addr,
+        k
+        .
+        thumbs_up,
+        k
+        .
+        to_user_id,
+        k
+        .
+        to_user_name,
+        k
+        .
+        to_user_type,
+        k
+        .
+        user_type,
+        k
+        .
+        reply_id,
+        k
+        .
+        tcid
+    </sql>
+
+    <sql id="selectDeck">
+        select k.id,
+               k.create_by,
+               k.create_time,
+               k.update_by,
+               k.update_time,
+               k.remark,
+               k.version,
+               k.create_name,
+               k.modify_name,
+               k.content,
+               k.ip_addr,
+               k.thumbs_up,
+               k.to_user_id,
+               k.to_user_name,
+               k.to_user_type,
+               k.user_type,
+               k.reply_id,
+               k.tcid
+        from tb_deck k
+
+    </sql>
+
+    <resultMap id="replyResult" type="Reply">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="create_name" property="createName"/>
+        <result column="modify_name" property="modifyName"/>
+        <result column="adopt" property="adopt"/>
+        <result column="content" property="content"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="user_type" property="userType"/>
+        <result column="tcid" property="tcid"/>
+        <association property="topic" resultMap="topicResult" javaType="Topic"/>
+    </resultMap>
+    <resultMap id="topicResult" type="Topic">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="create_name" property="createName"/>
+        <result column="modify_name" property="modifyName"/>
+        <result column="browse" property="browse"/>
+        <result column="content" property="content"/>
+        <result column="essence" property="essence"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="reply_count" property="replyCount"/>
+        <result column="title" property="title"/>
+        <result column="type" property="type"/>
+        <result column="user_type" property="userType"/>
+        <result column="last_reply_id" property="lastReplyId"/>
+        <result column="tcid" property="tcid"/>
+        <association property="forum" resultMap="forumResult" javaType="Forum"/>
+    </resultMap>
+
+    <resultMap id="forumResult" type="Forum">
+        <id column="id" property="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="tcid" property="tcid"/>
+    </resultMap>
+
+    <resultMap id="deckResult" type="Deck">
+        <id column="id" property="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="create_name" property="createName"/>
+        <result column="modify_name" property="modifyName"/>
+        <result column="content" property="content"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="to_user_id" property="toUserId"/>
+        <result column="to_user_name" property="toUserName"/>
+        <result column="to_user_type" property="toUserType"/>
+        <result column="user_type" property="userType"/>
+        <result column="tcid" property="tcid"/>
+        <association property="reply" resultMap="replyResult" javaType="Reply"/>
+    </resultMap>
+
+    <select id="selectList" parameterType="Deck" resultMap="deckResult">
+        select
+        <include refid="deckField"/>
+        from tb_deck k
+        <where>
+            <if test="id != null ">and k.id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and k.create_by = #{createBy}</if>
+            <if test="createTime != null ">and k.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and k.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and k.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and k.remark = #{remark}</if>
+            <if test="version != null ">and k.version = #{versiom}</if>
+            <if test="createName != null ">and k.create_name = #{createName}</if>
+            <if test="modifyName != null ">and k.modify_name = #{modifyName}</if>
+            <if test="content != null ">and k.content = #{content}</if>
+            <if test="ipAddr != null">and k.ip_addr = #{ipAddr}</if>
+            <if test="thumbsUp != null and thumbsUp != '' ">and k.thumbs_up = #{thumbsUp}</if>
+            <if test="toUserId != null and toUserId != '' ">and k.to_user_id = #{toUserId}</if>
+            <if test="toUserName != null and toUserName != '' ">and k.to_user_name = #{toUserName}</if>
+            <if test="toUserType != null and toUserType != '' ">and k.to_user_type = #{toUserType}</if>
+            <if test="userType != null and userType != '' ">and k.user_type = #{userType}</if>
+            <if test="reply != null">and k.reply_id = #{reply.id}</if>
+            <if test="tcid != null and tcid != '' ">and k.tcid = #{tcid}</if>
+            <if test="tcid == null or tcid == '' ">and (k.tcid IS NULL OR k.tcid = 0)</if>
+        </where>
+        <if test="params != null and params.orderBy != null ">ORDER BY #{params.orderBy}</if>
+    </select>
+
+    <select id="selectOne" parameterType="Deck" resultMap="replyResult">
+        select
+        <include refid="deckField"/>
+        from tb_deck k
+        <where>
+            <if test="id != null ">and k.id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and k.create_by = #{createBy}</if>
+            <if test="createTime != null ">and k.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and k.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and k.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and k.remark = #{remark}</if>
+            <if test="version != null ">and k.version = #{versiom}</if>
+            <if test="createName != null ">and k.create_name = #{createName}</if>
+            <if test="modifyName != null ">and k.modify_name = #{modifyName}</if>
+            <if test="content != null ">and k.content = #{content}</if>
+            <if test="ipAddr != null">and k.ip_addr = #{ipAddr}</if>
+            <if test="thumbsUp != null and thumbsUp != '' ">and k.thumbs_up = #{thumbsUp}</if>
+            <if test="toUserId != null and toUserId != '' ">and k.to_user_id = #{toUserId}</if>
+            <if test="toUserName != null and toUserName != '' ">and k.to_user_name = #{toUserName}</if>
+            <if test="toUserType != null and toUserType != '' ">and k.to_user_type = #{toUserType}</if>
+            <if test="userType != null and userType != '' ">and k.user_type = #{userType}</if>
+            <if test="reply != null">and k.reply_id = #{reply.id}</if>
+            <if test="tcid != null and tcid != '' ">and k.tcid = #{tcid}</if>
+            <if test="tcid == null or tcid == '' ">and (k.tcid IS NULL OR k.tcid = 0)</if>
+        </where>
+        <if test="params != null and params.orderBy != null ">ORDER BY #{params.orderBy}</if>
+        Limit 1
+    </select>
+</mapper>

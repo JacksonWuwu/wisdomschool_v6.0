@@ -1,0 +1,16 @@
+
+`	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(†™Æµøÿÿÿÿ
+[	java:S112z"FDefine and throw a dedicated exception instead of using a generic one.(†Ô­Â
+[	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe
+a	java:S112‹"FDefine and throw a dedicated exception instead of using a generic one.(¼Å²Ğûÿÿÿÿ
+[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe
+[	java:S112š"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe
+\	java:S112¯"FDefine and throw a dedicated exception instead of using a generic one.(±ñğ½
+
+java:S1192Q"dDefine a constant instead of duplicating this literal "Error: entityList must not be empty" 3 times.(Á¤çûÿÿÿÿ
+@
+java:S1181U"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+@
+java:S1181y"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+A
+java:S1181®"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ

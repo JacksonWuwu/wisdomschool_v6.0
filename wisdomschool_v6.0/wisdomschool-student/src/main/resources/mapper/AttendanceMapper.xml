@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.AttendanceMapper">
+
+    <resultMap type="Attendance" id="AttendanceResult">
+        <result property="id" column="id"/>
+        <result property="tcid" column="tcid"/>
+        <result property="cid" column="cid"/>
+        <result property="createTime" column="create_time"/>
+        <result property="type" column="type"/>
+        <result property="qrcode" column="qrcode"/>
+        <result property="state" column="state"/>
+        <result property="title" column="title"/>
+        <result property="password" column="password"/>
+
+    </resultMap>
+
+    <sql id="selectAttendanceVo">
+        select id,
+               cid,
+               tcid,
+               qrcode,
+               create_time,
+               type,
+               state,
+               title,
+               password
+        from wy_attendance
+    </sql>
+
+    <select id="selectList" parameterType="Attendance" resultMap="AttendanceResult">
+        <include refid="selectAttendanceVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="title != null ">and title = #{title}</if>
+            <if test="cid != null ">and cid = #{cid}</if>
+            <if test="tcid != null ">and tcid = #{tcid}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="type != null and type != ''">and  type= #{type}</if>
+            <if test="qrcode != null ">and qrcode = #{qrcode}</if>
+            <if test="state != null ">and state = #{state}</if>
+            <if test="password != null ">and password = #{password}</if>
+
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="AttendanceResult">
+        <include refid="selectAttendanceVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectByTcid" parameterType="Integer" resultMap="AttendanceResult">
+        <include refid="selectAttendanceVo"/>
+        where tcid = #{tcid}
+    </select>
+
+    <select id="getByTcidTostate" parameterType="Integer" resultType="Integer">
+        select count(*)
+        from wy_attendance
+        where tcid=#{tcid} and state='1'
+    </select>
+
+
+    <insert id="insert"
+            parameterType="Attendance">
+        insert into wy_attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="title != null  ">title,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="tcid != null  ">tcid,</if>
+            <if test="type != null ">type,</if>
+            <if test="qrcode != null ">qrcode,</if>
+            <if test="state != null  ">state,</if>
+            <if test="password != null ">password,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="title != null  ">#{title},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="tcid != null">#{tcid},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="qrcode != null ">#{qrcode},</if>
+            <if test="state != null  ">#{state},</if>
+            <if test="password != null ">#{password},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <insert id="addreturn" parameterType="Attendance" useGeneratedKeys="true" keyProperty="id">
+        insert into wy_attendance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="title != null  ">title,</if>
+            <if test="cid != null  ">cid,</if>
+            <if test="tcid != null  ">tcid,</if>
+            <if test="type != null ">type,</if>
+            <if test="qrcode != null ">qrcode,</if>
+            <if test="state != null  ">state,</if>
+            <if test="password != null ">password,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="title != null  ">#{title},</if>
+            <if test="cid != null  ">#{cid},</if>
+            <if test="tcid != null">#{tcid},</if>
+            <if test="type != null ">#{type},</if>
+            <if test="qrcode != null ">#{qrcode},</if>
+            <if test="state != null  ">#{state},</if>
+            <if test="password != null ">#{password},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="Attendance" >
+        update wy_attendance
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null  ">title = #{title},</if>
+            <if test="cid != null  ">cid = #{cid},</if>
+            <if test="tcid != null  ">tcid = #{tcid},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="qrcode != null  ">qrcode = #{qrcode},</if>
+            <if test="state != null  ">state = #{state},</if>
+            <if test="password != null ">password = #{password}</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from wy_attendance
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="Integer">
+        delete from wy_attendance where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findAllnumbercode" resultType="String">
+        select password
+        from wy_attendance
+    </select>
+
+    <select id="findAllqrcode" resultType="String">
+         select qrcode
+        from wy_attendance
+    </select>
+</mapper>

@@ -1,0 +1,29 @@
+
+c
+java:S1192¶"LDefine a constant instead of duplicating this literal "éžæ³•token" 5 times.(®ÿÝÎ
+f	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Þöí
+y
+java:S1488˜"bImmediately return this expression instead of assigning it to the temporary variable "dataBuffer".(»‘ù¨
+_
+java:S2259Ý"HA "NullPointerException" could be thrown; "redisToken" is nullable here.(¿Ñ²æ
+m
+java:S3776S"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(‹ËÃóÿÿÿÿÿ
+M
+java:S1854["7Remove this useless assignment to local variable "url".(Î¡§†
+U
+java:S1854Y":Remove this useless assignment to local variable "method".(£Ä¾„úÿÿÿÿ
+F
+java:S1481Y"+Remove this unused "method" local variable.(£Ä¾„úÿÿÿÿ
+>
+java:S1481["(Remove this unused "url" local variable.(Î¡§†
+V	java:S125\"<This block of commented-out lines of code should be removed.(ïªÃîþÿÿÿÿ
+R	java:S125§"<This block of commented-out lines of code should be removed.(ÿöø 
+W	java:S125ª"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+Q	java:S125Å"<This block of commented-out lines of code should be removed.(‚–›
+R	java:S125ï"<This block of commented-out lines of code should be removed.(½€Ã
+W
+java:S1144¡";Remove this unused private "resolveBodyFromRequest" method.(•¬—“þÿÿÿÿ
+K
+java:S1144°"/Remove this unused private "decodeBody" method.(Í«—Íûÿÿÿÿ
+F
+java:S1144µ"/Remove this unused private "encodeBody" method.(ûùð¯

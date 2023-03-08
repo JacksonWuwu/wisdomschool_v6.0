@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.StudentMapper">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="Student">
+        <id column="id" property="id"/>
+        <result column="enrollment_date" property="enrollmentDate"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="gid" property="gid"/>
+        <result column="cid" property="cid"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        s
+        .
+        id,
+        s
+        .
+        create_by,
+        s
+        .
+        create_time,
+        s
+        .
+        update_by,
+        s
+        .
+        update_time,
+        s
+        .
+        remark,
+        s
+        .
+        version,
+        s
+        .
+        enrollment_date,
+        s
+        .
+        gid,
+        s
+        .
+        cid
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enrollmentDate != null">enrollment_date,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="gid != null and gid != '' ">gid,</if>
+            <if test="cid != null and cid != '' ">cid,</if>
+            create_time
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="enrollmentDate != null">#{enrollmentDate},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="gid != null and gid != '' ">#{gid},</if>
+            <if test="cid != null and cid != '' ">#{cid},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE tb_student
+        <set>
+            <if test="enrollmentDate != null">enrollment_date = #{enrollmentDate},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="gid != null and gid != '' ">gid = #{gid},</if>
+            <if test="cid != null and cid != '' ">cid = #{cid},</if>
+            update_time = sysdate()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="selectList" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM tb_student s
+        <where>
+            <if test="enrollmentDate != null">AND s.enrollment_date = #{enrollmentDate}</if>
+            <if test="id != null">AND s.id = #{id}</if>
+            <if test="createBy != null">AND s.create_by = #{createBy}</if>
+            <if test="createTime != null">AND s.create_time = #{createTime}</if>
+            <if test="updateBy != null">AND s.update_by = #{updateBy}</if>
+            <if test="updateTime != null">AND s.update_time = #{updateTime}</if>
+            <if test="remark != null">AND s.remark = #{remark}</if>
+            <if test="version != null">AND s.version = #{version}</if>
+            <if test="gid != null and gid != '' ">AND s.gid = #{gid}</if>
+            <if test="cid != null and cid != '' ">AND s.cid = #{cid}</if>
+        </where>
+    </select>
+
+    <select id="selectBatchIds" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM tb_student s
+        WHERE s.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectById" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM tb_student s
+        WHERE s.id = #{id}
+    </select>
+
+    <select id="statisticsById" resultType="Statistics">
+        SELECT id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               user_id,
+               count_question,
+               count_question_follw,
+               count_topic,
+               count_answer,
+               count_share,
+               count_article,
+               count_fans,
+               count_follw
+        FROM tb_user_count
+        WHERE user_id = #{userId}
+    </select>
+
+    <!--auto generated Code-->
+    <delete id="deleteById">
+        DELETE
+        FROM tb_student
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        DELETE
+        FROM tb_student WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <!-- 更新统计用户所有提的问题数量 -->
+    <update id="updateQuestionCount">
+        update tb_student_count
+        set count_question=(select count(*) from tb_question where user_id = #{userId} and status = 0)
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有关注的问题数量 -->
+    <update id="updateQuestionFollowCount">
+        update tb_student_count
+        set count_question_follw=(select count(*) from tb_question_follow_merge where user_id = #{userId})
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有发布文章数量 -->
+    <update id="updateArticleCount">
+        update tb_student_count
+        set count_article=(select count(*) from tb_article where user_id = #{userId} and status = 1)
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有发布分享数量 -->
+    <update id="updateShareCount">
+        update tb_student_count
+        set count_share=(select count(*) from tb_share where user_id = #{userId} and status = 1)
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有加入的话题数量 -->
+    <update id="updateTopicCount">
+        update tb_student_count
+        set count_topic=(select count(*) from tb_topic_follow where user_id = #{userId})
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有发布的答案数量 -->
+    <update id="updateAnswerCount">
+        update tb_student_count
+        set count_answer=(select count(*) from tb_answer where user_id = #{userId} and status = 1)
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有关注人数数量 -->
+    <update id="updateUserFollwCount">
+        update tb_student_count
+        set count_follw=(select count(*) from tb_student_fans where user_fans = #{userId})
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新统计用户所有粉丝数量 -->
+    <update id="updateUserFansCount">
+        update tb_student_count
+        set count_fans=(select count(*) from tb_student_fans where user_follow = #{userId})
+        where user_id = #{userId}
+    </update>
+
+    <!-- 更新用户积分 -->
+    <update id="updateUserAccountScore">
+        update tb_student_account
+        set score = #{score}
+        where user_id = #{userId}
+    </update>
+
+    <select id="selectBycid" parameterType="String" resultType="String">
+        select s.id
+        from tb_student s
+        where cid=#{cid}
+    </select>
+</mapper>

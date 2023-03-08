@@ -1,0 +1,22 @@
+
+J
+java:S3740p"/Provide the parametrized type for this generic.(Ä¤Èıÿÿÿÿ
+b
+java:S11922"GDefine a constant instead of duplicating this literal "userId" 4 times.(Ü‚‘úÿÿÿÿ
+c
+java:S4488$"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¥©©òüÿÿÿÿ
+^
+java:S44889"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ì—î
+V	java:S125C"<This block of commented-out lines of code should be removed.(‰¼éåıÿÿÿÿ
+V	java:S125I"<This block of commented-out lines of code should be removed.(³ÛÂşÿÿÿÿ
+Q	java:S125N"<This block of commented-out lines of code should be removed.(¢ˆ¬³
+^
+java:S4488l"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ûËìÛ
+^
+java:S4488{"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(åüö”
+C
+java:S1602ƒ",Remove useless curly braces around statement(õåæ
+d
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(á“§ûúÿÿÿÿ
+N
+java:S1135‘"2Complete the task associated to this TODO comment.(‘´ìÌúÿÿÿÿ

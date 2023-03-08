@@ -1,0 +1,6 @@
+
+‡
+java:S1130W"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(–ð‘µüÿÿÿÿ
+V	java:S125Z"<This block of commented-out lines of code should be removed.(ÈšËÑÿÿÿÿÿ
+_
+java:S1214•"CMove constants defined in this interfaces to another class or enum.(á’”Ìýÿÿÿÿ

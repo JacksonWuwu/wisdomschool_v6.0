@@ -1,0 +1,27 @@
+
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Òμύθόÿÿÿÿ8Λ―0
+b	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(‹©Έ8Λ―0
+g	java:S112C"FDefine and throw a dedicated exception instead of using a generic one.(δύ–Σϋÿÿÿÿ8Λ―0
+b	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(»ΑΘ8Λ―0
+b	java:S112j"FDefine and throw a dedicated exception instead of using a generic one.(ΏϊΣ€8Λ―0
+b	java:S112‰"FDefine and throw a dedicated exception instead of using a generic one.(ω‹›q8Λ―0
+h	java:S112”"FDefine and throw a dedicated exception instead of using a generic one.(½°ϋψÿÿÿÿ8Λ―0
+h	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ύ―Ά±ύÿÿÿÿ8Λ―0
+Q
+java:S3740"/Provide the parametrized type for this generic.(Òμύθόÿÿÿÿ8Λ―0
+L
+java:S3740&"/Provide the parametrized type for this generic.(‹©Έ8Λ―0
+Q
+java:S3740/"/Provide the parametrized type for this generic.(€ΞΡÿÿÿÿÿ8Λ―0
+L
+java:S3740V"/Provide the parametrized type for this generic.(»ΑΘ8Λ―0
+L
+java:S3740‰"/Provide the parametrized type for this generic.(ω‹›q8Λ―0
+
+java:S1130"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(Òμύθόÿÿÿÿ8Λ―0
+™
+java:S1130&"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(‹©Έ8Λ―0
+™
+java:S1130V"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(»ΑΘ8Λ―0
+™
+java:S1130‰"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(ω‹›q8Λ―0

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.student.mapper.StudentVoMapper">
+
+    <resultMap type="StudentVo" id="StudentVoResult">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="user_name" property="userName"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="student" javaType="student">
+            <id property="id" column="id"/>
+        </association>
+        <association property="grades" javaType="grades">
+            <id property="id" column="id"/>
+            <result property="name" column="grades_name"/>
+        </association>
+        <association property="department" javaType="department">
+            <id property="id" column="id"/>
+            <result column="department_name" property="name"/>
+        </association>
+        <association property="clbum" javaType="clbum">
+            <id property="id" column="id"/>
+            <result column="clbum_name" property="name"/>
+        </association>
+        <association property="major" javaType="major">
+            <id property="id" column="id"/>
+            <result column="major_name" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="selectByStudentVos" parameterType="StudentVo" resultMap="StudentVoResult">
+        select
+        user.login_name,
+        user.id,
+        user.create_by,
+        user.create_time,
+        user.update_by,
+        user.update_time,
+        user.sex,
+        user.status,
+        user.user_name AS user_name,
+        department.name AS department_name,
+        major.name AS major_name,
+        clbum.name AS clbum_name,
+        grades.name AS grades_name,
+        sc.name
+        from tb_department department, tb_major major, tb_clbum clbum, tb_grades grades, tb_student st, sys_user user,lzt_school sc
+        <where>
+            department.id = major.did
+            and major.id = clbum.mid
+            and grades.id = st.gid
+            and clbum.id = st.cid
+            and user.user_attr_id = st.id
+            and user.school_id=sc.id
+            <if test="loginName != null">
+                and login_name like concat('%', #{loginName},'%')
+            </if>
+            <if test="userName != null">
+                and user.user_name like concat('%', #{userName},'%')
+            </if>
+            <if test="clbum != null">
+                and clbum.name like concat('%', #{clbum.name},'%')
+            </if>
+            <if test="major != null">
+                and major.name like concat('%', #{major.name}, '%')
+            </if>
+            <if test="department != null">
+                and department.name like concat('%', #{department.name}, '%')
+            </if>
+            <if test="grades != null">
+                and grades.name like concat('%', #{grades.name}, '%')
+            </if>
+            <if test="schoolId != null">
+                and user.school_id=#{schoolId}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="StudentVoResult">
+        select
+        user.login_name,
+        user.id,
+        user.create_by,
+        user.create_time,
+        user.update_by,
+        user.update_time,
+        user.sex,
+        user.status,
+        user.user_name AS user_name,
+        department.name AS department_name,
+        major.name AS major_name,
+        clbum.name AS clbum_name,
+        grades.name AS grades_name
+        from tb_department department, tb_major major, tb_clbum clbum, tb_grades grades, tb_student st, sys_user user
+        <where>
+            department.id = major.did
+            and major.id = clbum.mid
+            and grades.id = st.gid
+            and clbum.id = st.cid
+            and user.user_attr_id = st.id
+            and st.id = #{id}
+        </where>
+    </select>
+</mapper>

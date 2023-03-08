@@ -1,0 +1,21 @@
+
+`	java:S112 "FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112F"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112T"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112g"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112p"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+`	java:S112y"FDefine and throw a dedicated exception instead of using a generic one.(Ïã¡İşÿÿÿÿ
+K
+java:S3740‚"/Provide the parametrized type for this generic.(½Ôüÿÿÿÿ
+’
+java:S1130"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(øôğ®
+—
+java:S1130%"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(Ğ†‹úÿÿÿÿ
+’
+java:S1130B"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(ÄÕõí
+—
+java:S1130c"|Remove the declaration of thrown exception 'java.beans.IntrospectionException' which is a subclass of 'java.lang.Exception'.(Šæ…Ãÿÿÿÿÿ
+A
+java:S1181ˆ"%Catch Exception instead of Throwable.(‡˜ÚÚøÿÿÿÿ
+D	java:S108ˆ")Either remove or fill this block of code.(‡˜ÚÚøÿÿÿÿ

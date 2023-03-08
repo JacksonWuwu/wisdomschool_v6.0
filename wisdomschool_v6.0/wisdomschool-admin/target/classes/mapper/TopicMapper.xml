@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.TopicMapper">
+
+    <!-- 增加话题信息-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Topic">
+        insert into tb_topic
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="createName != null">create_name,</if>
+            <if test="modifyName != null">modify_name,</if>
+            <if test="browse != null">browse,</if>
+            <if test="content != null">content,</if>
+            <if test="essence != null">essence,</if>
+            <if test="ipAddr != null">ip_addr,</if>
+            <if test="thumbsUp != null">thumbs_up,</if>
+            <if test="replyCount != null">reply_count,</if>
+            <if test="title != null">title,</if>
+            <if test="type != null">type,</if>
+            <if test="userType != null">user_type,</if>
+            <if test="forum != null and forum.id != null">forum_id,</if>
+            <if test="lastReplyId != null">last_reply_id,</if>
+            <if test="tcid != null">tcid,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="createName != null">#{createName},</if>
+            <if test="modifyName != null">#{modifyName},</if>
+            <if test="browse != null">#{browse},</if>
+            <if test="content != null">#{content},</if>
+            <if test="essence != null">#{essence},</if>
+            <if test="ipAddr != null">#{ipAddr},</if>
+            <if test="thumbsUp != null">#{thumbsUp},</if>
+            <if test="replyCount != null">#{replyCount},</if>
+            <if test="title != null">#{title},</if>
+            <if test="type != null">#{type},</if>
+            <if test="userType != null">#{userType},</if>
+            <if test="forum != null and forum.id != null">#{forum.id},</if>
+            <if test="lastReplyId != null">#{lastReplyId},</if>
+            <if test="tcid != null">#{tcid},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Topic">
+        update tb_topic
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = sysdate(),</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="createName != null">create_name = #{createName},</if>
+            <if test="modifyName != null">modify_name = #{modifyName},</if>
+            <if test="browse != null">browse = #{browse},</if>
+            <if test="content != null">content = #{content},</if>
+            <if test="essence != null">essence = #{essence},</if>
+            <if test="ipAddr != null">ip_addr = #{ipAddr},</if>
+            <if test="thumbsUp != null">thumbs_up = #{thumbsUp},</if>
+            <if test="replyCount != null">reply_count = #{replyCount},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="userType != null">user_type = #{userType},</if>
+            <if test="lastReplyId != null">last_reply_id = #{lastReplyId},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!-- 增加标签与内容关联信息-->
+    <insert id="addTopicAndInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_topic_info_merge (info_id, topic_id, info_type, status, create_time)
+        values (#{infoId}, #{topicId}, #{infoType}, #{status},
+                sysdate())
+    </insert>
+
+    <!-- 添加用户关注的关注的标签id-->
+    <insert id="addTopicAndUser" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_topic_follow (user_id, topic_id, create_time)
+        values (#{userId}, #{topicId},
+                sysdate())
+    </insert>
+
+    <!-- 添加话题分类信息-->
+    <insert id="addTopicCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_topic_category
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="fatherId != null">father_id,</if>
+            <if test="name != null">name,</if>
+            <if test="customUrl != null">custom_url,</if>
+            <if test="keywords != null">keywords,</if>
+            <if test="description != null">description,</if>
+            <if test="isRecommend != null">is_recommend,</if>
+            <if test="sort != null">sort,</if>
+            <if test="status != null">status,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="fatherId != null">#{fatherId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="customUrl != null">#{customUrl},</if>
+            <if test="keywords != null">#{keywords},</if>
+            <if test="description != null">#{description},</if>
+            <if test="isRecommend != null">#{isRecommend},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="status != null">#{status},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 用户增加编辑话题信息 -->
+    <insert id="addUserEditTopic" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_topic_edlt
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="topicId != null">topic_id,</if>
+            <if test="content != null">content,</if>
+            <if test="status != null">status,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="topicId != null">#{topicId},</if>
+            <if test="content != null">#{content},</if>
+            <if test="status != null">#{status},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 按话题id删除信息 -->
+    <delete id="deleteById">
+        delete
+        from tb_topic
+        where id = #{id}
+    </delete>
+
+    <!-- 按话题id删除关注信息 -->
+    <delete id="deleteTopicbyUserId">
+        delete
+        from tb_topic_follow
+        where user_id = #{userId}
+          and topic_id = #{topicId}
+    </delete>
+
+    <!-- 删除话题和信息关联信息 -->
+    <delete id="deleteTopicAndInfo">
+        delete
+        from tb_topic_info_merge
+        where info_id = #{infoId}
+          and topic_id = #{topicId}
+          and info_type = #{infoType}
+    </delete>
+
+    <!-- 按id更新话题统计信息 -->
+    <update id="updateTopicByCount">
+        update tb_topic
+        set count_num=(select count(*) from tb_topic_info_merge where topic_id = #{id})
+        where id = #{id}
+    </update>
+
+    <!-- 按id更新审核状态 -->
+    <update id="updateTagStatus">
+        update tb_topic
+        set status=#{status}
+        where id = #{id}
+    </update>
+
+    <!-- 按id更新话题关注人数统计信息 -->
+    <update id="updateTopicFollowByCount">
+        update tb_topic
+        set count_follow=(select count(*) from tb_topic_follow where topic_id = #{id})
+        where id = #{id}
+    </update>
+
+    <!-- 按id查询话题信息 -->
+    <select id="selectById" resultMap="topicResult">
+        <include refid="selectTopic"/>
+        <where>
+            id=#{id}
+        </where>
+    </select>
+
+    <!-- 按话题查询是否存在 -->
+    <select id="findTopicByTopic" resultMap="topicResult">
+        <include refid="selectTopic"/>
+        where topic=#{topic} limit 1
+    </select>
+
+    <!-- 按话题关键词查询tag是否存在 -->
+    <select id="checkTopicByTopic" resultType="Integer">
+        select count(1)
+        from tb_topic
+        where topic = #{topic}
+    </select>
+
+    <!-- 查询用户下是否该关注标签-->
+    <select id="checkTopicByUserId" resultType="Integer">
+        select count(1)
+        from tb_topic_follow
+        where user_id = #{userId}
+          and topic_id = #{topicId}
+    </select>
+
+    <!-- 查询标签所有数量 -->
+    <select id="getTopicCount" resultType="Integer">
+        select count(1) from tb_topic
+        <where>
+            <if test="topic != null">and topic = LIKE CONCAT(CONCAT('%', #{topic}),'%')</if>
+            <if test="isgood &gt; 0">and isgood = #{isgood}</if>
+            <choose>
+                <when test="type == 'day'">
+                    and to_days(create_time) = to_days(now())
+                </when>
+                <when test="type == 'week'">
+                    and yearweek(date_format(create_time,'%Y-%m-%d')) = yearweek(now());
+                </when>
+                <when test="type == 'month'">
+                    and date_format(create_time,'%Y-%m') = date_format(now(),'%Y-%m')
+                </when>
+                <when test="type == 'year'">
+                    and year(create_time) = year(NOW())
+                </when>
+            </choose>
+            <if test="status != null">and status=#{status}</if>
+        </where>
+    </select>
+
+    <!-- 查标签列表 -->
+    <select id="getTopicList" resultMap="topicResult">
+        <include refid="selectTopic"/>
+        <where>
+            <if test="topic != null">and topic = LIKE CONCAT(CONCAT('%', #{topic}),'%')</if>
+            <if test="isgood &gt; 0">and isgood = #{isgood}</if>
+            <choose>
+                <when test="type == 'day'">
+                    and to_days(create_time) = to_days(now())
+                </when>
+                <when test="type == 'week'">
+                    and yearweek(date_format(create_time,'%Y-%m-%d')) = yearweek(now());
+                </when>
+                <when test="type == 'month'">
+                    and date_format(create_time,'%Y-%m') = date_format(now(),'%Y-%m')
+                </when>
+                <when test="type == 'year'">
+                    and year(create_time) = year(NOW())
+                </when>
+            </choose>
+            <if test="status != null">and status=#{status}</if>
+        </where>
+        order by
+        <if test="orderBy != null">${orderBy}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <!-- 随机查询话题列表 -->
+    <select id="getTopicRandList" resultMap="topicResult">
+        SELECT
+        <include refid="topicField"/>
+        FROM tb_topic AS t1 JOIN (SELECT ROUND(RAND() * (
+        (SELECT MAX(id) FROM tb_topic where id &lt; 1000 )-(SELECT MIN(id) FROM tb_topic where id &lt;1000 ))+(SELECT
+        MIN(id) FROM tb_topic where id &lt; 1000 )) AS id) AS t2
+        <where>
+            and t1.id >= t2.id
+            <if test="topic != null">and topic = LIKE CONCAT(CONCAT('%', #{topic}),'%')</if>
+            <if test="isgood &gt; 0">and isgood = #{isgood}</if>
+            <choose>
+                <when test="type == 'day'">
+                    and to_days(create_time) = to_days(now())
+                </when>
+                <when test="type == 'week'">
+                    and yearweek(date_format(create_time,'%Y-%m-%d')) = yearweek(now());
+                </when>
+                <when test="type == 'month'">
+                    and date_format(create_time,'%Y-%m') = date_format(now(),'%Y-%m')
+                </when>
+                <when test="type == 'year'">
+                    and year(create_time) = year(NOW())
+                </when>
+            </choose>
+            <if test="status != null">and status=#{status}</if>
+        </where>
+        order by
+        <if test="orderBy != null">t1.${orderBy}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <!-- 按id查询话题关联的所有内容数量 -->
+    <select id="getTopicAndInfoCount" resultType="Integer">
+        select count(1) from (
+        select id from tb_topic_info_merge
+        <where>
+            <if test="status != null">and status=#{status}</if>
+            <if test="infoType != null">and info_type=#{infoType}</if>
+            <if test="topicId != null">and topic_id=#{topicId}</if>
+        </where>
+        GROUP BY info_id order by id desc
+        ) f
+    </select>
+
+    <!-- 按话题id查标所有内容列表 -->
+    <select id="getTopicAndInfoList" resultMap="topicInfoResult">
+        select info_type,info_id from tb_topic_info_merge
+        <where>
+            <if test="status != null">and status=#{status}</if>
+            <if test="infoType != null">and info_type=#{infoType}</if>
+            <if test="topicId != null">and topic_id=#{topicId}</if>
+        </where>
+        GROUP BY info_id
+        order by
+        <if test="orderBy != null">${orderBy}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <sql id="topicField">
+        t
+        .
+        id,
+        t
+        .
+        create_by,
+        t
+        .
+        create_time,
+        t
+        .
+        update_by,
+        t
+        .
+        update_time,
+        t
+        .
+        remark,
+        t
+        .
+        version,
+        t
+        .
+        create_name,
+        t
+        .
+        modify_name,
+        t
+        .
+        browse,
+        t
+        .
+        content,
+        t
+        .
+        essence,
+        t
+        .
+        ip_addr,
+        t
+        .
+        thumbs_up,
+        t
+        .
+        reply_count,
+        t
+        .
+        title,
+        t
+        .
+        type,
+        t
+        .
+        user_type,
+        t
+        .
+        forum_id,
+        t
+        .
+        last_reply_id,
+        t
+        .
+        tcid
+    </sql>
+    <sql id="forumField">
+        f
+        .
+        id,
+        f
+        .
+        create_by,
+        f
+        .
+        create_time,
+        f
+        .
+        update_by,
+        f
+        .
+        update_time,
+        f
+        .
+        remark,
+        f
+        .
+        version,
+        f
+        .
+        name,
+        f
+        .
+        type,
+        f
+        .
+        description,
+        f
+        .
+        tcid
+    </sql>
+
+    <sql id="selectTopic">
+        select t.id,
+               t.create_by,
+               t.create_time,
+               t.update_by,
+               t.update_time,
+               t.remark,
+               t.version,
+               t.create_name,
+               t.modify_name,
+               t.browse,
+               t.content,
+               t.essence,
+               t.ip_addr,
+               t.thumbs_up,
+               t.reply_count,
+               t.title,
+               t.type,
+               t.user_type,
+               t.forum_id,
+               t.last_reply_id,
+               t.tcid
+        from tb_topic t
+    </sql>
+    <resultMap id="topicInfoResult" type="TopicInfo">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="info_id" property="infoId"/>
+        <result column="topic_id" property="topicId"/>
+        <result column="info_type" property="infoType"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <resultMap id="topicResult" type="Topic">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="create_name" property="createName"/>
+        <result column="modify_name" property="modifyName"/>
+        <result column="browse" property="browse"/>
+        <result column="content" property="content"/>
+        <result column="essence" property="essence"/>
+        <result column="ip_addr" property="ipAddr"/>
+        <result column="thumbs_up" property="thumbsUp"/>
+        <result column="reply_count" property="replyCount"/>
+        <result column="title" property="title"/>
+        <result column="type" property="type"/>
+        <result column="user_type" property="userType"/>
+        <result column="last_reply_id" property="lastReplyId"/>
+        <result column="tcid" property="tcid"/>
+        <association property="forum" resultMap="forumResult" javaType="Forum"/>
+    </resultMap>
+
+    <resultMap id="forumResult" type="Forum">
+        <id column="id" property="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="tcid" property="tcid"/>
+    </resultMap>
+
+    <!-- 按文章id查询所有文章关联的标签 -->
+    <select id="getInfoByTopicList" resultMap="topicResult">
+        select
+        <include refid="topicField"/>
+        from tb_topic t left join tb_topic_info_merge ti on t.id=ti.topic_id
+        where t.status = 0 and ti.info_type=#{infoType} and ti.info_id=#{infoId}
+    </select>
+
+    <!-- 按用户id查询所有关注标签数量 -->
+    <select id="getUserTagsCount" resultType="Integer">
+        select count(1)
+        from tb_topic_follow
+        where user_id = #{userId}
+    </select>
+
+    <!-- 按用户id查询所有关注标签列表-->
+    <select id="getUserTagsList" resultMap="topicResult">
+        select *
+        from (select *
+              from (select t.tag_id, row_number() OVER(ORDER BY t.count_num DESC) AS row_number
+                    from tb_user_tags u left join tb_tags t
+                    on u.tag_id=t.tag_id
+                    where u.user_id=#{userId}) p
+              where p.row_number &gt; #{offset}) q
+        where rownum &lt;= #{rows}
+    </select>
+    <select id="allWord" resultMap="topicResult"></select>
+
+    <select id="selectList" parameterType="Topic" resultMap="topicResult">
+        select
+        <include refid="topicField"/>,
+        <include refid="forumField"/>
+        from tb_topic t, tb_forum f
+        <where>
+            and t.forum_id = f.id
+            <if test="id != null ">and t.id = #{id}</if>
+            <if test="createBy != null  and createBy.trim() != '' ">and t.create_by = #{createBy}</if>
+            <if test="createTime != null ">and t.create_time = #{createTime}</if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">and t.update_by = #{updateBy}</if>
+            <if test="updateTime != null ">and t.update_time = #{updateTime}</if>
+            <if test="remark != null  and remark.trim() != '' ">and t.remark = #{remark}</if>
+            <if test="version != null ">and t.version = #{versiom}</if>
+            <if test="createName != null ">and t.create_name = #{createName}</if>
+            <if test="modifyName != null ">and t.modify_name = #{modifyName}</if>
+            <if test="browse != null ">and t.browse = #{browse}</if>
+            <if test="content != null ">and t.content = #{content}</if>
+            <if test="essence != null ">and t.essence = #{essence}</if>
+            <if test="ipAddr != null">and t.ip_addr = #{ipAddr}</if>
+            <if test="thumbsUp != null and thumbsUp != '' ">and t.thumbs_up = #{thumbsUp}</if>
+            <if test="replyCount != null and replyCount != '' ">and t.reply_count = #{replyCount}</if>
+            <if test="title != null and title != '' ">and t.title = #{title}</if>
+            <if test="type != null and type != '' ">and t.type = #{type}</if>
+            <if test="userType != null and userType != '' ">and t.user_type = #{userType}</if>
+            <if test="forum != null and forum.id != null ">and t.forum_id = #{forum.id}</if>
+            <if test="lastReplyId != null and lastReplyId != '' ">and t.last_reply_id = #{lastReplyId}</if>
+            <if test="tcid != null and tcid != '' ">and t.tcid = #{tcid}</if>
+            <if test="tcid != null and tcid != '' ">and t.tcid = f.tcid</if>
+            <if test="tcid == null or tcid == '' ">and (t.tcid IS NULL OR t.tcid = 0)</if>
+        </where>
+        <if test="params != null and params.sort != null and params.sort != '' ">ORDER BY #{params.sort}</if>
+        ,t.create_time DESC
+    </select>
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.VideoChapterUserMapper">
+
+    <resultMap type="VideoChapterUser" id="VideoChapterUserResult">
+            <result property="id" column="id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateId" column="update_id"/>
+            <result property="version" column="version"/>
+            <result property="userId" column="user_id"/>
+            <result property="videoChapterId" column="video_chapter_Id"/>
+            <result property="progress" column="progress"/>
+            <result property="lastTime" column="last_time"/>
+            <result property="state" column="state"/>
+            <result property="videoname" column="videoname"/>
+    </resultMap>
+
+    <sql id="selectVideoChapterUserVo">
+        select  id, create_time, create_by, create_id, update_time, update_by, update_id, version, user_id, video_chapter_Id, progress, last_time, videoname,state
+        from tb_video_chapter_user
+    </sql>
+
+    <select id="selectList" parameterType="VideoChapterUser" resultMap="VideoChapterUserResult">
+        <include refid="selectVideoChapterUserVo"/>
+        <where>
+                <if test="id != null ">
+                    and id = #{id}</if>
+                <if test="createTime != null ">
+                    and create_time = #{createTime}</if>
+                <if test="createBy != null  and createBy.trim() != '' ">
+                    and create_by = #{createBy}</if>
+                <if test="createId != null ">
+                    and create_id = #{createId}</if>
+                <if test="updateTime != null ">
+                    and update_time = #{updateTime}</if>
+                <if test="updateBy != null  and updateBy.trim() != '' ">
+                    and update_by = #{updateBy}</if>
+                <if test="updateId != null ">
+                    and update_id = #{updateId}</if>
+                <if test="version != null ">
+                    and version = #{version}</if>
+                <if test="userId != null ">
+                    and user_id = #{userId}</if>
+                <if test="videoChapterId != null ">
+                    and video_chapter_Id = #{videoChapterId}</if>
+                <if test="progress != null ">
+                    and progress = #{progress}</if>
+                <if test="lastTime != null ">
+                    and last_time = #{lastTime}</if>
+                 <if test="videoname != null ">
+                    and videoname = #{videoname}</if>
+                <if test="state != null ">
+                    and state = #{state}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="VideoChapterUserResult">
+        <include refid="selectVideoChapterUserVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectByVideoName" parameterType="VideoChapterUser" resultMap="VideoChapterUserResult">
+        <include refid="selectVideoChapterUserVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}</if>
+            <if test="userId != null ">
+                and user_id = #{userId}</if>
+            <if test="videoname != null ">
+                and videoname = #{videoname}</if>
+        </where>
+    </select>
+
+    <insert id="insert"
+            parameterType="VideoChapterUser">
+        insert into tb_video_chapter_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">id
+                        ,
+                    </if>
+                    <if test="createTime != null  ">create_time
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        ,
+                    </if>
+                    <if test="createId != null  ">create_id
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        ,
+                    </if>
+                    <if test="updateId != null  ">update_id
+                        ,
+                    </if>
+                    <if test="version != null  ">version
+                        ,
+                    </if>
+                    <if test="userId != null  ">user_id
+                        ,
+                    </if>
+                    <if test="videoChapterId != null  ">video_chapter_Id
+                        ,
+                    </if>
+                    <if test="progress != null  ">progress
+                        ,
+                    </if>
+                    <if test="lastTime != null  ">last_time
+                        ,
+                    </if>
+                    <if test="videoname != null  ">videoname
+                        ,
+                    </if>
+                    <if test="state != null  ">state
+                        ,
+                    </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">#{id}
+                        ,
+                    </if>
+                    <if test="createTime != null  ">#{createTime}
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">#{createBy}
+                        ,
+                    </if>
+                    <if test="createId != null  ">#{createId}
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">#{updateTime}
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                        ,
+                    </if>
+                    <if test="updateId != null  ">#{updateId}
+                        ,
+                    </if>
+                    <if test="version != null  ">#{version}
+                        ,
+                    </if>
+                    <if test="userId != null  ">#{userId}
+                        ,
+                    </if>
+                    <if test="videoChapterId != null  ">#{videoChapterId}
+                        ,
+                    </if>
+                    <if test="progress != null  ">#{progress}
+                        ,
+                    </if>
+                    <if test="lastTime != null  ">#{lastTime}
+                        ,
+                    </if>
+                    <if test="videoname != null  ">#{videoname}
+                        ,
+                    </if>
+                    <if test="state != null  ">#{state}
+                        ,
+                    </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="VideoChapterUser">
+        update tb_video_chapter_user
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="createTime != null  ">create_time
+                        = #{createTime},
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        = #{createBy},
+                    </if>
+                    <if test="createId != null  ">create_id
+                        = #{createId},
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        = #{updateTime},
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        = #{updateBy},selectByVideoName
+                    </if>
+                    <if test="updateId != null  ">update_id
+                        = #{updateId},
+                    </if>
+                    <if test="version != null  ">version
+                        = #{version},
+                    </if>
+                    <if test="userId != null  ">user_id
+                        = #{userId},
+                    </if>
+                    <if test="videoChapterId != null  ">video_chapter_Id
+                        = #{videoChapterId},
+                    </if>
+                    <if test="progress != null  ">progress
+                        = #{progress},
+                    </if>
+                    <if test="lastTime != null  ">last_time
+                        = #{lastTime},
+                    </if>
+                    <if test="state != null  ">state
+                        = #{state},
+                    </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete from tb_video_chapter_user where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_video_chapter_user where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

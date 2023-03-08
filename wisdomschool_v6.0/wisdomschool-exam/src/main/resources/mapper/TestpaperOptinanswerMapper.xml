@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.TestpaperOptinanswerMapper">
+
+    <resultMap type="TestpaperOptinanswer" id="TestpaperOptinanswerResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_id"/>
+        <result property="version" column="version"/>
+        <result property="schoolNo" column="school_no"/>
+        <result property="questionScore" column="question_score"/>
+        <result property="stanswer" column="stanswer"/>
+        <result property="stoption" column="stoption"/>
+        <result property="questionId" column="question_id"/>
+    </resultMap>
+
+    <sql id="selectTestpaperOptinanswerVo">
+        select id,
+               create_time,
+               create_by,
+               create_id,
+               update_time,
+               update_by,
+               update_id,
+               version,
+               school_no,
+               question_score,
+               stanswer,
+               stoption,
+               question_id
+        from tk_testpaper_optinanswer
+    </sql>
+
+    <select id="selectList" parameterType="TestpaperOptinanswer" resultMap="TestpaperOptinanswerResult">
+        <include refid="selectTestpaperOptinanswerVo"/>
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and school_no = #{schoolNo}
+            </if>
+            <if test="questionScore != null ">
+                and question_score = #{questionScore}
+            </if>
+            <if test="stanswer != null  and stanswer.trim() != '' ">
+                and stanswer = #{stanswer}
+            </if>
+            <if test="stoption != null  and stoption.trim() != '' ">
+                and stoption = #{stoption}
+            </if>
+            <if test="questionId != null  and questionId.trim() != '' ">
+                and question_id = #{questionId}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="TestpaperOptinanswerResult">
+        <include refid="selectTestpaperOptinanswerVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="TestpaperOptinanswer">
+        insert into tk_testpaper_optinanswer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id
+                ,
+            </if>
+            create_time,
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="createId != null  and createId != ''  ">create_id
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateId != null  and updateId != ''  ">update_id
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">school_no
+                ,
+            </if>
+            <if test="questionScore != null  ">question_score
+                ,
+            </if>
+            <if test="stanswer != null  and stanswer != ''  ">stanswer
+                ,
+            </if>
+            <if test="stoption != null  and stoption != ''  ">stoption
+                ,
+            </if>
+            <if test="questionId != null  and questionId.trim() != '' ">question_id
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">#{id}
+                ,
+            </if>
+            sysdate(),
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createId != null  and createId != ''  ">#{createId}
+                ,
+            </if>
+            <if test="updateTime != null  ">sysdate()
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateId != null  and updateId != ''  ">#{updateId}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">#{schoolNo}
+                ,
+            </if>
+            <if test="questionScore != null  ">#{questionScore}
+                ,
+            </if>
+            <if test="stanswer != null  and stanswer != ''  ">#{stanswer}
+                ,
+            </if>
+            <if test="stoption != null  and stoption != ''  ">#{stoption}
+                ,
+            </if>
+            <if test="questionId != null  and questionId.trim() != '' ">#{questionId}
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="TestpaperOptinanswer">
+        update tk_testpaper_optinanswer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="createId != null  and createId != ''  ">create_id
+                = #{createId},
+            </if>
+            update_time= sysdate(),
+
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="updateId != null  and updateId != ''  ">update_id
+                = #{updateId},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">school_no
+                = #{schoolNo},
+            </if>
+            <if test="questionScore != null  ">question_score
+                = #{questionScore},
+            </if>
+            <if test="stanswer != null  and stanswer != ''  ">stanswer
+                = #{stanswer},
+            </if>
+            <if test="stoption != null  and stoption != ''  ">stoption
+                = #{stoption},
+            </if>
+            <if test="questionId != null  and questionId.trim() != '' ">question_id
+                = #{questionId},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tk_testpaper_optinanswer
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_testpaper_optinanswer where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByMap" parameterType="java.util.Map">
+ 		delete from tk_testpaper_optinanswer where question_id = #{question_id}
+ 	</delete>
+
+</mapper>

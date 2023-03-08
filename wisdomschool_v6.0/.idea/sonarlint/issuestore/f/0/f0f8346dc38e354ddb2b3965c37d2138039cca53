@@ -1,0 +1,8 @@
+
+`
+java:S1192b"JDefine a constant instead of duplicating this literal "testPaper" 3 times.(ÌÇñä
+Q	java:S125@"<This block of commented-out lines of code should be removed.(•çò 
+d	java:S100†"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òûïÊ
+i	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…»Û•üÿÿÿÿ
+X
+java:S1128"=Remove this unused import 'cn.wstom.exam.feign.AdminService'.(Û–ŸÉúÿÿÿÿ

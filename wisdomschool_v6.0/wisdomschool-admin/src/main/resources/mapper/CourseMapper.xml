@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.CourseMapper">
+
+    <resultMap type="Course" id="CourseResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="name"/>
+        <result property="dept_id" column="dept_id"/>
+        <result property="school_id" column="schoolId"/>
+        <result property="period" column="period"/>
+        <result property="credit" column="credit"/>
+        <result property="courseType" column="course_type"/>
+        <result property="courseInfo" column="course_info"/>
+        <result property="courseNum" column="course_num"/>
+        <result property="courseStatus" column="course_status"/>
+        <result property="courseTime" column="course_time"/>
+    </resultMap>
+
+    <sql id="all_course_column">
+        c
+        .
+        id,
+        c
+        .
+        create_by,
+        c
+        .
+        create_time,
+        c
+        .
+        update_by,
+        c
+        .
+        update_time,
+        c
+        .
+        remark,
+        c
+        .
+        version,
+        c
+        .
+        name,
+         c
+        .
+        dept_id,
+        c
+        .
+        period,
+        c
+        .
+        credit,
+        c
+        .
+        course_type,
+        c
+        .
+        course_info,
+        c
+        .
+        course_num,
+        c
+        .
+        course_status,
+        c
+        .
+        course_time,
+         c
+        .
+        school_id
+    </sql>
+
+    <sql id="all_clbum_column">
+        cc
+        .
+        id,
+        cc
+        .
+        create_by,
+        cc
+        .
+        create_time,
+        cc
+        .
+        update_by,
+        cc
+        .
+        update_time,
+        cc
+        .
+        remark,
+        cc
+        .
+        version,
+        cc
+        .
+        tcid,
+        cc
+        .
+        cid,
+        cc
+        .
+        gid
+    </sql>
+
+    <sql id="selectCourseVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               name,
+               dept_id,
+               school_id,
+               period,
+               credit,
+               course_type,
+               course_info,
+               course_num,
+               course_status,
+               course_time
+        from tb_course
+    </sql>
+
+    <sql id="selecttid">
+        select c.id
+        from tb_course c,tb_teacher_course t
+    </sql>
+
+
+    <select id="selectByCourses" parameterType="Course" resultMap="CourseResult">
+        select id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        name,
+        dept_id,
+        school_id,
+        period,
+        credit,
+        course_type,
+        course_info,
+        course_num,
+        course_status,
+        course_time
+        from tb_course
+        <where>
+            <if test="name != null">
+                and name like concat('%', #{name},'%')
+            </if>
+            <if test="period != null">
+                and period like concat('%', #{period},'%')
+            </if>
+            <if test="credit != null">
+                and credit like concat('%', #{credit},'%')
+            </if>
+            <if test="schoolId != null">
+                and school_id =#{schoolId}
+            </if>
+            <if test="schoolId != null">
+                and school_id =#{schoolId}
+            </if>
+            <if test="dept_id != null">
+                and dept_id =#{dept_id}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectList" parameterType="Course" resultMap="CourseResult">
+        <include refid="selectCourseVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and name = #{name}
+            </if>
+            <if test="dept_id != null  and dept_id != '' ">
+                and dept_id = #{dept_id}
+            </if>
+            <if test="schoolId != null  and schoolId != '' ">
+                and school_id = #{schoolId}
+            </if>
+            <if test="period != null  and period.trim() != '' ">
+                and period = #{period}
+            </if>
+            <if test="credit != null ">
+                and credit = #{credit}
+            </if>
+            <if test="courseType != null  and courseType.trim() != '' ">
+                and course_type = #{courseType}
+            </if>
+            <if test="courseInfo != null  and courseInfo.trim() != '' ">
+                and course_info = #{courseInfo}
+            </if>
+            <if test="courseNum != null ">
+                and course_num = #{courseNum}
+            </if>
+            <if test="courseStatus != null  and courseStatus.trim() != '' ">
+                and course_status = #{courseStatus}
+            </if>
+            <if test="courseTime != null ">
+                and course_time = #{courseTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTree" parameterType="String" resultType="String">
+        <include refid="selecttid"/>
+        <where>
+             t.tid = #{tid} and c.id = t.cid
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="CourseResult">
+        <include refid="selectCourseVo"/>
+        where id = #{id}
+    </select>
+
+
+
+    <select id="selectCount" parameterType="String" resultType="int">
+        select count(*) from tb_course
+        <where>
+            <if test="name != null and name != ''">
+                AND name = #{name}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBatchClbumIds" resultMap="CourseResult">
+        SELECT
+        <include refid="all_course_column"/>
+        FROM tb_course c, tb_clbum_course cc, tb_teacher_course tc
+        WHERE c.id = tc.cid and cc.tcid = tc.id and cc.cid IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+    <resultMap id="teacherCoureseMap" type="TeacherCourse">
+        <id column="id" property="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="courseBriefIntroduction" column="course_brief_introduction"/>
+        <result property="thumbnailPath" column="thumbnail_path"/>
+        <result property="tid" column="tid"/>
+        <result property="cid" column="cid"/>
+    </resultMap>
+    <select id="selectTeacherCourse" resultMap="teacherCoureseMap">
+        select tc.id,
+               tc.create_by,
+               tc.create_time,
+               tc.update_by,
+               tc.update_time,
+               tc.remark,
+               tc.version,
+               tc.course_brief_introduction,
+               tc.thumbnail_path,
+               tc.tid,
+               tc.cid,
+               tc.id,
+               tc.create_by,
+               tc.create_time,
+               tc.update_by,
+               tc.update_time,
+               tc.remark,
+               tc.version,
+               tc.course_brief_introduction,
+               tc.thumbnail_path,
+               tc.tid,
+               tc.cid
+        from tb_teacher_course tc,
+             tb_clbum_course cc,
+             tb_student s,
+             tb_clbum cl
+        where cl.id = s.cid
+          and cl.id = cc.cid
+          and cc.tcid = tc.id
+          and s.id = #{userId}
+          and tc.cid = #{courseId}
+    </select>
+
+    <insert id="insert"
+            parameterType="Course">
+        insert into tb_course
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="createTime != null  ">create_time,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            <if test="name != null  and name != ''  ">name,</if>
+            <if test="dept_id != null  and dept_id != ''  ">dept_id,</if>
+            <if test="schoolId != null  and schoolId != ''  ">school_id,</if>
+            <if test="period != null  and period != ''  ">period,</if>
+            <if test="credit != null  ">credit,</if>
+            <if test="courseType != null  and courseType != ''  ">course_type,</if>
+            <if test="courseInfo != null  and courseInfo != ''  ">course_info,</if>
+            <if test="courseNum != null  ">course_num,</if>
+            <if test="courseStatus != null  and courseStatus != ''  ">course_status,</if>
+            <if test="courseTime != null  ">course_time,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="createTime != null  ">#{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            <if test="name != null  and name != ''  ">#{name},</if>
+            <if test="dept_id != null  and dept_id != ''  ">#{dept_id},</if>
+            <if test="schoolId != null  and schoolId != ''  ">#{schoolId},</if>
+            <if test="period != null  and period != ''  ">#{period},</if>
+            <if test="credit != null  ">#{credit},</if>
+            <if test="courseType != null  and courseType != ''  ">#{courseType},</if>
+            <if test="courseInfo != null  and courseInfo != ''  ">#{courseInfo},</if>
+            <if test="courseNum != null  ">#{courseNum},</if>
+            <if test="courseStatus != null  and courseStatus != ''  ">#{courseStatus},</if>
+            <if test="courseTime != null  ">#{courseTime},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Course">
+        update tb_course
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                = #{remark},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="name != null  and name != ''  ">name
+                = #{name},
+            </if>
+            <if test="period != null  and period != ''  ">period
+                = #{period},
+            </if>
+            <if test="credit != null  ">credit
+                = #{credit},
+            </if>
+            <if test="courseType != null  and courseType != ''  ">course_type
+                = #{courseType},
+            </if>
+            <if test="courseInfo != null  and courseInfo != ''  ">course_info
+                = #{courseInfo},
+            </if>
+            <if test="courseNum != null  ">course_num
+                = #{courseNum},
+            </if>
+            <if test="courseStatus != null  and courseStatus != ''  ">course_status
+                = #{courseStatus},
+            </if>
+            <if test="courseTime != null  ">course_time
+                = #{courseTime},
+            </if>
+            <if test="dept_id != null  ">dept_id
+                = #{dept_id},
+            </if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_course
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_course where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+
+</mapper>

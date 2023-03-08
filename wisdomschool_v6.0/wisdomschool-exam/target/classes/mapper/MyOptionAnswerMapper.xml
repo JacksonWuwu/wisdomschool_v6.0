@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.MyOptionAnswerMapper">
+
+    <resultMap type="MyOptionAnswer" id="MyOptionAnswerResult">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_Id"/>
+        <result property="version" column="version"/>
+        <result property="stanswer" column="stanswer"/>
+        <result property="stoption" column="stoption"/>
+
+    </resultMap>
+
+    <sql id="select">
+        select id,
+               create_time,
+               create_by,
+               create_id,
+               update_time,
+               update_by,
+               update_id,
+               version,
+               stanswer,
+               stoption
+        from tk_my_optinanswer
+
+    </sql>
+    <select id="selectList" parameterType="MyOptionAnswer" resultMap="MyOptionAnswerResult">
+        <include refid="select"/>
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null  and createTime.trim() != '' ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime != null  and updateTime.trim() != '' ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}
+            </if>
+            <if test="version != null  and version.trim() != '' ">
+                and version = #{version}
+            </if>
+
+            <if test="stanswer != null  and stanswer.trim() != '' ">
+                and stanswer = #{stanswer}
+            </if>
+            <if test="stoption != null  and stoption.trim() != '' ">
+                and stoption = #{stoption}
+            </if>
+
+        </where>
+    </select>
+    <insert id="insert" parameterType="MyOptionAnswer">
+        insert into tk_my_optinanswer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="createBy != null">create_by,</if>
+            create_time,
+            <if test="createId != null">create_id,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateId != null">update_id,</if>
+            <if test="version != null">version,</if>
+            <if test="stanswer != null">stanswer,</if>
+            <if test="stoption != null">stoption,</if>
+        </trim>  VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="createBy != null">#{createBy},</if>
+            sysdate(),
+            <if test="createId != null">#{createId},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateId != null">#{updateId},</if>
+            <if test="version != null">#{version},</if>
+            <if test="stanswer != null">#{stanswer},</if>
+            <if test="stoption != null">#{stoption},</if>
+        </trim>
+   </insert>
+    <select id="selectById" parameterType="String" resultMap="MyOptionAnswerResult">
+        <include refid="select"/>
+        where id=#{id}
+    </select>
+    <delete id="deleteById" parameterType="String">
+ 		delete from tk_my_optinanswer where id = #{id}
+ 	</delete>
+    <update id="update" parameterType="MyOptionAnswer">
+        update tk_my_optinanswer
+        <set>
+            <if test=" createBy!= null and  createBy!= ''"> create_by= #{ createBy},</if>
+            <if test=" createId!= null and  createId!= ''"> create_id= #{createId},</if>
+            <if test=" updateBy!= null and  updateBy!= ''"> update_by= #{updateBy},</if>
+            update_time= SYSDATE(),
+            <if test=" updateId!= null and  updateId!= ''"> update_id= #{updateId},</if>
+            <if test=" version!= null and  version!= ''"> version= #{version},</if>
+            <if test=" stanswer!= null and  stanswer!= ''">stanswer = #{stanswer},</if>
+            <if test=" stoption!= null and  stoption!= ''"> stoption= #{stoption},</if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>

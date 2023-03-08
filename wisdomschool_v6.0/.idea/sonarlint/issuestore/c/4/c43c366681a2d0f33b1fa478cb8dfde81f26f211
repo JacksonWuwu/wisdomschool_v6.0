@@ -1,0 +1,76 @@
+
+t
+java:S2293u"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+o
+java:S2293|"YReplace the type specification in this constructor call with the diamond operator ("<>").(†€¬
+u
+java:S2293Š"YReplace the type specification in this constructor call with the diamond operator ("<>").(øÉŠÓşÿÿÿÿ
+p
+java:S2293½"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+u
+java:S2293¾"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆå¹ÿÿÿÿÿ
+p
+java:S2293Å"YReplace the type specification in this constructor call with the diamond operator ("<>").(‡È¹¶
+u
+java:S2293ğ"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+u
+java:S2293¾"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤¢Ö÷ûÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(»öáÀ
+U
+java:S2387$":"adminService" is the name of a field in "BaseController".(¡¾Ñÿÿÿÿÿ
+T
+java:S1155D">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+Y
+java:S1155a">Use isEmpty() to check whether the collection is empty or not.(Ô«›İúÿÿÿÿ
+h
+java:S3776t"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(Á­Š¿
+h
+java:S1854|"RRemove this useless assignment to local variable "coursepaperCoursequestionsList".(†€¬
+b
+java:S1854€"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+j
+java:S1854Š"NRemove this useless assignment to local variable "testpaperTestquestionsList".(øÉŠÓşÿÿÿÿ
+b
+java:S1854"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+T
+java:S1854—"8Remove this useless assignment to local variable "name".(…ù¿¤ûÿÿÿÿ
+W
+java:S1854–";Remove this useless assignment to local variable "mmapcid".(€Ÿ—½üÿÿÿÿ
+S
+java:S1854Ÿ"7Remove this useless assignment to local variable "toa".(—Ï‡Êùÿÿÿÿ
+_
+java:S1854º"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+h
+java:S1854Å"QRemove this useless assignment to local variable "coursetestStuoptionanswerList".(‡È¹¶
+H
+java:S1481–",Remove this unused "mmapcid" local variable.(€Ÿ—½üÿÿÿÿ
+E
+java:S1481—")Remove this unused "name" local variable.(…ù¿¤ûÿÿÿÿ
+Z
+java:S1155¥">Use isEmpty() to check whether the collection is empty or not.(œ¡¹çûÿÿÿÿ
+U
+java:S1155·">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+Z
+java:S1155Ë">Use isEmpty() to check whether the collection is empty or not.(¹è œûÿÿÿÿ
+d
+java:S1854ğ"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+`
+java:S1854û"DRemove this useless assignment to local variable "stuQuestionScore".(—øø¸úÿÿÿÿ
+U
+java:S1155ë">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+U
+java:S1155ö">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+Q
+java:S1481û"5Remove this unused "stuQuestionScore" local variable.(—øø¸úÿÿÿÿ
+e
+java:S1854¾"IRemove this useless assignment to local variable "stuQuestionScoreList2".(¤¢Ö÷ûÿÿÿÿ
+\
+java:S1854É"ERemove this useless assignment to local variable "stuQuestionScore3".(»Ì–§
+U
+java:S1155”">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+U
+java:S1155¹">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+U
+java:S1155Ä">Use isEmpty() to check whether the collection is empty or not.(‹Îîê
+M
+java:S1481É"6Remove this unused "stuQuestionScore3" local variable.(»Ì–§

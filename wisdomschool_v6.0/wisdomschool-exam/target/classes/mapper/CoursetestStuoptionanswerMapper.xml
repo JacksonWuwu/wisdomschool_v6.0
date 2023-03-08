@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.CoursetestStuoptionanswerMapper">
+
+    <resultMap type="CoursetestStuoptionanswer" id="CoursetestStuoptionanswerResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="version" column="version"/>
+        <result property="questionscore" column="questionscore"/>
+        <result property="stuanswer" column="stuanswer"/>
+        <result property="testPaperOptionAnswer" column="testPaperOptionAnswer"/>
+        <result property="stoption" column="stoption"/>
+    </resultMap>
+
+    <sql id="selectCoursetestStuoptionanswerVo">
+        select id,
+               create_time,
+               create_id,
+               create_by,
+               update_time,
+               update_id,
+               update_by,
+               version,
+               questionscore,
+               stuanswer,
+               testPaperOptionAnswer,
+               stoption
+        from tk_coursetest_stuoptionanswer
+    </sql>
+
+    <select id="selectList" parameterType="CoursetestStuoptionanswer" resultMap="CoursetestStuoptionanswerResult">
+        <include refid="selectCoursetestStuoptionanswerVo"/>
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createId != null ">
+                and create_id = #{createId}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateId != null ">
+                and update_id = #{updateId}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="questionscore != null ">
+                and questionscore = #{questionscore}
+            </if>
+            <if test="stuanswer != null  and stuanswer.trim() != '' ">
+                and stuanswer = #{stuanswer}
+            </if>
+            <if test="testPaperOptionAnswer != null  and testPaperOptionAnswer.trim() != '' ">
+                and testPaperOptionAnswer = #{testPaperOptionAnswer}
+            </if>
+            <if test="stoption != null  and stoption.trim() != '' ">
+                and stoption = #{stoption}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="CoursetestStuoptionanswerResult">
+        <include refid="selectCoursetestStuoptionanswerVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="CoursetestStuoptionanswer">
+        insert into tk_coursetest_stuoptionanswer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id
+                ,
+            </if>
+            create_time,
+            <if test="createId != null  ">create_id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="updateId != null  ">update_id
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="questionscore != null  ">questionscore
+                ,
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">stuanswer
+                ,
+            </if>
+            <if test="testPaperOptionAnswer != null  and testPaperOptionAnswer != ''  ">testPaperOptionAnswer
+                ,
+            </if>
+            <if test="stoption != null  and stoption != ''  ">stoption
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">#{id}
+                ,
+            </if>
+         sysdate(),
+            <if test="createId != null  ">#{createId}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="updateId != null  ">#{updateId}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="questionscore != null  ">#{questionscore}
+                ,
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">#{stuanswer}
+                ,
+            </if>
+            <if test="testPaperOptionAnswer != null  and testPaperOptionAnswer != ''  ">#{testPaperOptionAnswer}
+                ,
+            </if>
+            <if test="stoption != null  and stoption != ''  ">#{stoption}
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="CoursetestStuoptionanswer">
+        update tk_coursetest_stuoptionanswer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createId != null  ">create_id
+                = #{createId},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="updateTime != null  ">update_time
+                = #{updateTime},
+            </if>
+            <if test="updateId != null  ">update_id
+                = #{updateId},
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="questionscore != null  ">questionscore
+                = #{questionscore},
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">stuanswer
+                = #{stuanswer},
+            </if>
+            <if test="testPaperOptionAnswer != null  and testPaperOptionAnswer != ''  ">testPaperOptionAnswer
+                = #{testPaperOptionAnswer},
+            </if>
+            <if test="stoption != null  and stoption != ''  ">stoption
+                = #{stoption},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tk_coursetest_stuoptionanswer
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_coursetest_stuoptionanswer where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateByIdAns" parameterType="CoursetestStuoptionanswer">
+        update tk_coursetest_stuoptionanswer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createId != null  ">create_id
+                = #{createId},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            update_time= sysdate(),
+
+            <if test="updateId != null  ">update_id
+                = #{updateId},
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="questionscore != null  ">questionscore
+                = #{questionscore},
+            </if>
+            <if test="stuanswer != null  and stuanswer != ''  ">stuanswer
+                = #{stuanswer},
+            </if>
+            <if test="testPaperOptionAnswer != null  and testPaperOptionAnswer != ''  ">testPaperOptionAnswer
+                = #{testPaperOptionAnswer},
+            </if>
+        </trim>
+        where create_id = #{createId} and testPaperOptionAnswer = #{testPaperOptionAnswer}
+    </update>
+
+</mapper>

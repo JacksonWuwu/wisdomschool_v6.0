@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.ArticleCategoryMapper">
+    <!-- 添加文章分类 -->
+    <insert id="addArticleCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_article_category
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="fatherId != null">parent_id,</if>
+            <if test="name != null">name,</if>
+            <if test="keywords != null">keywords,</if>
+            <if test="description != null">description,</if>
+            <if test="recomment != null">recomment,</if>
+            <if test="status != null">status,</if>
+            <if test="sort != null">sort,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="fatherId != null">#{fatherId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="keywords != null">#{keywords},</if>
+            <if test="description != null">#{description},</if>
+            <if test="recomment != null">#{recomment},</if>
+            <if test="status != null">#{status},</if>
+            <if test="sort != null">#{sort},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <resultMap id="articleCategoryResult" type="ArticleCategory">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="keywords" property="keywords"/>
+        <result column="description" property="description"/>
+        <result column="recomment" property="recomment"/>
+        <result column="status" property="status"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <sql id="selectArticleCategoryFullField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               parent_id,
+               name,
+               keywords,
+               description,
+               recomment,
+               status,
+               sort
+        from tb_article_category
+    </sql>
+
+    <!-- 按分类id删除该分类信息 -->
+    <delete id="deleteArticleCategoryById" parameterType="Integer">
+        delete
+        from tb_article_category
+        where id = #{id}
+    </delete>
+
+    <!-- 按id更新文章 -->
+    <update id="editArticleCategoryById">
+        update tb_article_category
+        <set>
+            <if test="name != null and name != ''">name=#{name},</if>
+            <if test="fatherId != null and fatherId != '' or fatherId==0">parent_id=#{fatherId},</if>
+            <if test="keywords != null and keywords != ''">keywords=#{keywords},</if>
+            <if test="description != null and description != ''">description=#{description},</if>
+            <if test="recomment != null and recomment != ''">recomment=#{recomment},</if>
+            <if test="status != null and status != ''">status=#{status},</if>
+            <if test="sort != null and sort != ''">sort=#{sort},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 查询分类名称是否存在 -->
+    <select id="checkArticleCategoryByName" resultType="Integer">
+        select count(*) from tb_article_category
+        <where>
+            <if test="id != null">and id != #{id}</if>
+            and name= #{name}
+        </where>
+    </select>
+
+    <!-- 按id查询分类信息 -->
+    <select id="findCategoryById" resultMap="articleCategoryResult">
+        <include refid="selectArticleCategoryFullField"/>
+        <where>
+            <if test="status != null">and status = #{status}</if>
+            <if test="id != null">and id = #{id}</if>
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="articleCategoryResult">
+        <include refid="selectArticleCategoryFullField"/>
+        <where>
+            <if test="id != null">and id = #{id}</if>
+            <if test="parentId != null">parent_id = #{parentId}</if>
+            <if test="name != null">name = #{name}</if>
+            <if test="keywords != null">keywords = #{keywords}</if>
+            <if test="description != null">description = #{description}</if>
+            <if test="recomment != null">recomment = #{recomment}</if>
+            <if test="status != null">status = #{status}</if>
+            <if test="sort != null">sort = #{sort}</if>
+        </where>
+    </select>
+
+    <!--根据分类父级分类id查询所属的所有子类 -->
+    <!-- 下版本去掉 -->
+    <select id="getCategoryListByParentId" resultMap="articleCategoryResult">
+        <include refid="selectArticleCategoryFullField"/>
+        where parent_id=#{parentId}
+    </select>
+
+    <!-- 查询所有分类 -->
+    <!-- 下版本去掉 -->
+    <select id="getCategoryAllList" resultMap="articleCategoryResult">
+        <include refid="selectArticleCategoryFullField"/>
+    </select>
+</mapper>

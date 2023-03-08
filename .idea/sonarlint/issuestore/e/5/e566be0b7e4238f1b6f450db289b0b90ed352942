@@ -1,0 +1,602 @@
+
+\	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(Á­Š¿
+\	java:S112ò"FDefine and throw a dedicated exception instead of using a generic one.(òÉ°‡
+a	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(íßëœşÿÿÿÿ
+a	java:S112Å"FDefine and throw a dedicated exception instead of using a generic one.(Á„‘©øÿÿÿÿ
+E
+java:S3740w"/Provide the parametrized type for this generic.(Ç¦Ö„
+E
+java:S3740w"/Provide the parametrized type for this generic.(Ç¦Ö„
+F
+java:S3740½"/Provide the parametrized type for this generic.(Ñ†˜ƒ
+F
+java:S3740½"/Provide the parametrized type for this generic.(Ñ†˜ƒ
+K
+java:S3740ƒ"/Provide the parametrized type for this generic.(”†áÉùÿÿÿÿ
+F
+java:S3740‡"/Provide the parametrized type for this generic.(äÓÉÕ
+t
+java:S2293a"YReplace the type specification in this constructor call with the diamond operator ("<>").(íøÖÖùÿÿÿÿ
+t
+java:S2293e"YReplace the type specification in this constructor call with the diamond operator ("<>").(°‡Øëşÿÿÿÿ
+o
+java:S2293s"YReplace the type specification in this constructor call with the diamond operator ("<>").(ËÈõª
+u
+java:S2293û"YReplace the type specification in this constructor call with the diamond operator ("<>").(“¯òûÿÿÿÿ
+u
+java:S2293”"YReplace the type specification in this constructor call with the diamond operator ("<>").(°šû»ûÿÿÿÿ
+u
+java:S2293›"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ­ïÜúÿÿÿÿ
+u
+java:S2293ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ­ïÜúÿÿÿÿ
+u
+java:S2293™"YReplace the type specification in this constructor call with the diamond operator ("<>").(½áØÔùÿÿÿÿ
+u
+java:S2293º"YReplace the type specification in this constructor call with the diamond operator ("<>").(“¯òûÿÿÿÿ
+u
+java:S2293Ó"YReplace the type specification in this constructor call with the diamond operator ("<>").(°šû»ûÿÿÿÿ
+u
+java:S2293Ú"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ­ïÜúÿÿÿÿ
+u
+java:S2293²"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ğ­ïÜúÿÿÿÿ
+p
+java:S2293Ñ"YReplace the type specification in this constructor call with the diamond operator ("<>").(äî¤
+p
+java:S2293ë"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+p
+java:S2293¦"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö§ÄŞ
+p
+java:S2293©"YReplace the type specification in this constructor call with the diamond operator ("<>").(›”±¿
+p
+java:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šòø†
+u
+java:S2293	"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÔâğÍıÿÿÿÿ
+p
+java:S2293’	"YReplace the type specification in this constructor call with the diamond operator ("<>").(›”±¿
+p
+java:S2293“	"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šòø†
+p
+java:S2293²	"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ö§ÄŞ
+p
+java:S2293µ	"YReplace the type specification in this constructor call with the diamond operator ("<>").(›”±¿
+p
+java:S2293¶	"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šòø†
+p
+java:S2293â	"YReplace the type specification in this constructor call with the diamond operator ("<>").(äî¤
+p
+java:S2293ü	"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+p
+java:S2293á
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(äî¤
+p
+java:S2293ü
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(’Õ­Í
+u
+java:S2293Æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293Ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293Ö"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293ß"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293à"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+p
+java:S2293õ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293‹"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293Œ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+p
+java:S2293À"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+u
+java:S2293Á"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆå¹ÿÿÿÿÿ
+p
+java:S2293È"YReplace the type specification in this constructor call with the diamond operator ("<>").(‡È¹¶
+p
+java:S2293Û"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÅÙ¸ê
+u
+java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+u
+java:S2293 "YReplace the type specification in this constructor call with the diamond operator ("<>").(øÉŠÓşÿÿÿÿ
+u
+java:S2293§"YReplace the type specification in this constructor call with the diamond operator ("<>").(æäâşÿÿÿÿ
+u
+java:S2293·"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293½"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293Ë"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293Ô"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293Õ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+b
+java:S1192à"FDefine a constant instead of duplicating this literal "score" 4 times.(“’¥Åşÿÿÿÿ
+_
+java:S1192µ"HDefine a constant instead of duplicating this literal "stuName" 3 times.(Ó”²
+_
+java:S1192ï"HDefine a constant instead of duplicating this literal "sysUser" 3 times.(äˆ†
+d
+java:S1192¹"HDefine a constant instead of duplicating this literal "paperId" 4 times.(‹½×ßÿÿÿÿÿ
+^
+java:S1192ß"GDefine a constant instead of duplicating this literal "answer" 4 times.(ùÿÑ
+a
+java:S1192Ü"JDefine a constant instead of duplicating this literal "[^a-zA-z]" 4 times.(–Òñ³
+e
+java:S1192Á"IDefine a constant instead of duplicating this literal "richText" 4 times.(‚ìƒƒûÿÿÿÿ
+a
+java:S1192¤"JDefine a constant instead of duplicating this literal "PaperRule" 3 times.(„«´ì
+e
+java:S1192¥"NDefine a constant instead of duplicating this literal "ç­”æ¡ˆè§£æ:" 4 times.(¯Ç«
+a
+java:S1192·"JDefine a constant instead of duplicating this literal "studentId" 4 times.(™¥ÀÀ
+b
+java:S1192¨"KDefine a constant instead of duplicating this literal "testPaper" 11 times.(ÌÇñä
+j
+java:S1192Â"NDefine a constant instead of duplicating this literal "richTextTitle" 4 times.(ûèáùÿÿÿÿ
+d
+java:S1192ï"MDefine a constant instead of duplicating this literal "ã€(å¾—åˆ†:" 10 times.(óÔ»ƒ
+t	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(Ñ··üÿÿÿÿ
+K
+java:S1066 "/Merge this if statement with the enclosing one.(“§Î±øÿÿÿÿ
+K
+java:S1066ß"/Merge this if statement with the enclosing one.(“§Î±øÿÿÿÿ
+F
+java:S1066"/Merge this if statement with the enclosing one.(µ‹ùı
+Œ
+java:S1319ƒ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”†áÉùÿÿÿÿ
+|
+java:S1319‡"eThe type of "nameL" should be an interface such as "List" rather than the implementation "ArrayList".(äÓÉÕ
+g	java:S117ğ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Óè
+g	java:S117ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ñ‡À¬
+g	java:S117Ï"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûç«“
+g	java:S117×"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âö…
+l	java:S117ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áöïúÿÿÿÿ
+l	java:S117÷"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ëâ«»øÿÿÿÿ
+8
+java:S1643ú"Use a StringBuilder instead.(š†ƒÿÿÿÿÿ
+8
+java:S1643‹
+"Use a StringBuilder instead.(š†ƒÿÿÿÿÿ
+8
+java:S1643‹"Use a StringBuilder instead.(š†ƒÿÿÿÿÿ
+8
+java:S1643ê"Use a StringBuilder instead.(ô‹İøÿÿÿÿ
+8
+java:S1643î"Use a StringBuilder instead.(çŠå¨ùÿÿÿÿ
+8
+java:S1643…"Use a StringBuilder instead.(ô‹İøÿÿÿÿ
+8
+java:S1643‰"Use a StringBuilder instead.(çŠå¨ùÿÿÿÿ
+3
+java:S1643"Use a StringBuilder instead.(ÙÕÅÆ
+3
+java:S1643¡"Use a StringBuilder instead.(™…÷
+3
+java:S1643´"Use a StringBuilder instead.(¹êîö
+2
+java:S1643Í"Use a StringBuilder instead.(£Ø–i
+8
+java:S1643Ü"Use a StringBuilder instead.(ƒÊÍüûÿÿÿÿ
+8
+java:S1643ˆ"Use a StringBuilder instead.(ô‹İøÿÿÿÿ
+8
+java:S1643Œ"Use a StringBuilder instead.(çŠå¨ùÿÿÿÿ
+8
+java:S1643£"Use a StringBuilder instead.(ô‹İøÿÿÿÿ
+8
+java:S1643§"Use a StringBuilder instead.(çŠå¨ùÿÿÿÿ
+3
+java:S1643¼"Use a StringBuilder instead.(ÙÕÅÆ
+3
+java:S1643¿"Use a StringBuilder instead.(™…÷
+3
+java:S1643Ò"Use a StringBuilder instead.(¹êîö
+2
+java:S1643ë"Use a StringBuilder instead.(£Ø–i
+8
+java:S1643ú"Use a StringBuilder instead.(ƒÊÍüûÿÿÿÿ
+ƒ
+java:S1488ó"gImmediately return this expression instead of assigning it to the temporary variable "myQuestionsList".(Ğ­ïÜúÿÿÿÿ
+ƒ
+java:S1488²"gImmediately return this expression instead of assigning it to the temporary variable "myQuestionsList".(Ğ­ïÜúÿÿÿÿ
+g
+java:S1104s"QMake lists a static final constant or non-public and provide accessors if needed.(ËÈõª
+A
+java:S1444s"+Make this "public static lists" field final(ËÈõª
+D
+java:S5411–"(Use a primitive boolean expression here.(«²ºşÿÿÿÿ
+X
+java:S4973ò"<Strings and Boxed types should be compared using "equals()".(Äıíİùÿÿÿÿ
+S
+java:S4973Â"<Strings and Boxed types should be compared using "equals()".(ßŒ’Ç
+X
+java:S4973á"<Strings and Boxed types should be compared using "equals()".(Äıíİùÿÿÿÿ
+f
+java:S2095Ş"JUse try-with-resources or close this "XWPFDocument" in a "finally" clause.(Ç¥è±ûÿÿÿÿ
+n
+java:S3008e"SRename this field "AGAqList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°‡Øëşÿÿÿÿ
+n
+java:S3008i"XRename this field "qList_chapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡—Œ
+r
+java:S3008m"WRename this field "qList_course" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µúãŞşÿÿÿÿ
+k
+java:S3008{"URename this field "title_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì¨á¸
+q
+java:S1845é"ZRename method "humanBuild" to prevent any misunderstanding/clash with method "Humanbuild".(½ûó…
+3
+java:S2386s"Make this member "protected".(ËÈõª
+R	java:S125¾"<This block of commented-out lines of code should be removed.(îŒĞŒ
+U
+java:S1155Û">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+i	java:S100Æ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º¶›üÿÿÿÿ
+n
+java:S3776İ"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(•±ÈÔÿÿÿÿÿ
+S
+java:S1854ë"7Remove this useless assignment to local variable "dif".(¥™Òçıÿÿÿÿ
+T
+java:S1854ê"=Remove this useless assignment to local variable "subjectId".(Óìÿù
+X
+java:S1854é"ARemove this useless assignment to local variable "titleQuestion".(ô©Ú•
+V
+java:S1854ù":Remove this useless assignment to local variable "logger".(…àÀıÿÿÿÿ
+T
+java:S1854–"8Remove this useless assignment to local variable "tyid".(®Š¾†ûÿÿÿÿ
+_
+java:S1854›"CRemove this useless assignment to local variable "myQuestionsList".(Ğ­ïÜúÿÿÿÿ
+V
+java:S1854"?Remove this useless assignment to local variable "myQuestions".(íŠŠ«
+S
+java:S1854Ó"<Remove this useless assignment to local variable "bestInd1".(¾ÓÏã
+M
+java:S2696å"6Make the enclosing method "static" or remove this set.(±â‚
+I
+java:S1481é"2Remove this unused "titleQuestion" local variable.(ô©Ú•
+T
+java:S1117ê"=Rename "subjectId" which hides the field declared at line 65.(Óìÿù
+E
+java:S1481ê".Remove this unused "subjectId" local variable.(Óìÿù
+D
+java:S1481ë"(Remove this unused "dif" local variable.(¥™Òçıÿÿÿÿ
+G
+java:S1481ù"+Remove this unused "logger" local variable.(…àÀıÿÿÿÿ
+F
+java:S1197"*Move the array designators [] to the type.(ğšì¼úÿÿÿÿ
+E
+java:S1481–")Remove this unused "tyid" local variable.(®Š¾†ûÿÿÿÿ
+A
+java:S1197˜"*Move the array designators [] to the type.(ëšğç
+@
+java:S1197š"*Move the array designators [] to the type.(€¸ØS
+P
+java:S1481›"4Remove this unused "myQuestionsList" local variable.(Ğ­ïÜúÿÿÿÿ
+Z
+java:S1117µ">Rename "difficulty" which hides the field declared at line 77.(§€üÂøÿÿÿÿ
+D
+java:S1481Ó"-Remove this unused "bestInd1" local variable.(¾ÓÏã
+M
+java:S2696ë"6Make the enclosing method "static" or remove this set.(¨Ì‹È
+h
+java:S3776‹"RRefactor this method to reduce its Cognitive Complexity from 35 to the 15 allowed.(‘½¦u
+S
+java:S1854ª"7Remove this useless assignment to local variable "dif".(è®¢‘øÿÿÿÿ
+T
+java:S1854¨"=Remove this useless assignment to local variable "subjectId".(Óìÿù
+X
+java:S1854§"ARemove this useless assignment to local variable "titleQuestion".(ô©Ú•
+V
+java:S1854¸":Remove this useless assignment to local variable "logger".(…àÀıÿÿÿÿ
+T
+java:S1854Õ"8Remove this useless assignment to local variable "tyid".(®Š¾†ûÿÿÿÿ
+_
+java:S1854Ú"CRemove this useless assignment to local variable "myQuestionsList".(Ğ­ïÜúÿÿÿÿ
+V
+java:S1854Ü"?Remove this useless assignment to local variable "myQuestions".(íŠŠ«
+S
+java:S1854’"<Remove this useless assignment to local variable "bestInd1".(¾ÓÏã
+M
+java:S2696 "6Make the enclosing method "static" or remove this set.(‰ü»Á
+F
+java:S1481¡"*Remove this unused "maxid" local variable.(¬üÛúÿÿÿÿ
+M
+java:S2696£"6Make the enclosing method "static" or remove this set.(±â‚
+I
+java:S1481§"2Remove this unused "titleQuestion" local variable.(ô©Ú•
+T
+java:S1117¨"=Rename "subjectId" which hides the field declared at line 65.(Óìÿù
+E
+java:S1481¨".Remove this unused "subjectId" local variable.(Óìÿù
+D
+java:S1481ª"(Remove this unused "dif" local variable.(è®¢‘øÿÿÿÿ
+G
+java:S1481¸"+Remove this unused "logger" local variable.(…àÀıÿÿÿÿ
+F
+java:S1197Ï"*Move the array designators [] to the type.(ğšì¼úÿÿÿÿ
+E
+java:S1481Õ")Remove this unused "tyid" local variable.(®Š¾†ûÿÿÿÿ
+A
+java:S1197×"*Move the array designators [] to the type.(ëšğç
+@
+java:S1197Ù"*Move the array designators [] to the type.(€¸ØS
+P
+java:S1481Ú"4Remove this unused "myQuestionsList" local variable.(Ğ­ïÜúÿÿÿÿ
+Z
+java:S1117ô">Rename "difficulty" which hides the field declared at line 77.(§€üÂøÿÿÿÿ
+D
+java:S1481’"-Remove this unused "bestInd1" local variable.(¾ÓÏã
+M
+java:S2696ª"6Make the enclosing method "static" or remove this set.(¨Ì‹È
+c	java:S100Ç"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ‡‘{
+U
+java:S1854Ì">Remove this useless assignment to local variable "testPaper2".(Ñ‹´È
+R
+java:S1117Ê";Rename "testid" which hides the field declared at line 129.(Æ™Ø²
+F
+java:S1481Ì"/Remove this unused "testPaper2" local variable.(Ñ‹´È
+K
+java:S1874‡"/Remove this use of "getYear"; it is deprecated.(£™Â­üÿÿÿÿ
+d	java:S100¤"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûá´ß
+i	java:S100Å"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…»Û•üÿÿÿÿ
+d	java:S100Õ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òûïÊ
+W
+java:S1117ê"@Rename "questionsid" which hides the field declared at line 127.(ƒ¸Ò˜
+I
+java:S1135î"2Complete the task associated to this TODO comment.(ë¡†“
+W	java:S125ù"<This block of commented-out lines of code should be removed.(¯ß„şÿÿÿÿ
+W	java:S125ı"<This block of commented-out lines of code should be removed.(¯ß„şÿÿÿÿ
+H
+java:S1135	"2Complete the task associated to this TODO comment.(ë×Åu
+U
+java:S1854İ	">Remove this useless assignment to local variable "testPaper2".(Ñ‹´È
+N
+java:S1135Ù	"2Complete the task associated to this TODO comment.(¯¼Óàıÿÿÿÿ
+R
+java:S1117Û	";Rename "testid" which hides the field declared at line 129.(Æ™Ø²
+F
+java:S1481İ	"/Remove this unused "testPaper2" local variable.(Ñ‹´È
+K
+java:S1874–
+"/Remove this use of "getYear"; it is deprecated.(£™Â­üÿÿÿÿ
+U
+java:S1854Ü
+">Remove this useless assignment to local variable "testPaper2".(Ñ‹´È
+R
+java:S1117Ú
+";Rename "testid" which hides the field declared at line 129.(®É´ü
+F
+java:S1481Ü
+"/Remove this unused "testPaper2" local variable.(Ñ‹´È
+K
+java:S1874–"/Remove this use of "getYear"; it is deprecated.(£™Â­üÿÿÿÿ
+Y
+java:S1854³"=Remove this useless assignment to local variable "testPaper".(ÃÎœ ıÿÿÿÿ
+n
+java:S3776Ä"RRefactor this method to reduce its Cognitive Complexity from 70 to the 15 allowed.(€à÷Ëùÿÿÿÿ
+e
+java:S1854Ê"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+b
+java:S1854Í"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854Ô"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854à"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+e
+java:S1854õ"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+b
+java:S1854ø"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854€"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854Œ"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+T
+java:S1854Ÿ"8Remove this useless assignment to local variable "name".(…ù¿¤ûÿÿÿÿ
+W
+java:S1854";Remove this useless assignment to local variable "mmapcid".(€Ÿ—½üÿÿÿÿ
+P
+java:S1854«"9Remove this useless assignment to local variable "newId".(âøå
+S
+java:S1854§"7Remove this useless assignment to local variable "toa".(—Ï‡Êùÿÿÿÿ
+_
+java:S1854½"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+h
+java:S1854È"QRemove this useless assignment to local variable "coursetestStuoptionanswerList".(‡È¹¶
+P
+java:S1854Ì"9Remove this useless assignment to local variable "newId".(âøå
+r
+java:S3923Ç"[Remove this conditional structure or edit its code blocks so that they're not all the same.(ç©ÛÊ
+Z
+java:S1155ç">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+Z
+java:S1155“">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+H
+java:S1481",Remove this unused "mmapcid" local variable.(€Ÿ—½üÿÿÿÿ
+E
+java:S1481Ÿ")Remove this unused "name" local variable.(…ù¿¤ûÿÿÿÿ
+A
+java:S1481«"*Remove this unused "newId" local variable.(âøå
+Z
+java:S1155¯">Use isEmpty() to check whether the collection is empty or not.(œ¡¹çûÿÿÿÿ
+A
+java:S1481Ì"*Remove this unused "newId" local variable.(âøå
+Z
+java:S1155Ğ">Use isEmpty() to check whether the collection is empty or not.(¹è œûÿÿÿÿ
+d	java:S100İ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…Œ‡È
+X
+java:S1854Ş"<Remove this useless assignment to local variable "document".(Ç¥è±ûÿÿÿÿ
+I
+java:S1481Ş"-Remove this unused "document" local variable.(Ç¥è±ûÿÿÿÿ
+R	java:S125ù"<This block of commented-out lines of code should be removed.(Ù¨íñ
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 88 to the 15 allowed.(Î’Öşÿÿÿÿ
+ˆ
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Î’Öşÿÿÿÿ
+B
+java:S1075˜"&Remove this hard-coded path-delimiter.(¬ÂÔÍùÿÿÿÿ
+B
+java:S1075"&Remove this hard-coded path-delimiter.(ñù¸úøÿÿÿÿ
+X
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(Å¡ÿ¬
+Z
+java:S1155Õ">Use isEmpty() to check whether the collection is empty or not.(±ƒÑûÿÿÿÿ
+U
+java:S1155Ú">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+A
+java:S5869Ü"*Remove duplicates in this character class.(–Òñ³
+U
+java:S1155ö">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+A
+java:S5869ø"*Remove duplicates in this character class.(–Òñ³
+U
+java:S1155•">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+Z
+java:S1155­">Use isEmpty() to check whether the collection is empty or not.(±ƒÑûÿÿÿÿ
+Z
+java:S1155Ã">Use isEmpty() to check whether the collection is empty or not.(±ƒÑûÿÿÿÿ
+R	java:S125÷"<This block of commented-out lines of code should be removed.(­ˆ²
+R	java:S125ı"<This block of commented-out lines of code should be removed.(Ù¨íñ
+ƒ
+java:S1130†"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ïëĞ
+ˆ
+java:S1130£"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¹Öå¡ûÿÿÿÿ
+R	java:S125³"<This block of commented-out lines of code should be removed.(Ù¨íñ
+n
+java:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(Áî¹‡ıÿÿÿÿ
+B
+java:S1075¼"&Remove this hard-coded path-delimiter.(Ü†şğÿÿÿÿÿ
+B
+java:S1075¼"&Remove this hard-coded path-delimiter.(Ü†şğÿÿÿÿÿ
+B
+java:S1075Á"&Remove this hard-coded path-delimiter.(ñù¸úøÿÿÿÿ
+X
+java:S1075Â"ARefactor your code to get this URI from a customizable parameter.(Å¡ÿ¬
+U
+java:S1155ù">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+A
+java:S5869û"*Remove duplicates in this character class.(–Òñ³
+U
+java:S1155”">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+A
+java:S5869–"*Remove duplicates in this character class.(–Òñ³
+U
+java:S1155³">Use isEmpty() to check whether the collection is empty or not.(Ç±å
+Z
+java:S1155Ë">Use isEmpty() to check whether the collection is empty or not.(±ƒÑûÿÿÿÿ
+Z
+java:S1155á">Use isEmpty() to check whether the collection is empty or not.(±ƒÑûÿÿÿÿ
+N
+java:S1172¶"2Remove this unused method parameter "userExamMap".(çÄúÏüÿÿÿÿ
+W	java:S125§"<This block of commented-out lines of code should be removed.(ÍÊ ùÿÿÿÿ
+i	java:S100Ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄçÂ§úÿÿÿÿ
+U
+java:S1854Ñ">Remove this useless assignment to local variable "tpquestion".(Ú˜§˜
+T
+java:S1854Û"=Remove this useless assignment to local variable "stuoaList".(ÅÙ¸ê
+N
+java:S1854‚"8Remove this useless assignment to local variable "istf".(ÒğÈS
+E
+java:S1481Ò")Remove this unused "istf" local variable.(•×æÌıÿÿÿÿ
+R	java:S125Ô"<This block of commented-out lines of code should be removed.(ñ²ê
+Z
+java:S1155à">Use isEmpty() to check whether the collection is empty or not.(îæŒúÿÿÿÿ
+N
+java:S1135"2Complete the task associated to this TODO comment.(ËŠë®úÿÿÿÿ
+W	java:S125Ã"<This block of commented-out lines of code should be removed.(¤Êÿ‡şÿÿÿÿ
+d
+java:S1854ø"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+i
+java:S3776š"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(ãóÔñ
+j
+java:S1854 "NRemove this useless assignment to local variable "testpaperTestquestionsList".(øÉŠÓşÿÿÿÿ
+O
+java:S1854Á"8Remove this useless assignment to local variable "bili".(¬•Ø
+P
+java:S1854À"9Remove this useless assignment to local variable "score".(µ”‰Â
+f
+java:S1854Ş"ORemove this useless assignment to local variable "testpaperTestquestionsList2".(ñ÷Ò‘
+g
+java:S1854Ü"KRemove this useless assignment to local variable "testpaperTestquestions2".(Ù”¡éüÿÿÿÿ
+Y
+java:S1854è"=Remove this useless assignment to local variable "testPaper".(ÛùÈşøÿÿÿÿ
+Z
+java:S1155¨">Use isEmpty() to check whether the collection is empty or not.(óïÔ½üÿÿÿÿ
+Z
+java:S1155±">Use isEmpty() to check whether the collection is empty or not.(ï©«ÿÿÿÿÿ
+X
+java:S1481Ü"<Remove this unused "testpaperTestquestions2" local variable.(Ù”¡éüÿÿÿÿ
+W
+java:S1481Ş"@Remove this unused "testpaperTestquestionsList2" local variable.(ñ÷Ò‘
+J
+java:S1481è".Remove this unused "testPaper" local variable.(ÛùÈşøÿÿÿÿ
+U
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+U
+java:S1155Ã">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+U
+java:S1155ù">Use isEmpty() to check whether the collection is empty or not.(Å„‡•
+R
+java:S1854¢";Remove this useless assignment to local variable "utestId".(”‚Ì
+C
+java:S1481Ÿ",Remove this unused "utestId" local variable.(ñİ«
+U
+java:S1155¡">Use isEmpty() to check whether the collection is empty or not.(¼ÚÊ•
+Q
+java:S1854º":Remove this useless assignment to local variable "stuNum".(ÒıƒÓ
+S
+java:S1854¹"7Remove this useless assignment to local variable "tid".(şúñÇøÿÿÿÿ
+T
+java:S1854¸"8Remove this useless assignment to local variable "both".(İÇ«şÿÿÿÿ
+i
+java:S3776´"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Á­Š¿
+e
+java:S1854½"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+Y
+java:S1854¹"=Remove this useless assignment to local variable "testPaper".(ÛùÈşøÿÿÿÿ
+T
+java:S1854¸"=Remove this useless assignment to local variable "studentID".(ğüº
+b
+java:S1854À"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854É"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854Õ"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+E
+java:S1481¸".Remove this unused "studentID" local variable.(ğüº
+J
+java:S1481¹".Remove this unused "testPaper" local variable.(ÛùÈşøÿÿÿÿ
+W	java:S125º"<This block of commented-out lines of code should be removed.(æ‰áıúÿÿÿÿ
+Z
+java:S1155Ü">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+ƒ
+java:S1130ò"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(òÉ°‡
+f
+java:S4488ğ"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ä×£‹úÿÿÿÿ
+Y
+java:S1874"CRemove this use of "APPLICATION_JSON_UTF8_VALUE"; it is deprecated.(®òÆ7
+m
+java:S2159"VRemove this call to "equals"; comparisons between unrelated types always return false.(·¡ÉÂ
+W	java:S125§"<This block of commented-out lines of code should be removed.(˜Ì¼ûÿÿÿÿ
+a
+java:S3252Ú"JUse static access with "org.apache.commons.lang3.StringUtils" for "strip".(üÛ¯Û
+a
+java:S3252Û"JUse static access with "org.apache.commons.lang3.StringUtils" for "strip".(´Ø•ñ
+d	java:S100Ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Ï‘
+d	java:S100Ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ûç«“
+i	java:S100Ó"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§Œûóûÿÿÿÿ
+d	java:S100×"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âö…
+d	java:S100ã"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÈÄÇÃ
+i	java:S100ç"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áöïúÿÿÿÿ
+X
+java:S1128"=Remove this unused import 'cn.wstom.exam.feign.AdminService'.(Û–ŸÉúÿÿÿÿ
+f
+java:S1128"KRemove this unused import 'cn.wstom.exam.mapper.StuOptionExamanswerMapper'.(•ä”Ãşÿÿÿÿ
+g
+java:S1128"LRemove this unused import 'cn.wstom.exam.mapper.TestpaperOptinanswerMapper'.(Äóßïıÿÿÿÿ
+S
+java:S1128"=Remove this unused import 'com.github.pagehelper.PageHelper'.(ğ÷¨¹
+V
+java:S1128";Remove this unused import 'com.github.pagehelper.PageInfo'.(‡Õ©šüÿÿÿÿ
+F
+java:S1144¶"*Remove this unused private "trans" method.(çÄúÏüÿÿÿÿ

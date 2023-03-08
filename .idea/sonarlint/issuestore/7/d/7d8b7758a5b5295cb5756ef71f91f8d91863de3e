@@ -1,0 +1,52 @@
+
+d
+java:S1192Ê"HDefine a constant instead of duplicating this literal "(é›¶.)+" 3 times.(ÏşØãıÿÿÿÿ
+8
+java:S1643Ê"Use a StringBuilder instead.(ÏşØãıÿÿÿÿ
+8
+java:S1643Ô"Use a StringBuilder instead.(ÎÜ× ıÿÿÿÿ
+3
+java:S1643×"Use a StringBuilder instead.(‚æåŸ
+{
+java:S1488µ"dImmediately return this expression instead of assigning it to the temporary variable "returnString".(­æºŸ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(å·”
+g
+java:S3252H"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(Ÿ¥ûóúÿÿÿÿ
+b
+java:S3252k"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252•"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252¼"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252æ"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252˜"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(®ôêÑ
+c
+java:S3252¬"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(®ôêÑ
+c
+java:S3252å"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252»"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252â"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252™"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+c
+java:S3252Ã"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+=
+java:S2111í"!Use "BigDecimal.valueOf" instead.(¹ã²üÿÿÿÿ
+c
+java:S3252ó"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(“µôİ
+W	java:S125"<This block of commented-out lines of code should be removed.(ÜÎæüÿÿÿÿ
+@
+java:S1905°")Remove this unnecessary cast to "Byte[]".(ÉÂÖÙ
+h
+java:S3252¿"LUse static access with "org.apache.commons.lang3.StringUtils" for "isEmpty".(³¡öşÿÿÿÿ
+@
+java:S1197…"*Move the array designators [] to the type.(£Î†T
+A
+java:S1197¨"*Move the array designators [] to the type.(ÉÖÿ

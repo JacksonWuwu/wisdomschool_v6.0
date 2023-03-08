@@ -1,0 +1,32 @@
+server:
+  port: 18004
+spring:
+  application:
+    name: wisdomschool-storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+storage:
+#  path: C:\college\wstom
+  path: D:\javaproject\wisdomschool_v6.0\mystorage\college\wstom
+#  storage-path: C:\college\wstom\file
+  storage-path: D:\javaproject\wisdomschool_v6.0\mystorage\college\wstom\file
+  #缓冲区大小 单位：B
+  buff-size: 1048576
+  #数据库方言，默认h2，用于建立索引
+  dialect: mysql
+  db:
+    driver: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_wisdomschool_storage?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf-8
+#    url: jdbc:mysql://localhost:3306/wisdomschool?serverTimezone=UTC&useUnicode=true&useSSL=false&characterEncoding=utf-8
+    username: root
+    password: 123456
+admin:
+  auth: cudrm
+  pwd: 000000
+  authOverall: l
+logging:
+  pattern:
+    level:
+      cn.wstom.storage: debug

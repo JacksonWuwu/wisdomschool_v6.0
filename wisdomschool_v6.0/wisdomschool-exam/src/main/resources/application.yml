@@ -1,0 +1,75 @@
+server:
+  port: 18002
+spring:
+  application:
+    name: wisdomschool-exam-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    #类型
+    content-type: text/html
+    #文件后缀
+    suffix: .ftl
+    #路径
+    template-loader-path: classpath:/templates/
+    settings:
+      classic_compatible: true
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/wisdomschool-test?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+mybatis:
+  type-aliases-package: cn.wstom.exam.entity
+  mapper-locations: classpath:mapper/*.xml
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true  #开启优化，如果开启优化，在分页页码结果没有数据的时候,会显示有数据的页码数据
+  supportMethodsArguments: true #是否支持接口参数来传递分页参数，默认false
+  pageSizeZero: false #pageSize=0 返回所有
+  params: count=countSql
+
+# 项目相关配置
+wstom:
+  # 名称
+  name: wstom
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2018
+  # 获取ip地址开关
+  addressEnabled: true
+  # 项目根路径
+  contextPath: http://localhost:8086
+  file:
+    # 允许的后缀名(以","分隔)
+    allow-ext: mp3,mp4,mov,webm,ogg,ppt,pptx,xlsx,xls,doc,docx,zip,rar,pdf,jpg
+    # 存储介质，支持local、ftp和storage
+    storage-media: storage
+    #    storage-path: C:\college\wstom\file
+    storage-path: D:\javaproject\wisdomschool_v6.0\mystorage\college\wstom\file
+    #    storage-path: /root/soft/course/wstom/file
+    storage-url: http://localhost:8086/storage
+    #    storage-url: http://10.20.55.124:8081/storage
+    studentadjust-url: http://localhost:8086/
+    #    studentadjust-url: http://10.20.55.124:8081/
+    # storage-media为ftp时生效
+    ftp:
+      #ip地址
+      ip:
+      #端口
+      port:
+      #用户名
+      username:
+      #密码
+      password:
+      #存放路径
+      dir:

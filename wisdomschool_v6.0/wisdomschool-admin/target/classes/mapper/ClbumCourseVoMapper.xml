@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.ClbumCourseVoMapper">
+
+    <resultMap type="ClbumCourseVo" id="ClbumCourseVoResult">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="tcid" column="tcid"/>
+        <result property="cid" column="cid"/>
+        <result property="gid" column="gid"/>
+        <result property="gname" column="gname"/>
+        <association property="grades" javaType="grades">
+            <id property="id" column="grades_id"/>
+            <result property="name" column="grades_name"/>
+        </association>
+        <association property="department" javaType="department">
+            <id property="id" column="department_id"/>
+            <result property="name" column="department_name"/>
+        </association>
+        <association property="clbum" javaType="clbum">
+            <id property="id" column="clbum_id"/>
+            <result property="name" column="clbum_name"/>
+        </association>
+        <association property="major" javaType="major">
+            <id property="id" column="major_id"/>
+            <result property="name" column="major_name"/>
+        </association>
+        <association property="course" javaType="course">
+            <id property="id" column="course_id"/>
+            <result property="name" column="course_name"/>
+            <result property="period" column="period"/>
+            <result property="credit" column="credit"/>
+            <result property="courseType" column="course_type"/>
+            <result property="courseInfo" column="course_info"/>
+            <result property="courseNum" column="course_num"/>
+            <result property="courseStatus" column="course_status"/>
+            <result property="courseTime" column="course_time"/>
+        </association>
+        <association property="teacherCourse" javaType="teacherCourse">
+            <id property="id" column="teach_id" />
+            <result property="tid" column="teach_tid" />
+            <result property="cid" column="teach_cid" />
+            <result property="thumbnailPath" column="thumbnailPath" />
+        </association>
+    </resultMap>
+
+    <resultMap type="ClbumCourse" id="ClbumCourseResult">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="tcid" column="tcid"/>
+        <result property="cid" column="cid"/>
+        <result property="gid" column="gid"/>
+        <result property="schoolId" column="school_id"/>
+    </resultMap>
+
+    <select id="selectByClbumCourseVos" parameterType="ClbumCourseVo" resultMap="ClbumCourseVoResult">
+        select distinct cc.id,
+        cc.create_by,
+        cc.create_time,
+        cc.update_by,
+        cc.update_time,
+        cc.remark,
+        cc.version,
+        cc.tcid,
+        cc.cid,
+        cc.gid,
+        cc.gname,
+        cc.school_id,
+        c.id AS clbum_id,
+        c.name AS clbum_name
+        from tb_department d, tb_major m, tb_clbum c, tb_grades g, tb_clbum_course cc, tb_course c2
+        <where>/*  Lin_  cc.tcid = tcid , cid = c2.id*/
+            d.id = m.did
+            and m.id = c.mid
+            and cc.gid = g.id
+            and cc.cid = c.id
+            and cc.school_id=c.school_id
+            and cc.school_id=c2.school_id
+            <if test="clbum != null">
+                and c.name like concat('%', #{clbum.name},'%')
+            </if>
+            <if test="course != null">
+                and c2.name like concat('%', #{course.name}, '%')
+            </if>
+            <if test="major != null">
+                and m.name like concat('%', #{major.name}, '%')
+            </if>
+            <if test="department != null">
+                and d.name like concat('%', #{department.name}, '%')
+            </if>
+            <if test="grades != null">
+                and g.name like concat('%', #{grades.name}, '%')
+            </if>
+            <if test="tcid != null and tcid != '' ">
+                and cc.tcid = #{tcid}
+            </if>
+            <if test="schoolId != null and schoolId != '' ">
+                and  cc.school_id = #{schoolId}
+            </if>
+        </where>
+
+    </select>
+
+    <select id="selectClbumCourseVosByClbumId" parameterType="String" resultMap="ClbumCourseVoResult">
+        select distinct cc.*,
+        d.id AS department_id,
+        d.name AS department_name,
+        m.id AS major_id,
+        m.name AS major_name,
+        c.id AS clbum_id,
+        c.name AS clbum_name,
+        g.id AS grades_id,
+        g.name AS grades_name,
+        c2.id AS course_id,
+        c2.name AS course_name,
+        c2.period,
+        c2.credit,
+        c2.course_type,
+        c2.course_info,
+        c2.course_num,
+        c2.course_status,
+        c2.course_time,
+        t.id AS teach_id,
+        t.tid AS teach_tid,
+        t.cid AS teach_cid,
+        t.thumbnail_path AS thumbnailPath
+        from tb_department d, tb_major m, tb_clbum c, tb_grades g, tb_clbum_course cc, tb_course c2, tb_teacher_course t
+        <where>
+            d.id = m.did
+            and m.id = c.mid
+            and cc.gid = g.id
+            and cc.cid = c.id
+            and t.id = cc.tcid
+            and t.cid = c2.id
+            and c.id = #{clbumId}
+        </where>
+
+    </select>
+
+    <select id="selectClbumCourseVosByTeacherId" parameterType="Integer" resultMap="ClbumCourseVoResult">
+        select distinct cc.*,
+        d.id AS department_id,
+        d.name AS department_name,
+        m.id AS major_id,
+        m.name AS major_name,
+        c.id AS clbum_id,
+        c.name AS clbum_name,
+        g.id AS grades_id,
+        g.name AS grades_name,
+        c2.id AS course_id,
+        c2.name AS course_name,
+        c2.period,
+        c2.credit,
+        c2.course_type,
+        c2.course_info,
+        c2.course_num,
+        c2.course_status,
+        c2.course_time,
+        t.id AS teach_id,
+        t.tid AS teach_tid,
+        t.cid AS teach_cid,
+        t.thumbnail_path AS thumbnailPath
+        from tb_department d, tb_major m, tb_clbum c, tb_grades g, tb_clbum_course cc, tb_course c2, tb_teacher_course t
+        <where>
+            d.id = m.did
+            and m.id = c.mid
+            and cc.gid = g.id
+            and cc.cid = c.id
+            and t.id = cc.tcid
+            and t.cid = c2.id
+            and t.tid = #{tId}
+        </where>
+
+    </select>
+</mapper>

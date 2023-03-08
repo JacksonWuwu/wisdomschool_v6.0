@@ -1,0 +1,13 @@
+
+k
+java:S2095"PUse try-with-resources or close this "OutputStreamWriter" in a "finally" clause.(¹íŠ–øÿÿÿÿ
+c
+java:S2095"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(½Èó.
+V	java:S125"<This block of commented-out lines of code should be removed.(ùÝšàùÿÿÿÿ
+N
+java:S4719"9Replace charset name argument with StandardCharsets.UTF_8(½Èó.
+N
+java:S4719"9Replace charset name argument with StandardCharsets.UTF_8(½Èó.
+V	java:S125"<This block of commented-out lines of code should be removed.(ëÇ×øÿÿÿÿ
+T
+java:S4719"9Replace charset name argument with StandardCharsets.UTF_8(¹íŠ–øÿÿÿÿ

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.TitleTypeMapper">
+
+    <resultMap type="TitleType" id="TitleTypeResult">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_Id"/>
+        <result property="update_by" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateId" column="update_Id"/>
+        <result property="version" column="version"/>
+        <result property="name" column="titleTypeName"/>
+    </resultMap>
+
+    <select id="selectList" resultMap="TitleTypeResult">
+        select distinct id,titleTypeNum, titleTypeName,templateNum from tk_title_type
+    </select>
+
+    <select id="selectById" parameterType="java.lang.String" resultMap="TitleTypeResult">
+        select  id,titleTypeNum, titleTypeName,templateNum
+        from tk_title_type
+        where id = #{id}
+    </select>
+
+</mapper>

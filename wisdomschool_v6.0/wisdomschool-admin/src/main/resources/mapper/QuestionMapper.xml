@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.QuestionMapper">
+
+
+    <resultMap type="Question" id="questionResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="userId" column="user_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="recommend" column="recommend"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap id="questionCountResult" type="QuestionCount">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="question_id" property="questionId"/>
+        <result column="count_answer" property="countAnswer"/>
+        <result column="count_view" property="countView"/>
+        <result column="count_dig" property="countDig"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="count_follow" property="countFollow"/>
+        <result column="weight" property="weight"/>
+    </resultMap>
+
+    <sql id="selectQuestion">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               user_id,
+               title,
+               content,
+               score,
+               recommend,
+               status
+        from tb_question
+    </sql>
+    <sql id="selectQuestionFollow">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               question_id,
+               user_id
+        from tb_question_follow_merge
+    </sql>
+    <sql id="selectQuestionCount">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               question_id,
+               count_answer,
+               count_view,
+               count_dig,
+               count_bury,
+               count_follow,
+               weight
+        from tb_question_count
+    </sql>
+
+    <!-- 增加问题信息-->
+    <insert id="addQuestion" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_question
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="title != null">title,</if>
+            <if test="content != null">content,</if>
+            <if test="status != null">status,</if>
+            <if test="createBy != null  and createBy != ''  ">create_by,</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+            <if test="updateTime != null  ">update_time,</if>
+            <if test="remark != null  and remark != ''  ">remark,</if>
+            <if test="version != null  ">version,</if>
+            create_time,
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="title != null">#{title},</if>
+            <if test="content != null">#{content},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+            <if test="updateTime != null  ">#{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">#{remark},</if>
+            <if test="version != null  ">#{version},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 增加问题相关统计信息-->
+    <insert id="addQuestionCount">
+        insert into tb_question_count
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="questionId != null">question_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="questionId != null">#{questionId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 添加关注问题关联-->
+    <insert id="addQuestionFollow" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_question_follow_merge
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="questionId != null and questionId!=''">question_id,</if>
+            <if test="userId != null and userId!=''">user_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="questionId != null and questionId!=''">#{questionId},</if>
+            <if test="userId != null and userId!=''">#{userId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 按问题id删除主表信息 -->
+    <delete id="deleteQuestionById">
+        delete
+        from tb_question
+        where id = #{questionId}
+    </delete>
+
+    <!-- 按问题id删除问题相关统计信息 -->
+    <delete id="deleteQuestionCountById">
+        delete
+        from tb_question_count
+        where question_id = #{questionId}
+    </delete>
+
+    <!-- 按问题id和用户id删除关注关联信息 -->
+    <delete id="deleteQuestionFollow">
+        delete from tb_question_follow_merge
+        <where>
+            <if test="questionId != null and questionId !=''">and question_id=#{questionId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <!-- 下面是为了防止两个参数都为null的时候数据表被清空！ -->
+            <if test="questionId == null and userId == null">
+                <choose>
+                    <when test="questionId != null">
+                        and question_id=#{questionId}
+                    </when>
+                    <otherwise>
+                        and user_id=#{userId}
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </delete>
+
+    <update id="updateQuestionById">
+        update tb_question
+        <set>
+            <if test="status != null">status=#{status},</if>
+            <if test="recommend != null and recommend !='' or recommend==0">recommend=#{recommend},</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 按id更新问题回答数量统计 -->
+    <update id="updateQuestionByAnswerCount">
+        update tb_question_count
+        set count_answer=(select count(*) from tb_answer where question_id = #{questionId})
+        where question_id = #{questionId}
+    </update>
+
+    <!-- 按id更新问题关注数量统计 -->
+    <update id="updateQuestionByFollowCount">
+        update tb_question_count
+        set count_follow=(select count(*)
+                          from tb_question_follow_merge
+                          where question_id = #{questionId} and status = 0)
+        where question_id = #{questionId}
+    </update>
+
+    <!-- 按id更新问题浏览数量统计 -->
+    <update id="updateQuestionByViewCount">
+        update tb_question_count
+        set count_view=count_view + 1
+        where question_id = #{questionId}
+    </update>
+
+    <!-- 按id查询问答信息 -->
+    <select id="selectById" resultMap="questionResult">
+        <include refid="selectQuestion"/>
+        where status = 0 and id=#{id}
+    </select>
+
+    <!-- 按id查询问答信息 -->
+    <select id="findQuestionCountById" resultMap="questionCountResult">
+        <include refid="selectQuestionCount"/>
+        where question_id=#{questionId}
+    </select>
+
+    <!-- 查询问答短域名是否被占用 -->
+    <select id="checkQuestionById" resultType="Integer">
+        select count(1)
+        from tb_question
+        where id = #{id}
+    </select>
+
+    <!-- 查询该用户同样标题内容是否已存在！ -->
+    <select id="checkQuestionByTitle" resultType="Integer">
+        select count(*)
+        from tb_question
+        where user_id = #{userId}
+          and title = #{title}
+    </select>
+
+    <!-- 查询是否已关注该问题 -->
+    <select id="checkQuestionFollow" resultType="Integer">
+        select count(*)
+        from tb_question_follow_merge
+        where question_id = #{questionId}
+          and user_id = #{userId}
+    </select>
+
+    <!-- 问题总数 -->
+    <select id="getQuestionCount" resultType="Integer">
+        select count(*) from tb_question
+        <where>
+            <if test="title!=null and title!=''">and title LIKE CONCAT(CONCAT('%', #{title}),'%')</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </select>
+
+    <!-- 问题列表 -->
+    <select id="getQuestionList" resultType="Question">
+        <include refid="selectQuestion"/>
+        <where>
+            <if test="title!=null and title!='' ">and title LIKE CONCAT(CONCAT('%', #{title}),'%')</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+        order by
+        <if test="orderby != null">${orderby}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+
+    <!-- 问题与用户关联列表 -->
+    <select id="getQuestionFollowList" resultType="QuestionFollow">
+        <include refid="selectQuestionFollow"/>
+        <where>
+            <if test="questionId != null and questionId !=''">and question_id = #{questionId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+        </where>
+    </select>
+
+    <!-- 问题索引总数 -->
+    <select id="getQuestionIndexCount" resultType="Integer">
+        select count(*)
+        from tb_question
+        where status = 0
+    </select>
+
+    <!-- 问题索引列表 -->
+    <select id="getQuestionIndexList" resultType="Question">
+        <include refid="selectQuestion"/>
+        where status = 0 limit #{offset},#{rows}
+    </select>
+</mapper>

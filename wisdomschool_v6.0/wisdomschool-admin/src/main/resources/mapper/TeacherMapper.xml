@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.TeacherMapper">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="Teacher">
+        <id column="id" property="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="now_school_degree" property="nowSchoolDegree"/>
+        <result column="major_degree_get_time" property="majorDegreeGetTime"/>
+        <result column="join_party_time" property="joinPartyTime"/>
+        <result column="teach_year" property="teachYear"/>
+        <result column="teacher_qualify_type" property="teacherQualifyType"/>
+        <result column="get_qualify_time" property="getQualifyTime"/>
+        <result column="identity" property="identity"/>
+        <result column="first_education" property="firstEducation"/>
+        <result column="first_graduate_school" property="firstGraduateSchool"/>
+        <result column="first_major" property="firstMajor"/>
+        <result column="first_graduate_time" property="firstGraduateTime"/>
+        <result column="hightst_degree" property="hightstDegree"/>
+        <result column="hight_graduate_time" property="hightGraduateTime"/>
+        <result column="work_date" property="workDate"/>
+        <result column="marry_status" property="marryStatus"/>
+        <result column="education" property="education"/>
+        <result column="title" property="title"/>
+        <result column="graduate_institution" property="graduateInstitution"/>
+        <result column="mid" property="mid"/>
+        <result column="dept_id" property="dept_id"/>
+        <result column="duty" property="duty"/>
+        <result column="edited" property="edited"/>
+        <result column="on_job_status" property="onJobStatus"/>
+        <result column="dimission_date" property="dimissionDate"/>
+        <result column="dimission_type" property="dimissionType"/>
+        <result column="dimission_reason" property="dimissionReason"/>
+        <result column="learning_experience" property="learningExperience"/>
+        <result column="work_experience" property="workExperience"/>
+        <result column="training_experience" property="trainingExperience"/>
+        <result column="professional_certificate" property="professionalCertificate"/>
+        <result column="punish_situation" property="punishSituation"/>
+        <result column="create_archive" property="createArchive"/>
+        <result column="other_dept" property="otherDept"/>
+        <result column="jobIds" property="job_ids"/>
+        <result column="other_job_name" property="otherJobName"/>
+        <collection property="courses" javaType="java.util.List"
+                    resultMap="CourseResult"/>
+    </resultMap>
+
+    <resultMap id="CourseResult" type="Course">
+        <id property="id" column="cid"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="name" column="name"/>
+        <result property="period" column="period"/>
+        <result property="credit" column="credit"/>
+        <result property="courseType" column="course_type"/>
+        <result property="courseInfo" column="course_info"/>
+        <result property="courseNum" column="course_num"/>
+        <result property="courseStatus" column="course_status"/>
+        <result property="courseTime" column="course_time"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        SELECT t.id,
+               t.create_by,
+               t.create_time,
+               t.update_by,
+               t.update_time,
+               t.remark,
+               t.version,
+               t.now_school_degree,
+               t.major_degree_get_time,
+               t.join_party_time,
+               t.teach_year,
+               t.teacher_qualify_type,
+               t.get_qualify_time,
+               t.identity,
+               t.first_education,
+               t.first_graduate_school,
+               t.first_major,
+               t.first_graduate_time,
+               t.hightst_degree,
+               t.hight_graduate_time,
+               t.work_date,
+               t.marry_status,
+               t.education,
+               t.title,
+               t.graduate_institution,
+               t.mid,
+               t.dept_id,
+               t.duty,
+               t.edited,
+               t.on_job_status,
+               t.dimission_date,
+               t.dimission_type,
+               t.dimission_reason,
+               t.learning_experience,
+               t.work_experience,
+               t.training_experience,
+               t.professional_certificate,
+               t.punish_situation,
+               t.create_archive,
+               t.other_dept,
+               t.job_ids,
+               t.other_job_name,
+               c.id cid,
+               c.create_by,
+               c.create_time,
+               c.update_by,
+               c.update_time,
+               c.remark,
+               c.version,
+               c.name,
+               c.period,
+               c.credit,
+               c.course_type,
+               tc.course_brief_introduction,
+               tc.thumbnail_path,
+               c.course_info,
+               c.course_num,
+               c.course_status,
+               c.course_time
+        from tb_teacher t
+                 left join tb_teacher_course tc on t.id = tc.tid
+                 left join tb_course c on c.id = tc.cid
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_teacher
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">create_by,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+            <if test="version != null">version,</if>
+            <if test="nowSchoolDegree !=null and nowSchoolDegree !=''">now_school_degree,</if>
+            <if test="majorDegreeGetTime !=null">major_degree_get_time,</if>
+            <if test="joinPartyTime != null">join_party_time,</if>
+            <if test=" teachYear !=null">teach_year,</if>
+            <if test=" teacherQualifyType !=null and teacherQualifyType !=''">teacher_qualify_type,</if>
+            <if test=" getQualifyTime !=null">get_qualify_time,</if>
+            <if test=" identity !=null and identity !=''">identity,</if>
+            <if test=" firstEducation !=null and firstEducation !=''">first_education,</if>
+            <if test=" firstGraduateSchool !=null and firstGraduateSchool !=''">first_graduate_school,</if>
+            <if test=" firstMajor !=null and firstMajor !=''">first_major,</if>
+            <if test=" firstGraduateTime !=null and firstGraduateTime !=''">first_graduate_time,</if>
+            <if test=" hightstDegree !=null and hightstDegree !=''">hightst_degree,</if>
+            <if test=" hightGraduateTime !=null and hightGraduateTime !=''">hight_graduate_time,</if>
+            <if test=" workDate !=null">work_date,</if>
+            <if test=" marryStatus !=null and marryStatus !=''">marry_status,</if>
+            <if test=" education !=null and education !=''">education,</if>
+            <if test=" title !=null and title !=''">title,</if>
+            <if test=" graduateInstitution !=null and graduateInstitution !=''">graduate_institution,</if>
+            <if test=" mid !=null and mid !=''">mid,</if>
+            <if test=" dept_id !=null and dept_id !=''">dept_id,</if>
+            <if test=" duty !=null and duty !=''">duty,</if>
+            <if test=" edited !=null and edited !=''">edited,</if>
+            <if test=" onJobStatus !=null">on_job_status,</if>
+            <if test=" dimissionDate !=null">dimission_date,</if>
+            <if test=" dimissionType !=null and dimissionType !=''">dimission_type,</if>
+            <if test=" dimissionReason !=null and dimissionReason !=''">dimission_reason,</if>
+            <if test=" learningExperience !=null and learningExperience !=''">learning_experience,</if>
+            <if test=" workExperience !=null and workExperience !=''">work_experience,</if>
+            <if test=" trainingExperience !=null and trainingExperience !=''">training_experience,</if>
+            <if test=" professionalCertificate !=null and professionalCertificate !=''">professional_certificate,</if>
+            <if test=" punishSituation !=null and punishSituation !=''">punish_situation,</if>
+            <if test=" createArchive !=null">create_archive,</if>
+            <if test=" otherDept !=null and otherDept !=''">other_dept,</if>
+            <if test=" jobIds !=null and jobIds !=''">job_ids,</if>
+            <if test=" otherJobName !=null and otherJobName !=''">other_job_name,</if>
+            create_time
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="version != null">#{version},</if>
+            <if test="nowSchoolDegree !=null and nowSchoolDegree !=''">#{nowSchoolDegree},</if>
+            <if test="majorDegreeGetTime !=null">#{majorDegreeGetTime},</if>
+            <if test="joinPartyTime != null">#{joinPartyTime},</if>
+            <if test=" teachYear !=null">#{teachYear},</if>
+            <if test=" teacherQualifyType !=null and teacherQualifyType !=''">#{teacherQualifyType},</if>
+            <if test=" getQualifyTime !=null">#{getQualifyTime},</if>
+            <if test=" identity !=null and identity !=''">#{identity},</if>
+            <if test=" firstEducation !=null and firstEducation !=''">#{firstEducation},</if>
+            <if test=" firstGraduateSchool !=null and firstGraduateSchool !=''">#{firstGraduateSchool},</if>
+            <if test=" firstMajor !=null and firstMajor !=''">#{firstMajor},</if>
+            <if test=" firstGraduateTime !=null and firstGraduateTime !=''">#{firstGraduateTime},</if>
+            <if test=" hightstDegree !=null and hightstDegree !=''">#{hightstDegree},</if>
+            <if test=" hightGraduateTime !=null and hightGraduateTime !=''">#{hightGraduateTime},</if>
+            <if test=" workDate !=null">#{workDate},</if>
+            <if test=" marryStatus !=null and marryStatus !=''">#{marryStatus},</if>
+            <if test=" education !=null and education !=''">#{education},</if>
+            <if test=" title !=null and title !=''">#{title},</if>
+            <if test=" graduateInstitution !=null and graduateInstitution !=''">#{graduateInstitution},</if>
+            <if test=" mid !=null and mid !=''">#{mid},</if>
+            <if test=" dept_id !=null and dept_id !=''">#{dept_id},</if>
+            <if test=" duty !=null and duty !=''">#{duty},</if>
+            <if test=" edited !=null and edited !=''">#{edited},</if>
+            <if test=" onJobStatus !=null">#{onJobStatus},</if>
+            <if test=" dimissionDate !=null">#{dimissionDate},</if>
+            <if test=" dimissionType !=null and dimissionType !=''">#{dimissionType},</if>
+            <if test=" dimissionReason !=null and dimissionReason !=''">#{dimissionReason},</if>
+            <if test=" learningExperience !=null and learningExperience !=''">#{learningExperience},</if>
+            <if test=" workExperience !=null and workExperience !=''">#{workExperience},</if>
+            <if test=" trainingExperience !=null and trainingExperience !=''">#{trainingExperience},</if>
+            <if test=" professionalCertificate !=null and professionalCertificate !=''">#{professionalCertificate},</if>
+            <if test=" punishSituation !=null and punishSituation !=''">#{punishSituation},</if>
+            <if test=" createArchive !=null">#{createArchive},</if>
+            <if test=" otherDept !=null and otherDept !=''">#{otherDept},</if>
+            <if test=" jobIds !=null and jobIds !=''">#{jobIds},</if>
+            <if test=" otherJobName !=null and otherJobName !=''">#{otherJobName},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE tb_teacher
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="version != null">version = #{version},</if>
+            <if test="nowSchoolDegree !=null and nowSchoolDegree !=''">now_school_degree = #{nowSchoolDegree},</if>
+            <if test="majorDegreeGetTime !=null">major_degree_get_time = #{majorDegreeGetTime},</if>
+            <if test="joinPartyTime != null">join_party_time = #{joinPartyTime},</if>
+            <if test=" teachYear !=null">teach_year = #{teachYear},</if>
+            <if test=" teacherQualifyType !=null and teacherQualifyType !=''">teacher_qualify_type =
+                #{teacherQualifyType},
+            </if>
+            <if test=" getQualifyTime !=null">get_qualify_time = #{getQualifyTime},</if>
+            <if test=" identity !=null and identity !=''">identity = #{identity},</if>
+            <if test=" firstEducation !=null and firstEducation !=''">first_education = #{firstEducation},</if>
+            <if test=" firstGraduateSchool !=null and firstGraduateSchool !=''">first_graduate_school =
+                #{firstGraduateSchool},
+            </if>
+            <if test=" firstMajor !=null and firstMajor !=''">first_major = #{firstMajor},</if>
+            <if test=" firstGraduateTime !=null and firstGraduateTime !=''">first_graduate_time =
+                #{firstGraduateTime},
+            </if>
+            <if test=" hightstDegree !=null and hightstDegree !=''">hightst_degree = #{hightstDegree},</if>
+            <if test=" hightGraduateTime !=null and hightGraduateTime !=''">hight_graduate_time =
+                #{hightGraduateTime},
+            </if>
+            <if test=" workDate !=null">work_date = #{workDate},</if>
+            <if test=" marryStatus !=null and marryStatus !=''">marry_status = #{marryStatus},</if>
+            <if test=" education !=null and education !=''">education = #{education},</if>
+            <if test=" title !=null and title !=''">title = #{title},</if>
+            <if test=" graduateInstitution !=null and graduateInstitution !=''">graduate_institution =
+                #{graduateInstitution},
+            </if>
+            <if test=" mid !=null and mid !=''">mid = #{mid},</if>
+            <if test=" dept_id !=null and dept_id !=''">dept_id = #{dept_id},</if>
+            <if test=" duty !=null and duty !=''">duty = #{duty},</if>
+            <if test=" edited !=null and edited !=''">edited = #{edited},</if>
+            <if test=" onJobStatus !=null">on_job_status = #{onJobStatus},</if>
+            <if test=" dimissionDate !=null">dimission_date = #{dimissionDate},</if>
+            <if test=" dimissionType !=null and dimissionType !=''">dimission_type = #{dimissionType},</if>
+            <if test=" dimissionReason !=null and dimissionReason !=''">dimission_reason = #{dimissionReason},</if>
+            <if test=" learningExperience !=null and learningExperience !=''">learning_experience =
+                #{learningExperience},
+            </if>
+            <if test=" workExperience !=null and workExperience !=''">work_experience = #{workExperience},</if>
+            <if test=" trainingExperience !=null and trainingExperience !=''">training_experience =
+                #{trainingExperience},
+            </if>
+            <if test=" professionalCertificate !=null and professionalCertificate !=''">professional_certificate =
+                #{professionalCertificate},
+            </if>
+            <if test=" punishSituation !=null and punishSituation !=''">punish_situation = #{punishSituation},</if>
+            <if test=" createArchive !=null">create_archive = #{createArchive},</if>
+            <if test=" otherDept !=null and otherDept !=''">other_dept = #{otherDept},</if>
+            <if test=" jobIds !=null and jobIds !=''">job_ids = jobIds = #{jobIds},</if>
+            <if test=" otherJobName !=null and otherJobName !=''">other_job_name = #{otherJobName},</if>
+            update_time = sysdate()
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="selectList" resultMap="AllColumnMap">
+        <include refid="all_column"/>
+        <where>
+            <if test="id != null">AND t.id = #{id}</if>
+            <if test="createBy != null">AND t.create_by = #{createBy}</if>
+            <if test="createTime != null">AND t.create_time = #{createTime}</if>
+            <if test="updateBy != null">AND t.update_by = #{updateBy}</if>
+            <if test="updateTime != null">AND t.update_time = #{updateTime}</if>
+            <if test="remark != null">AND t.remark = #{remark}</if>
+            <if test="version != null">AND t.version = #{version}</if>
+            <if test="nowSchoolDegree !=null and nowSchoolDegree !=''">AND t.now_school_degree = #{nowSchoolDegree},
+            </if>
+            <if test="majorDegreeGetTime !=null">AND t.major_degree_get_time= #{majorDegreeGetTime},</if>
+            <if test="joinPartyTime != null">AND t.join_party_time= #{joinPartyTime},</if>
+            <if test=" teachYear !=null">AND t.teach_year= #{teachYear},</if>
+            <if test=" teacherQualifyType !=null and teacherQualifyType !=''">AND t.teacher_qualify_type=
+                #{teacherQualifyType},
+            </if>
+            <if test=" getQualifyTime !=null">AND t.get_qualify_time= #{getQualifyTime},</if>
+            <if test=" identity !=null and identity !=''">AND t.identity= #{identity},</if>
+            <if test=" firstEducation !=null and firstEducation !=''">AND t.first_education= #{firstEducation},</if>
+            <if test=" firstGraduateSchool !=null and firstGraduateSchool !=''">AND t.first_graduate_school=
+                #{firstGraduateSchool},
+            </if>
+            <if test=" firstMajor !=null and firstMajor !=''">AND t.first_major= #{firstMajor},</if>
+            <if test=" firstGraduateTime !=null and firstGraduateTime !=''">AND t.first_graduate_time=
+                #{firstGraduateTime},
+            </if>
+            <if test=" hightstDegree !=null and hightstDegree !=''">AND t.hightst_degree= #{hightstDegree},</if>
+            <if test=" hightGraduateTime !=null and hightGraduateTime !=''">AND t.hight_graduate_time=
+                #{hightGraduateTime},
+            </if>
+            <if test=" workDate !=null">AND t.work_date= #{workDate},</if>
+            <if test=" marryStatus !=null and marryStatus !=''">AND t.marry_status= #{marryStatus},</if>
+            <if test=" education !=null and education !=''">AND t.education= #{education},</if>
+            <if test=" title !=null and title !=''">AND t.title= #{title},</if>
+            <if test=" graduateInstitution !=null and graduateInstitution !=''">AND t.graduate_institution=
+                #{graduateInstitution},
+            </if>
+            <if test=" mid !=null and mid !=''">AND t.mid= #{mid},</if>
+            <if test=" dept_id !=null and dept_id !=''">AND t.dept_id= #{dept_id},</if>
+            <if test=" duty !=null and duty !=''">AND t.duty= #{duty},</if>
+            <if test=" edited !=null and edited !=''">AND t.edited= #{edited},</if>
+            <if test=" onJobStatus !=null">AND t.on_job_status= #{onJobStatus},</if>
+            <if test=" dimissionDate !=null">AND t.dimission_date= #{dimissionDate},</if>
+            <if test=" dimissionType !=null and dimissionType !=''">AND t.dimission_type= #{dimissionType},</if>
+            <if test=" dimissionReason !=null and dimissionReason !=''">AND t.dimission_reason= #{dimissionReason},</if>
+            <if test=" learningExperience !=null and learningExperience !=''">AND t.learning_experience=
+                #{learningExperience},
+            </if>
+            <if test=" workExperience !=null and workExperience !=''">AND t.work_experience= #{workExperience},</if>
+            <if test=" trainingExperience !=null and trainingExperience !=''">AND t.training_experience=
+                #{trainingExperience},
+            </if>
+            <if test=" professionalCertificate !=null and professionalCertificate !=''">AND t.professional_certificate=
+                #{professionalCertificate},
+            </if>
+            <if test=" punishSituation !=null and punishSituation !=''">AND t.punish_situation= #{punishSituation},</if>
+            <if test=" createArchive !=null">AND t.create_archive= #{createArchive},</if>
+            <if test=" otherDept !=null and otherDept !=''">AND t.other_dept= #{otherDept},</if>
+            <if test=" jobIds !=null and jobIds !=''">AND t.job_ids= #{jobIds},</if>
+            <if test=" otherJobName !=null and otherJobName !=''">AND t.other_job_name= #{otherJobName},</if>
+        </where>
+    </select>
+
+    <select id="selectBatchIds" resultMap="AllColumnMap">
+        <include refid="all_column"/>
+        WHERE t.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectById" resultMap="AllColumnMap">
+        <include refid="all_column"/>
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="mapByDeptids" resultMap="AllColumnMap">
+        select * from tb_teacher
+        WHERE dept_id = #{dept_id}
+    </select>
+
+    <select id="mapByCids" resultType="Teacher">
+        <include refid="all_column"/>
+        WHERE tc.id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <!--auto generated Code-->
+    <delete id="deleteById">
+        DELETE
+        FROM tb_teacher
+        WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        DELETE
+        FROM tb_teacher WHERE id in
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

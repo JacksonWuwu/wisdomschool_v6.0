@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.wstom.admin.mapper.AnswerMapper">
+
+    <resultMap id="answerFullMap" type="Answer">
+        <id property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="question_id" property="questionId"/>
+        <result column="user_id" property="userId"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="weight" property="weight"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="count_comment" property="countComment"/>
+        <result column="count_dig" property="countDig"/>
+    </resultMap>
+
+    <sql id="AnswerFullField">
+        a
+        .
+        id,
+        a
+        .
+        create_by,
+        a
+        .
+        create_time,
+        a
+        .
+        update_by,
+        a
+        .
+        update_time,
+        a
+        .
+        remark,
+        a
+        .
+        version,
+        a
+        .
+        parent_id,
+        a
+        .
+        question_id,
+        a
+        .
+        user_id,
+        a
+        .
+        content,
+        a
+        .
+        status,
+        a
+        .
+        weight
+    </sql>
+
+    <sql id="selectAnswerFullField">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               parent_id,
+               question_id,
+               user_id,
+               content,
+               status,
+               weight
+        from tb_answer
+    </sql>
+
+    <!-- 增加答案信息-->
+    <insert id="addAnswer" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_answer
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="questionId != null">question_id,</if>
+            <if test="content != null">content,</if>
+            <if test="status != null">status,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="questionId != null">#{questionId},</if>
+            <if test="content != null">#{content},</if>
+            <if test="status != null">#{status},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <!-- 增加答案相关统计信息-->
+    <insert id="addAnswerCount">
+        insert into tb_answer_count
+        <!-- 添加表字段 -->
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="answerId != null">answer_id,</if>
+            create_time
+        </trim>
+        <!-- 注入控制层字段 -->
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="answerId != null">#{answerId},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+
+    <!-- 按答案id答案主表信息 -->
+    <delete id="deleteAnswerById">
+        delete
+        from tb_answer
+        where id = #{id}
+    </delete>
+
+    <!-- 按答案id删除答案相关统计信息 -->
+    <delete id="deleteAnswerCountById">
+        delete
+        from tb_answer_count
+        where answer_id = #{answerId}
+    </delete>
+
+    <!-- 按id更新问题审核状态 -->
+    <update id="updateAnswerStatusById">
+        update tb_answer
+        <set>
+            <if test="status != null and status !='' or status==0">status=#{status},</if>
+            update_time = sysdate()
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 按id更新答案内容 -->
+    <update id="updateAnswerById">
+        update tb_answer
+        <set>
+            <if test="content != null and content !=''">content=#{content},</if>
+            <if test="status != null and status !='' or status==0">status=#{status},</if>
+            update_time = sysdate()
+        </set>
+        where id=#{id}
+    </update>
+
+    <!-- 按id查询评论内容 -->
+    <select id="findAnswerById" resultMap="answerFullMap">
+        select
+        <include refid="AnswerFullField"/>
+        ,c.count_dig,c.count_bury,c.count_comment from tb_answer a inner join tb_answer_count c on a.id=c.answer_id
+        <where>
+            <if test="status != null">and a.status=#{status}</if>
+            and a.id=#{id}
+        </where>
+    </select>
+
+    <!-- 按id和用户id查询评论内容 -->
+    <select id="findAnswerByIdAndUserId" resultMap="answerFullMap">
+        <include refid="selectAnswerFullField"/>
+        where id=#{id} and user_id = #{userId}
+    </select>
+
+    <!-- 查询该用户同样答案内容是否已存在！ -->
+    <select id="checkAnswerByContent" resultType="Integer">
+        select count(*)
+        from tb_answer
+        where user_id = #{userId}
+          and content = #{content}
+    </select>
+
+    <!-- 答案总数 -->
+    <select id="getAnswerCount" resultType="Integer">
+        select count(*) from tb_answer
+        <where>
+            <if test="questionId!=null and questionId!='' ">and question_id=#{questionId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </select>
+
+    <!-- 答案列表 -->
+    <select id="getAnswerList" resultMap="answerFullMap">
+        <include refid="selectAnswerFullField"/>
+        <where>
+            <if test="questionId!=null and questionId!='' ">and question_id=#{questionId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime},
+                '%Y-%m-%d %H')
+            </if>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+        order by
+        <if test="orderby != null">${orderby}</if>
+        <if test="order != null">${order}</if>
+        limit #{offset},#{rows}
+    </select>
+
+    <!-- 问题列表 -->
+    <select id="gettAnswerByQuestionIdList" resultMap="answerFullMap">
+        <include refid="selectAnswerFullField"/>
+        <where>
+            <if test="questionId != null and questionId !=''">and question_id = #{questionId}</if>
+            <if test="userId != null and userId !=''">and user_id=#{userId}</if>
+        </where>
+    </select>
+
+    <!-- 按问题id查询最新的第一条评论内容 -->
+    <select id="findNewestAnswerById" resultMap="answerFullMap">
+        select<include refid="AnswerFullField"/>,c.count_dig,c.count_bury,c.count_comment from tb_answer a inner join
+        tb_answer_count c on a.id=c.answer_id
+        where a.question_id=#{questionId} and a.status = 0
+        order by create_time desc,id desc limit 1
+    </select>
+
+</mapper>

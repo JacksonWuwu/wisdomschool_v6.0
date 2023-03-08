@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.TeacherCourseExamMapper">
+
+    <resultMap type="TeacherCourseExam" id="TeacherCourseExamResult">
+        <id property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="testPaperOneId" column="test_paperone_id"/>
+        <result property="courseBriefIntroduction" column="course_brief_introduction"/>
+        <result property="tid" column="tid"/>
+        <result property="cid" column="cid"/>
+    </resultMap>
+    <sql id="all_column">
+        id,
+        create_by,
+        create_time,
+        update_by,
+        update_time,
+        remark,
+        version,
+        test_paperone_id,
+        course_brief_introduction,
+        tid,
+        cid
+    </sql>
+
+    <sql id="selectTeacherCourseExamVo">
+        select tc.id,
+               tc.create_by,
+               tc.create_time,
+               tc.update_by,
+               tc.update_time,
+               tc.remark,
+               tc.version,
+               tc.test_paperone_id,
+               tc.course_brief_introduction,
+               tc.tid,
+               tc.cid
+        from tb_teacher_course_exam tc
+    </sql>
+    <select id="selectCourseId" parameterType="TeacherCourseExam" resultMap="TeacherCourseExamResult">
+        select  * from tb_course,tb_teacher_course_exam where tb_course.id=tb_teacher_course_exam.cid and tb_teacher_course_exam.cid = #{courseId}
+    </select>
+    <select id="selectList" parameterType="TeacherCourseExam" resultMap="TeacherCourseExamResult">
+        <include refid="selectTeacherCourseExamVo"/>
+        <where>
+            <if test="id != null ">
+                and tc.id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and tc.create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and tc.create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and tc.update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and tc.update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and tc.remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and tc.version = #{version}
+            </if>
+            <if test="testPaperOneId != null and testPaperOneId.trim() != ''">
+                and tc.test_paperone_id = #{test_paperone_id}
+            </if>
+            <if test="courseBriefIntroduction != null and courseBriefIntroduction.trim() != ''">
+                and tc.course_brief_introduction = #{courseBriefIntroduction}
+            </if>
+            <if test="tid != null and tid != '' ">
+                and tc.tid = #{tid}
+            </if>
+            <if test="cid != null and cid != '' ">
+                and tc.cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="TeacherCourseExamResult">
+        <include refid="selectTeacherCourseExamVo"/>
+        where tc.id = #{id}
+    </select>
+
+    <select id="selectBatchIds" resultMap="TeacherCourseExamResult">
+        <include refid="selectTeacherCourseExamVo"/>
+        WHERE tc.id IN
+        <foreach collection="list" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="selectOne" parameterType="String" resultMap="TeacherCourseExamResult">
+        <include refid="selectTeacherCourseExamVo"/>
+        <where>
+            <if test="id != null ">
+                and tc.id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and tc.create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and tc.create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and tc.update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and tc.update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and tc.remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and tc.version = #{version}
+            </if>
+            <if test="testPaperOneId != null and testPaperOneId.trim() != ''">
+                and tc.test_paperone_id = #{testPaperOneId}
+            </if>
+            <if test="courseBriefIntroduction != null and courseBriefIntroduction.trim() != ''">
+                and tc.course_brief_introduction = #{courseBriefIntroduction}
+            </if>
+            <if test="tid != null and tid != '' ">
+                and tc.tid = #{tid}
+            </if>
+            <if test="cid != null and cid != '' ">
+                and tc.cid = #{cid}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <insert id="insert"
+            parameterType="TeacherCourseExam">
+        insert into tb_teacher_course_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            create_time
+                ,
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="testPaperOneId != null and testPaperOneId.trim() != ''">
+                test_paperone_id,
+            </if>
+            <if test="courseBriefIntroduction != null and courseBriefIntroduction.trim() != ''">
+                course_brief_introduction,
+            </if>
+            <if test="tid != null ">tid
+                ,
+            </if>
+            <if test="cid != null ">cid
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            sysdate(),
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="testPaperOneId != null and testPaperOneId.trim() != ''">
+                #{testPaperOneId},
+            </if>
+            <if test="courseBriefIntroduction != null and courseBriefIntroduction.trim() != ''">
+                #{courseBriefIntroduction},
+            </if>
+            <if test="tid != null ">#{tid}
+                ,
+            </if>
+            <if test="cid != null ">#{cid}
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <!--id, create_by, create_time, update_by, update_time, remark, version, tid, cid-->
+    <insert id="insertBatch">
+        INSERT INTO tb_teacher_course_exam(
+        create_by, create_time, remark, tid, cid
+        )VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.createBy},
+            sysdate(),
+            #{item.remark},
+            #{item.tid},
+            #{item.cid}
+            )
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="TeacherCourseExam">
+        update tb_teacher_course_exam
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="updateTime != null  ">update_time
+                = #{updateTime},
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                = #{remark},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="testPaperOneId != null and testPaperOneId.trim() != ''">
+                test_paperone_id = #{testPaperOneId},
+            </if>
+            <if test="courseBriefIntroduction != null and courseBriefIntroduction.trim() != ''">
+                course_brief_introduction = #{courseBriefIntroduction},
+            </if>
+            <if test="tid != null  ">tid
+                = #{tid},
+            </if>
+            <if test="cid != null  ">cid
+                = #{cid},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_teacher_course_exam
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_teacher_course_exam where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByTid" parameterType="string">
+        delete
+        from tb_teacher_course_exam
+        where tid = #{tid}
+    </delete>
+
+</mapper>

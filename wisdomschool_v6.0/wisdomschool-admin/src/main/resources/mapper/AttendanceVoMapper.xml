@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.AttendanceVoMapper">
+    <resultMap type="AttendanceVo" id="AttendanceVoResult">
+        <result property="cid" column="cid"/>
+        <result property="tcid" column="tcid"/>
+        <result property="createTime" column="create_time"/>
+        <result property="type" column="type"/>
+        <result property="state" column="state"/>
+        <result property="password" column="password"/>
+        <result property="id" column="id"/>
+        <result property="aid" column="aid"/>
+        <result property="sid" column="sid"/>
+        <result property="loginName" column="login_Name"/>
+        <result property="userName" column="user_Name"/>
+        <result property="results" column="results"/>
+    </resultMap>
+
+
+    <sql id="selectAttendanceVo">
+        select a.id,
+               ad.aid,
+               ad.sid,
+               ad.results,
+               a.cid,
+               a.tcid,
+               a.create_time,
+               a.type,
+               a.state,
+               a.password
+        from wy_attendance a,wy_attendance_detail ad
+    </sql>
+
+
+    <select id="selectList" parameterType="AttendanceVo" resultType="AttendanceVo">
+        <include refid="selectAttendanceVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="aid != null ">and aid = #{aid}</if>
+            <if test="sid != null ">and sid = #{sid}</if>
+            <if test="results != null ">and results = #{results}</if>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="cid != null ">and cid = #{cid}</if>
+            <if test="tcid != null ">and a.tcid = #{tcid}</if>
+            <if test="createTime != null ">and create_time = #{createTime}</if>
+            <if test="type != null ">and type = #{type}</if>
+            <if test="state != null ">and state = #{state}</if>
+            <if test="password != null ">and password = #{password}</if>
+            and a.id=ad.aid
+        </where>
+    </select>
+
+
+
+
+
+</mapper>

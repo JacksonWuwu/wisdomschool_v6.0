@@ -1,0 +1,500 @@
+.chapter-resource {
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.course-detail a {
+    text-decoration-line: none;
+}
+
+.f-main {
+    width: 1200px;
+    margin: 0 auto;
+    min-height: 400px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.lecturer-item {
+    width: 224px;
+    height: 320px;
+    margin-right: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(7, 17, 27, .1);
+    box-sizing: border-box;
+    padding: 36px 24px 0;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.lecturer-item .lecturer-uimg {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+}
+
+.lecturer-item .lecturer-name {
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #07111b;
+    font-weight: 700;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    -webkit-line-clamp: 1;
+}
+
+.lecturer-item .lecturer-title {
+    display: block;
+    font-size: 12px;
+    line-height: 24px;
+    color: #93999f;
+    margin-bottom: 15px;
+}
+
+.lecturer-item .lecturer-p {
+    display: block;
+    font-size: 12px;
+    line-height: 20px;
+    color: #93999f;
+    height: 56px;
+    word-break: break-all;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: -o-ellipsis-lastline;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/**
+*课程章节页面 start
+**/
+
+.course-info {
+    width: 100%;
+    min-height: 210px;
+    border-bottom: 1px solid #d9dde1;
+    padding-bottom: 15px;
+    margin-top: 25px;
+}
+
+.course-info .course-title {
+    margin-bottom: 20px;
+    line-height: 31px;
+    font-weight: 700;
+    font-size: 32px;
+}
+
+.course-meta {
+    margin-top: 30px;
+}
+
+.course-meta .static-item {
+    display: inline-block;
+    padding: 0 33px;
+    font-size: 12px;
+    border-right: 1px solid #d9dde1;
+}
+
+.course-meta .static-item .meta {
+    height: 25px;
+    line-height: 30px;
+}
+
+.course-info .static-item .meta-value {
+    font-size: 16px;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    max-width: 180px;
+}
+
+.learn-btn {
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #0089D2;
+    color: #FFF;
+    width: 137px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    position: relative;
+    top: -20px;
+    border: 0;
+}
+
+.learn-btn:hover {
+    color: #FFF;
+}
+
+.course-brief {
+    margin-top: 15px;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+.chapter {
+    padding: 0px 10px 20px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.chapter strong {
+    font-size: 16px;
+}
+
+.icon-chapter {
+    border-radius: 50%;
+    background-color: #93999F;
+    color: #FFF;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    line-height: 27px;
+    text-align: center;
+    font-size: 16px;
+    float: left;
+    margin-right: 20px;
+    margin-top: 2px;
+}
+
+.chapter .drop-down {
+    float: right;
+    margin-top: 2px;
+    margin-right: 10px;
+    color: #93999F;
+}
+
+.chapter-sub .chapter-sub-li {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    background-color: #F3F5F7;
+    margin-bottom: 10px;
+    list-style-type: none;
+    padding: 0px 10px;
+}
+
+.chapter-sub .chapter-sub-title {
+
+}
+
+.chapter-sub-title-fff {
+    color: #FFF;
+}
+
+.chapter-sub .chapter-sub-li:hover {
+    background-color: #777777;
+    color: #FFF;
+}
+
+.chapter-sub .chapter-sub-li .icon-video {
+    margin-right: 10px;
+    color: #777777;
+}
+
+.preview-btn {
+    height: 25px;
+    width: 80px;
+    float: right;
+    line-height: 25px;
+    background-color: #0089D2;
+    text-align: center;
+    color: #FFF;
+    margin-top: 8px;
+    border-radius: 4px;
+}
+
+.follow-btn {
+    display: inline-block;
+    height: 25px;
+    width: 60px;
+    line-height: 25px;
+    background-color: #06B310;
+    text-align: center;
+    color: #FFF;
+    border-radius: 4px;
+}
+
+.page-box {
+    padding: 40px 0px 0px 25px;
+}
+
+.page-box a {
+    margin-right: 20px;
+}
+
+.page-box .page-num {
+    float: left;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    color: #000;
+}
+
+.page-num:hover {
+    background-color: #EEE;
+    color: #000;
+}
+
+.page-cur {
+    float: left;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #777;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.page-cur:hover {
+    color: #FFF;
+}
+
+.page-next {
+    float: left;
+    margin-right: 10px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: center;
+    color: #000;
+}
+
+.page-omit {
+    float: left;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+
+/**
+*继续学习button
+**/
+.continue-btn {
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #0089D2;
+    text-align: center;
+    cursor: pointer;
+    color: #000;
+}
+
+.continue-btn:hover {
+    background-color: #0089D2;
+    color: #FFF;
+}
+
+.learn-rate {
+    color: #F0145D;
+    margin-right: 20px;
+}
+
+/*+---------------------------------+
+  |              评论区域            |
+  +---------------------------------+*/
+.comment-box {
+    background: #fff;
+}
+
+.comment-box .comment-title {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.comment-box .comment-title h4 {
+    margin: 5px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 500;
+    text-indent: 10px;
+    font-size: 14px;
+}
+
+.comment-box .comment-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.comment-box .comment-container li {
+    display: block;
+    padding: 15px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.comment-box .comment-container li .avatar {
+    float: left;
+    display: block;
+    width: 40px;
+}
+
+.comment-box .comment-container li img {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.comment-box .comment-container li .comment-body {
+    margin-left: 50px;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.comment-box .comment-container li .comment-body h4 {
+    margin: 0;
+    display: block;
+    font-weight: 500;
+    height: 25px;
+    line-height: 20px;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+.comment-box .comment-container li .comment-body .comment-reply a {
+    color: #ff8a00;
+    font-size: 12px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.comment-box .comment-container li .comment-content {
+    color: #9c9c9c;
+}
+
+.comment-box .comment-container li .comment-content .quote {
+    background: #f4f4f4;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.editor-wrap {
+    padding: 15px;
+}
+
+.editor-wrap .editor-header {
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+#comment-reply-target {
+    color: #1f8902;
+}
+
+.editor-container .editor-content {
+    /*border: 1px solid #ccc;*/
+}
+
+.editor-container .editor-content textarea {
+    border-style: none;
+    display: block;
+    width: 100%;
+    padding: 6px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+}
+
+.editor-container .editor-attr {
+    padding: 0;
+    display: block;
+    /*border-top: 1px solid #ccc;*/
+}
+
+.editor-container .editor-attr .attr-func {
+    float: right;
+}
+
+.editor-container .editor-attr .attr-func .func-list {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.editor-container .editor-attr .attr-func .func-list .list-b {
+    float: left;
+    padding: 0;
+    height: auto;
+    border: none;
+}
+
+.editor-container .editor-attr .attr-func .func-list .list-b a {
+    color: #9c9c9c;
+}
+
+.editor-container .editor-attr .attr-func .func-list .list-b .join {
+    display: block;
+    padding: 0 8px;
+    font-size: 2.0em;
+    margin-top: -3px;
+}
+
+.editor-container .editor-attr .attr-func .func-list .list-b #btn-comment-send {
+    border-radius: 0 !important;
+    padding: 5px 16px;
+}
+
+.pagination .active a:hover {
+    color: #fff !important;
+}
+
+
+/*考试样式*/
+.test {
+    padding: 0px 10px 20px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.test-testspan {
+    width: 100%;
+    height: 100px;
+    line-height: 40px;
+    background-color: #F3F5F7;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style-type: none;
+    padding: 0px 10px;
+    position: relative;
+}
+
+.test-start {
+    display: inline-block;
+    border-radius: 4px;
+    text-align: center;
+    background-color: #019858;
+    color: #FFF;
+    width: 100px;
+    height: 38px;
+    font-size: 16px;
+    border: 0;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.test_font {
+    letter-spacing: 4px;
+    font-size: 18px;
+    padding: 10px;
+}

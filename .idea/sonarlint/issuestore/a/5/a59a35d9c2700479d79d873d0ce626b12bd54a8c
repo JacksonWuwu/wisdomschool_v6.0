@@ -1,0 +1,25 @@
+
+p
+java:S2293¡"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦€¢ð
+p
+java:S2293®"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦€¢ð
+p
+java:S2293»"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦€¢ð
+p
+java:S2293Ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(¦€¢ð
+d
+java:S1192£"HDefine a constant instead of duplicating this literal "Message" 4 times.(ž ‰²þÿÿÿÿ
+d
+java:S1192£"HDefine a constant instead of duplicating this literal "Success" 3 times.(ž ‰²þÿÿÿÿ
+_
+java:S1192§"IDefine a constant instead of duplicating this literal "timeDiff" 3 times.(áÇ¨U
+P	java:S125p"<This block of commented-out lines of code should be removed.(ÞÆÞ4
+W	java:S125”"<This block of commented-out lines of code should be removed.(ñ¥ùšøÿÿÿÿ
+]
+java:S1075²"ARefactor your code to get this URI from a customizable parameter.(Ù¶å„ûÿÿÿÿ
+]
+java:S1075¿"ARefactor your code to get this URI from a customizable parameter.(Ðø“éùÿÿÿÿ
+ˆ
+java:S1130Ë"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(÷¸–¥þÿÿÿÿ
+8
+java:S1116æ"Remove this empty statement.(ôŸŽìúÿÿÿÿ

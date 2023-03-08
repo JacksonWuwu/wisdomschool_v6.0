@@ -1,0 +1,97 @@
+
+E
+java:S3740i"/Provide the parametrized type for this generic.(ÜòäÒ
+o
+java:S2293P"YReplace the type specification in this constructor call with the diamond operator ("<>").(µÄ¸í
+u
+java:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(€”Õùşÿÿÿÿ
+u
+java:S2293Å"YReplace the type specification in this constructor call with the diamond operator ("<>").(ü©¹óüÿÿÿÿ
+k	java:S117J"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æ¤ûğıÿÿÿÿ
+k	java:S117}"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à”ç¡ıÿÿÿÿ
+f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿Õ¡p
+l	java:S117Ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‘Ô…ºıÿÿÿÿ
+g	java:S117Ü"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñõ¨¸
+f	java:S117İ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë»ã
+f	java:S117İ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë»ã
+w
+java:S1488è"[Immediately return this expression instead of assigning it to the temporary variable "fit".(ÏÄ¹İıÿÿÿÿ
+z
+java:S1488Í"^Immediately return this expression instead of assigning it to the temporary variable "result".(Îëßæüÿÿÿÿ
+h
+java:S1104"RMake logger a static final constant or non-public and provide accessors if needed.(í†“í
+B
+java:S1444",Make this "public static logger" field final(í†“í
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÑŸ¡ö
+m	java:S116"XRename this field "exposal_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(£èÌ
+z	java:S116""`Rename this field "diff_distribute_error" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”»ƒâøÿÿÿÿ
+A
+java:S3010["&Remove this assignment of "geneCount".(´Ä³óùÿÿÿÿ
+V	java:S125M"<This block of commented-out lines of code should be removed.(êÒ³‹úÿÿÿÿ
+V	java:S125p"<This block of commented-out lines of code should be removed.(ÛøÆıøÿÿÿÿ
+W	java:S125¦"<This block of commented-out lines of code should be removed.(èÎ”Áıÿÿÿÿ
+W	java:S125¶"<This block of commented-out lines of code should be removed.(î¬÷†ıÿÿÿÿ
+R
+java:S1854×"6Remove this useless assignment to local variable "vo".(†ê‘õøÿÿÿÿ
+T
+java:S1117Å"8Rename "list" which hides the field declared at line 54.(ü©¹óüÿÿÿÿ
+C
+java:S1481×"'Remove this unused "vo" local variable.(†ê‘õøÿÿÿÿ
+W	java:S125Ø"<This block of commented-out lines of code should be removed.(£×Îüÿÿÿÿ
+W	java:S125ê"<This block of commented-out lines of code should be removed.(ŠŞ’ˆüÿÿÿÿ
+Z
+java:S1854ü">Remove this useless assignment to local variable "bigDecimal".(šä÷òıÿÿÿÿ
+K
+java:S1481ü"/Remove this unused "bigDecimal" local variable.(šä÷òıÿÿÿÿ
+R	java:S125ı"<This block of commented-out lines of code should be removed.(Ô”çò
+Q
+java:S1117‰":Rename "length" which hides the field declared at line 46.(øÙä¨
+E
+java:S1905¦")Remove this unnecessary cast to "double".(§ìÓÖùÿÿÿÿ
+@
+java:S1905§")Remove this unnecessary cast to "double".(Ë«ª´
+@
+java:S1905¨")Remove this unnecessary cast to "double".(Õ¶Ûì
+@
+java:S1905©")Remove this unnecessary cast to "double".(©ßÏ
+E
+java:S1905­")Remove this unnecessary cast to "double".(½ºÒÈûÿÿÿÿ
+E
+java:S1905®")Remove this unnecessary cast to "double".(ºô–¡ûÿÿÿÿ
+E
+java:S1905¯")Remove this unnecessary cast to "double".(ô‘‡¢şÿÿÿÿ
+E
+java:S1905°")Remove this unnecessary cast to "double".(Æ×şÿÿÿÿ
+@
+java:S1905´")Remove this unnecessary cast to "double".(÷ñØÃ
+E
+java:S1905µ")Remove this unnecessary cast to "double".( —ˆûÿÿÿÿ
+E
+java:S1905¶")Remove this unnecessary cast to "double".(ï¿Ñ±ıÿÿÿÿ
+E
+java:S1905·")Remove this unnecessary cast to "double".(¸»—¸ûÿÿÿÿ
+@
+java:S1905»")Remove this unnecessary cast to "double".(Î§ÈÌ
+?
+java:S1905¼")Remove this unnecessary cast to "double".(¿ûÀh
+@
+java:S1905½")Remove this unnecessary cast to "double".(˜úç
+@
+java:S1905¾")Remove this unnecessary cast to "double".(Ù²ôÇ
+E
+java:S1905Â")Remove this unnecessary cast to "double".(ƒ™Á¯ùÿÿÿÿ
+E
+java:S1905Ã")Remove this unnecessary cast to "double".(è³‚øÿÿÿÿ
+E
+java:S1905Ä")Remove this unnecessary cast to "double".(ñÂ£ûÿÿÿÿ
+@
+java:S1905Å")Remove this unnecessary cast to "double".(ë®½ó
+R	java:S125Ê"<This block of commented-out lines of code should be removed.(±¯€¤
+R	java:S125Ò"<This block of commented-out lines of code should be removed.(ì±±
+d	java:S100å"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(èûø‰
+i	java:S100é"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ÿ¹¯Âÿÿÿÿÿ
+i	java:S100í"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…—ƒüÿÿÿÿ
+d	java:S100ñ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ¸Ôà
+Q	java:S125˜"<This block of commented-out lines of code should be removed.(ˆñÇV
+H
+java:S1068"-Remove this unused "geneCount" private field.(ÓÈÄ÷şÿÿÿÿ

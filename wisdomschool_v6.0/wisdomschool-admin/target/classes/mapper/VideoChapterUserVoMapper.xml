@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.VideoChapterUserVoMapper">
+
+    <resultMap type="VideoChapterUserVo" id="VideoChapterUserVoResult">
+        <association property="videoChapterUser" javaType="VideoChapterUser">
+            <result property="id" column="id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateId" column="update_id"/>
+            <result property="version" column="version"/>
+            <result property="userId" column="user_id"/>
+            <result property="videoChapterId" column="video_chapter_Id"/>
+            <result property="progress" column="progress"/>
+            <result property="lastTime" column="last_time"/>
+        </association>
+
+        <association property="videoChapter" javaType="VideoChapter">
+            <result property="id" column="vcid"/>
+            <result property="courseTeacherId" column="course_teacher_id"/>
+            <result property="chapterId" column="chapter_id"/>
+            <result property="time" column="time"/>
+            <result property="resourceChapterId" column="resource_chapter_id"/>
+        </association>
+    </resultMap>
+
+    <sql id="selectVideoChapterUserVo">
+        select
+        vcu.id,
+        vcu.create_time,
+        vcu.create_by,
+        vcu.create_id,
+        vcu.update_time,
+        vcu.update_by,
+        vcu.update_id,
+        vcu.version,
+        vcu.user_id,
+        vcu.video_chapter_Id,
+        vcu.progress,
+        vcu.last_time,
+
+        vc.id as vcid,
+        vc.course_teacher_id,
+        vc.chapter_id,
+        vc.time,
+        vc.resource_chapter_id
+        from tb_video_chapter_user vcu , tb_video_chapter vc
+    </sql>
+
+    <select id="selectList" parameterType="VideoChapterUserVo" resultMap="VideoChapterUserVoResult">
+        <include refid="selectVideoChapterUserVo"/>
+        <where>
+            and vcu.video_chapter_Id = vc.id
+            <if test="videoChapterUser != null">
+                <if test="videoChapterUser.id != null ">
+                    and vcu.id = #{videoChapterUser.id}</if>
+                <if test="videoChapterUser.createTime != null ">
+                    and vcu.create_time = #{videoChapterUser.createTime}</if>
+                <if test="videoChapterUser.createBy != null  and videoChapterUser.createBy.trim() != '' ">
+                    and vcu.create_by = #{videoChapterUser.createBy}</if>
+                <if test="videoChapterUser.createId != null ">
+                    and create_id = #{videoChapterUser.createId}</if>
+                <if test="videoChapterUser.updateTime != null ">
+                    and vcu.update_time = #{videoChapterUser.updateTime}</if>
+                <if test="videoChapterUser.updateBy != null  and videoChapterUser.updateBy.trim() != '' ">
+                    and vcu.update_by = #{videoChapterUser.updateBy}</if>
+                <if test="videoChapterUser.updateId != null ">
+                    and vcu.update_id = #{videoChapterUser.updateId}</if>
+                <if test="videoChapterUser.version != null ">
+                    and vcu.version = #{videoChapterUser.version}</if>
+                <if test="videoChapterUser.userId != null ">
+                    and vcu.user_id = #{videoChapterUser.userId}</if>
+                <if test="videoChapterUser.videoChapterId != null ">
+                    and vcu.video_chapter_Id = #{videoChapterUser.videoChapterId}</if>
+                <if test="videoChapterUser.progress != null ">
+                    and vcu.progress = #{videoChapterUser.progress}</if>
+                <if test="videoChapterUser.lastTime != null ">
+                    and vcu.last_time = #{videoChapterUser.lastTime}</if>
+            </if>
+
+
+            <if test="videoChapter != null">
+                <if test="videoChapter.id != null and videoChapter != ''">
+                    and vc.id = #{videoChapter.id}</if>
+                <if test="videoChapter.courseTeacherId != null">
+                    and vc.course_teacher_id = #{videoChapter.courseTeacherId}</if>
+                <if test="videoChapter.chapterId != null ">
+                    and vc.chapter_id = #{videoChapter.chapterId}</if>
+                <if test="videoChapter.time != null ">
+                    and vc.time = #{videoChapter.time}</if>
+                <if test="videoChapter.resourceChapterId != null ">
+                    and vc.resource_chapter_id = #{videoChapter.resourceChapterId}</if>
+            </if>
+
+        </where>
+    </select>
+
+</mapper>

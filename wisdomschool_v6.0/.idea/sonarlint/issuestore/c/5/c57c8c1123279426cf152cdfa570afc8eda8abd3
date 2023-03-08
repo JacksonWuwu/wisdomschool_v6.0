@@ -1,0 +1,19 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÑŸ¡ö
+F
+java:S1948""0Make "myOptionAstans" transient or serializable.(ûÙÓ
+A
+java:S1948$"+Make "myOptionA" transient or serializable.(Ÿªº¼
+F
+java:S1948&"0Make "myOptionBstans" transient or serializable.(ïÍë×
+F
+java:S1948("+Make "myOptionB" transient or serializable.(é—‡úÿÿÿÿ
+F
+java:S1948*"0Make "myOptionCstans" transient or serializable.(Œùé
+A
+java:S1948,"+Make "myOptionC" transient or serializable.(úŠ€Ã
+K
+java:S1948O"0Make "myOptionDstans" transient or serializable.(—§óÿÿÿÿÿ
+A
+java:S1948Q"+Make "myOptionD" transient or serializable.(àÌ°
+c	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(³ø×™ûÿÿÿÿ

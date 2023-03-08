@@ -1,0 +1,17 @@
+##### 缓存设置 缓存开关(true/false) #####
+cache:
+  switch:
+    #系统参数
+    #SysConfCache: false
+    #打印配置信息
+    #PrintConfCache: false
+    #Excel配置信息
+    #ExcelConfCache: false
+    #SQL配置信息
+    #SqlConfCache: false
+    #权限配置
+    #RightCache: false
+    #信息提示
+    #TipMsgCache: false
+    #字典项
+    DictCache: false

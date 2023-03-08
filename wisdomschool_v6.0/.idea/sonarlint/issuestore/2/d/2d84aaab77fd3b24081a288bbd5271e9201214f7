@@ -1,0 +1,153 @@
+
+a	java:S112â"FDefine and throw a dedicated exception instead of using a generic one.(´Ïêùÿÿÿÿ
+a	java:S112­"FDefine and throw a dedicated exception instead of using a generic one.(íª­€ùÿÿÿÿ
+a	java:S112Ì"FDefine and throw a dedicated exception instead of using a generic one.(—“áªûÿÿÿÿ
+[	java:S112ã"FDefine and throw a dedicated exception instead of using a generic one.(åáØ
+\	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(Á­Š¿
+t
+java:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(øÉŠÓşÿÿÿÿ
+t
+java:S2293H"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+o
+java:S2293t"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+o
+java:S2293u"YReplace the type specification in this constructor call with the diamond operator ("<>").(Î»ŞÆ
+t
+java:S2293|"YReplace the type specification in this constructor call with the diamond operator ("<>").(÷ï–üÿÿÿÿ
+u
+java:S2293š"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293Ÿ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293°"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293¹"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293º"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+u
+java:S2293ä"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÜÍŞùÿÿÿÿ
+p
+java:S2293ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(†€¬
+p
+java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293‚"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+p
+java:S2293•"YReplace the type specification in this constructor call with the diamond operator ("<>").(ê™¼ó
+p
+java:S2293ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(¤ÓÕÇ
+p
+java:S2293ø"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨Û¨
+p
+java:S2293ù"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÿµş€
+u
+java:S2293¬"YReplace the type specification in this constructor call with the diamond operator ("<>").(Í•áÿÿÿÿÿ
+p
+java:S2293”"YReplace the type specification in this constructor call with the diamond operator ("<>").(„ó—Ò
+u
+java:S2293—"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯­Âàşÿÿÿÿ
+F
+java:S1066Ô"/Merge this if statement with the enclosing one.(µ‹ùı
+Q	java:S125""<This block of commented-out lines of code should be removed.(ü™ˆ¼
+m
+java:S3776C"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¡®şêüÿÿÿÿ
+i
+java:S1854F"NRemove this useless assignment to local variable "testpaperTestquestionsList".(øÉŠÓşÿÿÿÿ
+a
+java:S1854J"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+O
+java:S1854_"9Remove this useless assignment to local variable "newId".(âøå
+R
+java:S1854Y"7Remove this useless assignment to local variable "toa".(—Ï‡Êùÿÿÿÿ
+]
+java:S1854u"GRemove this useless assignment to local variable "stuOptionanswerList".(Î»ŞÆ
+^
+java:S1854q"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+P
+java:S1854‚"9Remove this useless assignment to local variable "newId".(âøå
+@
+java:S1481_"*Remove this unused "newId" local variable.(âøå
+Y
+java:S1155c">Use isEmpty() to check whether the collection is empty or not.(œ¡¹çûÿÿÿÿ
+A
+java:S1481‚"*Remove this unused "newId" local variable.(âøå
+T
+java:S1155†">Use isEmpty() to check whether the collection is empty or not.(§áïb
+i
+java:S3776™"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(¼Ô†
+e
+java:S1854Ÿ"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+b
+java:S1854£"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854®"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854º"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+Z
+java:S1155Á">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+W	java:S125Í"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+n
+java:S3776â"RRefactor this method to reduce its Cognitive Complexity from 46 to the 15 allowed.(´Ïêùÿÿÿÿ
+i
+java:S1854ì"RRemove this useless assignment to local variable "coursepaperCoursequestionsList".(†€¬
+b
+java:S1854ï"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854ö"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854‚"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+e
+java:S1854•"NRemove this useless assignment to local variable "testpaperTestquestionsList".(ê™¼ó
+b
+java:S1854™"FRemove this useless assignment to local variable "testpaperQuestions".(ÑÜ©æıÿÿÿÿ
+_
+java:S1854í"HRemove this useless assignment to local variable "testpaperOptinanswer".(ÇõÖË
+c
+java:S1854ù"LRemove this useless assignment to local variable "stuOptionExamanswerList1".(ÿµş€
+W	java:S125æ"<This block of commented-out lines of code should be removed.(í’À´øÿÿÿÿ
+Z
+java:S1155‰">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+R	java:S125Ÿ"<This block of commented-out lines of code should be removed.(šĞİ»
+Z
+java:S1155€">Use isEmpty() to check whether the collection is empty or not.(ğéÜ•üÿÿÿÿ
+U
+java:S1854">Remove this useless assignment to local variable "tpquestion".(Ú˜§˜
+Y
+java:S1854¬"=Remove this useless assignment to local variable "stuoaList".(Í•áÿÿÿÿÿ
+N
+java:S1854Õ"8Remove this useless assignment to local variable "istf".(ÒğÈS
+E
+java:S1481Ÿ")Remove this unused "istf" local variable.(•×æÌıÿÿÿÿ
+W	java:S125£"<This block of commented-out lines of code should be removed.(…“şĞÿÿÿÿÿ
+Z
+java:S1155²">Use isEmpty() to check whether the collection is empty or not.(îæŒúÿÿÿÿ
+R	java:S125Ú"<This block of commented-out lines of code should be removed.(¡Õ±š
+Y
+java:S1854˜"=Remove this useless assignment to local variable "userExam1".(óÅ¢¨şÿÿÿÿ
+J
+java:S1481˜".Remove this unused "userExam1" local variable.(óÅ¢¨şÿÿÿÿ
+R	java:S125™"<This block of commented-out lines of code should be removed.(Ößˆ¬
+ˆ
+java:S1130­"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(íª­€ùÿÿÿÿ
+ˆ
+java:S1130Ì"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(—“áªûÿÿÿÿ
+‚
+java:S1130ã"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(åáØ
+Z
+java:S1155ê">Use isEmpty() to check whether the collection is empty or not.(ü«å£úÿÿÿÿ
+ƒ
+java:S1130„"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Á­Š¿
+d
+java:S1854—"HRemove this useless assignment to local variable "stuQuestionScoreList".(¯­Âàşÿÿÿÿ
+W
+java:S1854”"@Remove this useless assignment to local variable "userTestList".(„ó—Ò
+U
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(ö‹æ
+U
+java:S1155´">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+X
+java:S1128"=Remove this unused import 'cn.wstom.exam.feign.AdminService'.(Û–ŸÉúÿÿÿÿ
+E
+java:S1068 "*Remove this unused "prefix" private field.(·µÁŞûÿÿÿÿ

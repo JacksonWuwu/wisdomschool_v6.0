@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.exam.mapper.TestpaperQuestionsMapper">
+
+    <resultMap type="TestpaperQuestions" id="TestpaperQuestionsResult">
+        <result property="id" column="id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateId" column="update_id"/>
+        <result property="version" column="version"/>
+        <result property="schoolNo" column="school_no"/>
+        <result property="difficulty" column="difficulty"/>
+        <result property="parsing" column="parsing"/>
+        <result property="qexposed" column="qexposed"/>
+        <result property="qmaxexposure" column="qmaxexposure"/>
+        <result property="ststatus" column="ststatus"/>
+        <result property="title" column="title"/>
+        <result property="year" column="year"/>
+        <result property="chapterId" column="chapter_id"/>
+        <result property="titleTypeId" column="title_type_id"/>
+        <result property="xzsubjectsId" column="xzsubjects_id"/>
+        <result property="testPaperOptionAnswerArr" column="test_paper_option_answer_arr"/>
+        <result property="questionScore" column="question_score"/>
+        <result property="tQuestiontemplateNum" column="tQuestiontemplateNum"/>
+        <result property="tQuestiontpubilcTitleId" column="tQuestiontpubilcTitleId"/>
+        <result property="titleTypeName" column="titleTypeName"/>
+        <result property="titleTypeNum" column="titleTypeNum"/>
+        <result property="personalQuestionId" column="personal_question_id"/>
+    </resultMap>
+
+    <sql id="selectTestpaperQuestionsVo">
+        select id,
+               create_time,
+               create_by,
+               create_id,
+               update_time,
+               update_by,
+               update_id,
+               version,
+               school_no,
+               difficulty,
+               parsing,
+               qexposed,
+               qmaxexposure,
+               ststatus,
+               title,
+               year,
+               chapter_id,
+               title_type_id,
+               xzsubjects_id,
+               test_paper_option_answer_arr,
+               question_score,
+               personal_question_id
+        from tk_testpaper_questions
+    </sql>
+
+    <select id="selectListBase" parameterType="TestpaperQuestions" resultMap="TestpaperQuestionsResult">
+        <include refid="selectTestpaperQuestionsVo"/>
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and school_no = #{schoolNo}
+            </if>
+            <if test="difficulty != null  and difficulty.trim() != '' ">
+                and difficulty = #{difficulty}
+            </if>
+            <if test="parsing != null  and parsing.trim() != '' ">
+                and parsing = #{parsing}
+            </if>
+            <if test="qexposed != null  and qexposed.trim() != '' ">
+                and qexposed = #{qexposed}
+            </if>
+            <if test="qmaxexposure != null  and qmaxexposure.trim() != '' ">
+                and qmaxexposure = #{qmaxexposure}
+            </if>
+            <if test="ststatus != null ">
+                and ststatus = #{ststatus}
+            </if>
+            <if test="title != null  and title.trim() != '' ">
+                and title = #{title}
+            </if>
+            <if test="year != null ">
+                and year = #{year}
+            </if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">
+                and chapter_id = #{chapterId}
+            </if>
+            <if test="titleTypeId != null  and titleTypeId.trim() != '' ">
+                and title_type_id = #{titleTypeId}
+            </if>
+            <if test="xzsubjectsId != null  and xzsubjectsId.trim() != '' ">
+                and xzsubjects_id = #{xzsubjectsId}
+            </if>
+            <if test="testPaperOptionAnswerArr != null  and testPaperOptionAnswerArr.trim() != '' ">
+                and test_paper_option_answer_arr = #{testPaperOptionAnswerArr}
+            </if>
+            <if test="questionScore != null ">
+                and question_score = #{questionScore}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByPersonalQuestionId" parameterType="Integer" resultMap="TestpaperQuestionsResult">
+        <include refid="selectTestpaperQuestionsVo"/>
+        where personal_question_id = #{id}
+    </select>
+
+    <select id="selectList" parameterType="TestpaperQuestions" resultMap="TestpaperQuestionsResult">
+        select ttq.id,
+        ttq.create_time,
+        ttq.create_by,
+        ttq.create_id,
+        ttq.update_time,
+        ttq.update_by,
+        ttq.update_id,
+        ttq.version,
+        ttq.school_no,
+        ttq.difficulty,
+        ttq.parsing,
+        ttq.qexposed,
+        ttq.qmaxexposure,
+        ttq.ststatus,
+        ttq.title,
+        ttq.year,
+        ttq.chapter_id,
+        ttq.title_type_id,
+        ttq.xzsubjects_id,
+        ttq.test_paper_option_answer_arr,
+        ttq.question_score,
+        ttt.titleTypeNum as titleTypeNum,
+        tmt.public_title_id as tQuestiontpubilcTitleId,ttt.templateNum as tQuestiontemplateNum,tmt.title_type_name as titleTypeName
+        from tk_testpaper_questions ttq, tk_title_type ttt,tk_my_title_type tmt
+        where ttq.title_type_id = tmt.id and tmt.public_title_id = ttt.id
+        <where>
+            <if test="id != null  and id.trim() != '' ">
+                and id = #{id}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createId != null  and createId.trim() != '' ">
+                and create_id = #{createId}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateId != null  and updateId.trim() != '' ">
+                and update_id = #{updateId}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="schoolNo != null  and schoolNo.trim() != '' ">
+                and school_no = #{schoolNo}
+            </if>
+            <if test="difficulty != null  and difficulty.trim() != '' ">
+                and difficulty = #{difficulty}
+            </if>
+            <if test="parsing != null  and parsing.trim() != '' ">
+                and parsing = #{parsing}
+            </if>
+            <if test="qexposed != null  and qexposed.trim() != '' ">
+                and qexposed = #{qexposed}
+            </if>
+            <if test="qmaxexposure != null  and qmaxexposure.trim() != '' ">
+                and qmaxexposure = #{qmaxexposure}
+            </if>
+            <if test="ststatus != null ">
+                and ststatus = #{ststatus}
+            </if>
+            <if test="title != null  and title.trim() != '' ">
+                and title = #{title}
+            </if>
+            <if test="year != null ">
+                and year = #{year}
+            </if>
+            <if test="chapterId != null  and chapterId.trim() != '' ">
+                and chapter_id = #{chapterId}
+            </if>
+            <if test="titleTypeId != null  and titleTypeId.trim() != '' ">
+                and title_type_id = #{titleTypeId}
+            </if>
+            <if test="xzsubjectsId != null  and xzsubjectsId.trim() != '' ">
+                and xzsubjects_id = #{xzsubjectsId}
+            </if>
+            <if test="testPaperOptionAnswerArr != null  and testPaperOptionAnswerArr.trim() != '' ">
+                and test_paper_option_answer_arr = #{testPaperOptionAnswerArr}
+            </if>
+            <if test="questionScore != null ">
+                and question_score = #{questionScore}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="TestpaperQuestionsResult">
+               select ttq.id,
+        ttq.create_time,
+        ttq.create_by,
+        ttq.create_id,
+        ttq.update_time,
+        ttq.update_by,
+        ttq.update_id,
+        ttq.version,
+        ttq.school_no,
+        ttq.difficulty,
+        ttq.parsing,
+        ttq.qexposed,
+        ttq.qmaxexposure,
+        ttq.ststatus,
+        ttq.title,
+        ttq.year,
+        ttq.chapter_id,
+        ttq.title_type_id,
+        ttq.xzsubjects_id,
+        ttq.test_paper_option_answer_arr,
+        ttq.question_score,
+        ttt.titleTypeNum as titleTypeNum,
+        tmt.public_title_id as tQuestiontpubilcTitleId,ttt.templateNum as tQuestiontemplateNum,tmt.title_type_name as titleTypeName
+        from tk_testpaper_questions ttq, tk_title_type ttt,tk_my_title_type tmt
+        where ttq.title_type_id = tmt.id and tmt.public_title_id = ttt.id
+        and ttq.id = #{id}
+    </select>
+
+    <insert id="insert"
+            parameterType="TestpaperQuestions">
+        insert into tk_testpaper_questions
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">id
+                ,
+            </if>
+            create_time,
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="createId != null  and createId != ''  ">create_id
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateId != null  and updateId != ''  ">update_id
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">school_no
+                ,
+            </if>
+            <if test="difficulty != null  and difficulty != ''  ">difficulty
+                ,
+            </if>
+            <if test="parsing != null  and parsing != ''  ">parsing
+                ,
+            </if>
+            <if test="qexposed != null  and qexposed != ''  ">qexposed
+                ,
+            </if>
+            <if test="qmaxexposure != null  and qmaxexposure != ''  ">qmaxexposure
+                ,
+            </if>
+            <if test="ststatus != null  ">ststatus
+                ,
+            </if>
+            <if test="title != null  and title != ''  ">title
+                ,
+            </if>
+            <if test="year != null  ">year
+                ,
+            </if>
+            <if test="chapterId != null  and chapterId != ''  ">chapter_id
+                ,
+            </if>
+            <if test="titleTypeId != null  and titleTypeId != ''  ">title_type_id
+                ,
+            </if>
+            <if test="xzsubjectsId != null  and xzsubjectsId != ''  ">xzsubjects_id
+                ,
+            </if>
+            <if test="testPaperOptionAnswerArr != null  and testPaperOptionAnswerArr != ''  ">
+                test_paper_option_answer_arr
+                ,
+            </if>
+            <if test="questionScore != null  ">question_score
+                ,
+            </if>
+            <if test="personalQuestionId != null and personalQuestionId != ''">personal_question_id
+                ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  and id != ''  ">#{id}
+                ,
+            </if>
+            sysdate(),
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createId != null  and createId != ''  ">#{createId}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateId != null  and updateId != ''  ">#{updateId}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">#{schoolNo}
+                ,
+            </if>
+            <if test="difficulty != null  and difficulty != ''  ">#{difficulty}
+                ,
+            </if>
+            <if test="parsing != null  and parsing != ''  ">#{parsing}
+                ,
+            </if>
+            <if test="qexposed != null  and qexposed != ''  ">#{qexposed}
+                ,
+            </if>
+            <if test="qmaxexposure != null  and qmaxexposure != ''  ">#{qmaxexposure}
+                ,
+            </if>
+            <if test="ststatus != null  ">#{ststatus}
+                ,
+            </if>
+            <if test="title != null  and title != ''  ">#{title}
+                ,
+            </if>
+            <if test="year != null  ">#{year}
+                ,
+            </if>
+            <if test="chapterId != null  and chapterId != ''  ">#{chapterId}
+                ,
+            </if>
+            <if test="titleTypeId != null  and titleTypeId != ''  ">#{titleTypeId}
+                ,
+            </if>
+            <if test="xzsubjectsId != null  and xzsubjectsId != ''  ">#{xzsubjectsId}
+                ,
+            </if>
+            <if test="testPaperOptionAnswerArr != null  and testPaperOptionAnswerArr != ''  ">
+                #{testPaperOptionAnswerArr}
+                ,
+            </if>
+            <if test="questionScore != null  ">#{questionScore}
+                ,
+            </if>
+            <if test="personalQuestionId != null and personalQuestionId != ''">#{personalQuestionId}
+                ,
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="TestpaperQuestions">
+        update tk_testpaper_questions
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="createId != null  and createId != ''  ">create_id
+                = #{createId},
+            </if>
+            update_time= sysdate(),
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="updateId != null  and updateId != ''  ">update_id
+                = #{updateId},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="schoolNo != null  and schoolNo != ''  ">school_no
+                = #{schoolNo},
+            </if>
+            <if test="difficulty != null  and difficulty != ''  ">difficulty
+                = #{difficulty},
+            </if>
+            <if test="parsing != null  and parsing != ''  ">parsing
+                = #{parsing},
+            </if>
+            <if test="qexposed != null  and qexposed != ''  ">qexposed
+                = #{qexposed},
+            </if>
+            <if test="qmaxexposure != null  and qmaxexposure != ''  ">qmaxexposure
+                = #{qmaxexposure},
+            </if>
+            <if test="ststatus != null  ">ststatus
+                = #{ststatus},
+            </if>
+            <if test="title != null  and title != ''  ">title
+                = #{title},
+            </if>
+            <if test="year != null  ">year
+                = #{year},
+            </if>
+            <if test="chapterId != null  and chapterId != ''  ">chapter_id
+                = #{chapterId},
+            </if>
+            <if test="titleTypeId != null  and titleTypeId != ''  ">title_type_id
+                = #{titleTypeId},
+            </if>
+            <if test="xzsubjectsId != null  and xzsubjectsId != ''  ">xzsubjects_id
+                = #{xzsubjectsId},
+            </if>
+            <if test="testPaperOptionAnswerArr != null  and testPaperOptionAnswerArr != ''  ">
+                test_paper_option_answer_arr
+                = #{testPaperOptionAnswerArr},
+            </if>
+            <if test="questionScore != null  ">question_score
+                = #{questionScore},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tk_testpaper_questions
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tk_testpaper_questions where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

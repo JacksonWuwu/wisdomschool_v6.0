@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-admin/wisdomschool-admin.iml" filepath="$PROJECT_DIR$/wisdomschool-admin/wisdomschool-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-common/wisdomschool-common.iml" filepath="$PROJECT_DIR$/wisdomschool-common/wisdomschool-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-exam/wisdomschool-exam.iml" filepath="$PROJECT_DIR$/wisdomschool-exam/wisdomschool-exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-face/wisdomschool-face.iml" filepath="$PROJECT_DIR$/wisdomschool-face/wisdomschool-face.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-gateway/wisdomschool-gateway.iml" filepath="$PROJECT_DIR$/wisdomschool-gateway/wisdomschool-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-monitor/wisdomschool-monitor.iml" filepath="$PROJECT_DIR$/wisdomschool-monitor/wisdomschool-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-storage/wisdomschool-storage.iml" filepath="$PROJECT_DIR$/wisdomschool-storage/wisdomschool-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wisdomschool-student/wisdomschool-student.iml" filepath="$PROJECT_DIR$/wisdomschool-student/wisdomschool-student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wisdomschool_v6.0.iml" filepath="$PROJECT_DIR$/.idea/wisdomschool_v6.0.iml" />
+    </modules>
+  </component>
+</project>

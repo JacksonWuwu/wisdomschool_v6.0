@@ -1,0 +1,11 @@
+
+M
+java:S1854""7Remove this useless assignment to local variable "map".(ƒ¢Œó
+>
+java:S1481""(Remove this unused "map" local variable.(ƒ¢Œó
+^
+java:S53616"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ù™áÅ
+N
+java:S2130H"8Use "Long.parseLong" for this string-to-long conversion.(€Çş
+7
+java:S1116P"Remove this empty statement.(ôŸìúÿÿÿÿ

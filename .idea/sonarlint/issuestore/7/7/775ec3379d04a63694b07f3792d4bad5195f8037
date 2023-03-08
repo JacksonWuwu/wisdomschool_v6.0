@@ -1,0 +1,41 @@
+
+p
+java:S2293ª"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯ù½‘
+p
+java:S2293°"YReplace the type specification in this constructor call with the diamond operator ("<>").(„ó—Ò
+p
+java:S2293Ú"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯ù½‘
+p
+java:S2293ä"YReplace the type specification in this constructor call with the diamond operator ("<>").(„ó—Ò
+p
+java:S2293„"YReplace the type specification in this constructor call with the diamond operator ("<>").(¯ù½‘
+p
+java:S2293Š"YReplace the type specification in this constructor call with the diamond operator ("<>").(„ó—Ò
+u
+java:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(çâîÀıÿÿÿÿ
+g	java:S117‡"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çß™ˆ
+m
+java:S4144i"WUpdate this method so that its implementation is not identical to "getlist" on line 94.(ã«ñË
+j
+java:S3252@"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(î´ñüÿÿÿÿ
+W
+java:S1854°"@Remove this useless assignment to local variable "userTestList".(„ó—Ò
+U
+java:S1155²">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+W
+java:S1854ä"@Remove this useless assignment to local variable "userTestList".(„ó—Ò
+U
+java:S1155æ">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+W
+java:S1854Š"@Remove this useless assignment to local variable "userTestList".(„ó—Ò
+U
+java:S1155Œ">Use isEmpty() to check whether the collection is empty or not.(º‡ÌÉ
+u
+java:S3012­"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(ü­îÂıÿÿÿÿ
+\
+java:S1854"@Remove this useless assignment to local variable "userTestList".(ÀòÂ‚øÿÿÿÿ
+H
+java:S1481Œ"1Remove this unused "userTestList" local variable.(»ô™¹
+X
+java:S1128
+"=Remove this unused import 'cn.wstom.exam.feign.AdminService'.(Û–ŸÉúÿÿÿÿ

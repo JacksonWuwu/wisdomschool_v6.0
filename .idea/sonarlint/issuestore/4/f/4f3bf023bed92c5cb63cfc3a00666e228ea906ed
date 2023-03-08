@@ -1,0 +1,9 @@
+
+g	java:S117ï"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òƒÞé
+k	java:S116·"URename this field "user_state" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŽÀñ±
+n
+java:S4144õ"WUpdate this method so that its implementation is not identical to "getTid" on line 469.(íþ²ì
+m
+java:S4144ù"WUpdate this method so that its implementation is not identical to "setTid" on line 473.(øÁýV
+d	java:S100ë"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®è·¼
+d	java:S100ï"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òƒÞé

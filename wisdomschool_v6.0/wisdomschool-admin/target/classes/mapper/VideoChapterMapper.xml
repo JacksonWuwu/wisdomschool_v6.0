@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.VideoChapterMapper">
+
+    <resultMap type="VideoChapter" id="VideoChapterResult">
+            <result property="id" column="id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="createBy" column="create_by"/>
+            <result property="createId" column="create_id"/>
+            <result property="updateTime" column="update_time"/>
+            <result property="updateBy" column="update_by"/>
+            <result property="updateId" column="update_id"/>
+            <result property="version" column="version"/>
+            <result property="courseTeacherId" column="course_teacher_id"/>
+            <result property="chapterId" column="chapter_id"/>
+            <result property="time" column="time"/>
+            <result property="state" column="state"/>
+            <result property="resourceChapterId" column="resource_chapter_id"/>
+    </resultMap>
+
+    <sql id="selectVideoChapterVo">
+        select  id, create_time, create_by, create_id, update_time, update_by, update_id, version, course_teacher_id, chapter_id, time, resource_chapter_id,state
+        from tb_video_chapter
+    </sql>
+
+    <select id="selectList" parameterType="VideoChapter" resultMap="VideoChapterResult">
+        <include refid="selectVideoChapterVo"/>
+        <where>
+                <if test="id != null ">
+                    and id = #{id}</if>
+                <if test="createTime != null ">
+                    and create_time = #{createTime}</if>
+                <if test="createBy != null  and createBy.trim() != '' ">
+                    and create_by = #{createBy}</if>
+                <if test="createId != null ">
+                    and create_id = #{createId}</if>
+                <if test="updateTime != null ">
+                    and update_time = #{updateTime}</if>
+                <if test="updateBy != null  and updateBy.trim() != '' ">
+                    and update_by = #{updateBy}</if>
+                <if test="updateId != null ">
+                    and update_id = #{updateId}</if>
+                <if test="version != null ">
+                    and version = #{version}</if>
+                <if test="courseTeacherId != null ">
+                    and course_teacher_id = #{courseTeacherId}</if>
+                <if test="chapterId != null ">
+                    and chapter_id = #{chapterId}</if>
+                <if test="time != null ">
+                    and time = #{time}</if>
+                <if test="resourceChapterId != null ">
+                    and resource_chapter_id = #{resourceChapterId}</if>
+            <if test="state != null ">
+                and state = #{state}</if>
+        </where>
+    </select>
+
+    <select id="selectById" parameterType="Integer" resultMap="VideoChapterResult">
+        <include refid="selectVideoChapterVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectByRcId" parameterType="Integer" resultMap="VideoChapterResult">
+        <include refid="selectVideoChapterVo"/>
+        where resource_chapter_id = #{id}
+    </select>
+
+    <select id="selecttobeState" parameterType="String" resultType="Integer">
+        SELECT state
+        from tb_video_chapter
+        where course_teacher_id = #{tcid}
+    </select>
+
+    <insert id="insert"
+            parameterType="VideoChapter" useGeneratedKeys="true" keyProperty="id">
+        <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+        insert into tb_video_chapter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">id
+                        ,
+                    </if>
+                    <if test="createTime != null  ">sysdate()
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        ,
+                    </if>
+                    <if test="createId != null  ">create_id
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        ,
+                    </if>
+                    <if test="updateId != null  ">update_id
+                        ,
+                    </if>
+                    <if test="version != null  ">version
+                        ,
+                    </if>
+                    <if test="courseTeacherId != null  ">course_teacher_id
+                        ,
+                    </if>
+                    <if test="chapterId != null  ">chapter_id
+                        ,
+                    </if>
+                    <if test="time != null  ">time
+                        ,
+                    </if>
+                    <if test="resourceChapterId != null  ">resource_chapter_id
+                        ,
+                    </if>
+                    <if test="state != null  ">state
+                        ,
+                    </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                    <if test="id != null  ">#{id}
+                        ,
+                    </if>
+                    <if test="createTime != null  ">sysdate()
+                        ,
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">#{createBy}
+                        ,
+                    </if>
+                    <if test="createId != null  ">#{createId}
+                        ,
+                    </if>
+                    <if test="updateTime != null  ">#{updateTime}
+                        ,
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                        ,
+                    </if>
+                    <if test="updateId != null  ">#{updateId}
+                        ,
+                    </if>
+                    <if test="version != null  ">#{version}
+                        ,
+                    </if>
+                    <if test="courseTeacherId != null  ">#{courseTeacherId}
+                        ,
+                    </if>
+                    <if test="chapterId != null  ">#{chapterId}
+                        ,
+                    </if>
+                    <if test="time != null  ">#{time}
+                        ,
+                    </if>
+                    <if test="resourceChapterId != null  ">#{resourceChapterId}
+                        ,
+                    </if>
+                    <if test="state != null  ">#{state}
+                        ,
+                    </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="VideoChapter">
+        update tb_video_chapter
+        <trim prefix="SET" suffixOverrides=",">
+                    <if test="createTime != null  ">create_time
+                        = #{createTime},
+                    </if>
+                    <if test="createBy != null  and createBy != ''  ">create_by
+                        = #{createBy},
+                    </if>
+                    <if test="createId != null  ">create_id
+                        = #{createId},
+                    </if>
+                    <if test="updateTime != null  ">update_time
+                        = #{updateTime},
+                    </if>
+                    <if test="updateBy != null  and updateBy != ''  ">update_by
+                        = #{updateBy},
+                    </if>
+                    <if test="updateId != null  ">update_id
+                        = #{updateId},
+                    </if>
+                    <if test="version != null  ">version
+                        = #{version},
+                    </if>
+                    <if test="courseTeacherId != null  ">course_teacher_id
+                        = #{courseTeacherId},
+                    </if>
+                    <if test="chapterId != null  ">chapter_id
+                        = #{chapterId},
+                    </if>
+                    <if test="time != null  ">time
+                        = #{time},
+                    </if>
+                    <if test="state != null  ">state
+                        = #{state}
+                    </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+
+    <update id="updatebytcid" parameterType="VideoChapter">
+        update tb_video_chapter
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="createTime != null  ">create_time
+                = #{createTime},
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                = #{createBy},
+            </if>
+            <if test="createId != null  ">create_id
+                = #{createId},
+            </if>
+            <if test="updateTime != null  ">update_time
+                = #{updateTime},
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="updateId != null  ">update_id
+                = #{updateId},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="chapterId != null  ">chapter_id
+                = #{chapterId},
+            </if>
+            <if test="time != null  ">time
+                = #{time},
+            </if>
+            <if test="state != null  ">state
+                = #{state}
+            </if>
+        </trim>
+        where course_teacher_id = #{courseTeacherId}
+    </update>
+
+
+
+    <delete id="deleteById" parameterType="String">
+        delete from tb_video_chapter where id = #{id}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_video_chapter where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

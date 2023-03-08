@@ -1,0 +1,31 @@
+
+[	java:S112{"FDefine and throw a dedicated exception instead of using a generic one.(ŒàË•
+•
+java:S1319¦"yThe return type of this method should be an interface such as "Set" rather than the implementation "CopyOnWriteArraySet".(ûüÏÖıÿÿÿÿ
+‘
+java:S1319ª"uThe type of "webSocketSet" should be an interface such as "Set" rather than the implementation "CopyOnWriteArraySet".(ŸÜĞøÿÿÿÿ
+
+java:S1186‚"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(™«·½ÿÿÿÿÿ
+Q
+java:S2696/"6Make the enclosing method "static" or remove this set.(ğ¡Êûÿÿÿÿ
+O
+java:S1854V":Remove this useless assignment to local variable "strArr".(–¡çS
+1
+java:S3626d"Remove this redundant jump.(ÉŠ©ƒ
+‰
+java:S1130S"nRemove the declaration of thrown exception 'java.io.IOException' which is a subclass of 'java.lang.Exception'.(ª‘ª‹ûÿÿÿÿ
+–
+java:S1130S"{Remove the declaration of thrown exception 'java.lang.IllegalAccessException' which is a subclass of 'java.lang.Exception'.(ª‘ª‹ûÿÿÿÿ
+@
+java:S1481V"+Remove this unused "strArr" local variable.(–¡çS
+P	java:S125W"<This block of commented-out lines of code should be removed.(ƒÛÄ,
+Z
+java:S1854|"?Remove this useless assignment to local variable "studentName".(Ï¥ŠŒûÿÿÿÿ
+„
+java:S1130{"nRemove the declaration of thrown exception 'java.io.IOException' which is a subclass of 'java.lang.Exception'.(ŒàË•
+‘
+java:S1130{"{Remove the declaration of thrown exception 'java.lang.IllegalAccessException' which is a subclass of 'java.lang.Exception'.(ŒàË•
+K
+java:S1481|"0Remove this unused "studentName" local variable.(Ï¥ŠŒûÿÿÿÿ
+e
+java:S2886¢"ISynchronize this method to match the synchronization on "getOnlineCount".(õÊ»‚ùÿÿÿÿ

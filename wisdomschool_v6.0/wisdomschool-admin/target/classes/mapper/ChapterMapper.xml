@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.ChapterMapper">
+
+    <resultMap type="Chapter" id="ChapterResult">
+        <result property="id" column="id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="version" column="version"/>
+        <result property="title" column="title"/>
+        <result property="name" column="name"/>
+        <result property="pid" column="pid"/>
+        <result property="cid" column="cid"/>
+    </resultMap>
+
+    <sql id="selectChapterVo">
+        select id,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark,
+               version,
+               title,
+               name,
+               pid,
+               cid
+        from tb_chapter
+    </sql>
+
+
+    <resultMap type="Comment" id="ChapterCommenResult">
+        <result property="id" column="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="remark" property="remark"/>
+        <result column="version" property="version"/>
+        <result column="type_id" property="typeId"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="user_id" property="userId"/>
+        <result column="content" property="content"/>
+        <result column="status" property="status"/>
+        <result column="count_dig" property="countDig"/>
+        <result column="count_bury" property="countBury"/>
+        <result column="reply_id" property="replyId"/>
+    </resultMap>
+
+    <sql id="all_colum">
+        ccom
+        .
+        id,
+        ccom
+        .
+        create_by,
+        ccom
+        .
+        create_time,
+        ccom
+        .
+        update_by,
+        ccom
+        .
+        update_time,
+        ccom
+        .
+        remark,
+        ccom
+        .
+        version,
+        ccom
+        .
+        uid,
+        ccom
+        .
+        content,
+        ccom
+        .
+        pid,
+        ccom
+        .
+        tc_id,
+        ccom
+        .
+        cid,
+        ccom
+        .
+        count_comment,
+        ccom
+        .
+        user_type
+    </sql>
+
+    <select id="selectList" parameterType="Chapter" resultMap="ChapterResult">
+        <include refid="selectChapterVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="title != null  and title.trim() != '' ">
+                and title = #{title}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and name = #{name}
+            </if>
+            <if test="pid != null ">
+                and pid = #{pid}
+            </if>
+            <if test="cid != null ">
+                and cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListByPreviewid" parameterType="Chapter" resultMap="ChapterResult">
+        select c.id,
+        c.create_by,
+        c.create_time,
+        c.update_by,
+        c.update_time,
+        c.remark,
+        c.version,
+        c.title,
+        c.name,
+        c.pid,
+        c.cid
+        from tb_chapter c,wy_preview_chapter w
+        <where>
+            <if test="id != null ">
+                and c.id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and c.create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and c.create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and c.update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and c.update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and c.remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and c.version = #{version}
+            </if>
+            <if test="title != null  and title.trim() != '' ">
+                and c.title = #{title}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and c.name = #{name}
+            </if>
+            <if test="pid != null ">
+                and c.pid = #{pid}
+            </if>
+            <if test="cid != null ">
+                and c.cid = #{cid}
+            </if>
+            <if test="previewid != null ">
+                and w.pid = #{previewid}
+            </if>
+            and w.chapter_id=c.id
+        </where>
+    </select>
+
+    <select id="selectOne" parameterType="Chapter" resultMap="ChapterResult">
+        <include refid="selectChapterVo"/>
+        <where>
+            <if test="id != null ">
+                and id = #{id}
+            </if>
+            <if test="createBy != null  and createBy.trim() != '' ">
+                and create_by = #{createBy}
+            </if>
+            <if test="createTime != null ">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateBy != null  and updateBy.trim() != '' ">
+                and update_by = #{updateBy}
+            </if>
+            <if test="updateTime != null ">
+                and update_time = #{updateTime}
+            </if>
+            <if test="remark != null  and remark.trim() != '' ">
+                and remark = #{remark}
+            </if>
+            <if test="version != null ">
+                and version = #{version}
+            </if>
+            <if test="title != null  and title.trim() != '' ">
+                and title = #{title}
+            </if>
+            <if test="name != null  and name.trim() != '' ">
+                and name = #{name}
+            </if>
+            <if test="pid != null ">
+                and pid = #{pid}
+            </if>
+            <if test="cid != null ">
+                and cid = #{cid}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <select id="selectById" parameterType="String" resultMap="ChapterResult">
+        <include refid="selectChapterVo"/>
+        where id = #{id}
+    </select>
+    <select id="getCourseCommentList" resultMap="ChapterCommenResult">
+        SELECT
+        <include refid="all_colum"/>
+        FROM tb_teacher_course tc, tb_clbum_course cc, tb_student s, tb_course_comment ccom
+        <where>
+            s.id = #{userId} and tc.cid = #{courseId} and cc.tcid = tc.id
+            and cc.cid = s.cid and ccom.tc_id = cc.tcid
+            <if test="chapterId != null and chapterId != ''">and ccom.cid = #{chapterId}
+            </if>
+            <if test="userType != null and userType != ''">and ccom.user_type = #{userType}
+            </if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime}
+                '%Y-%m-%d %H')
+            </if>
+        </where>
+        order by ccom.create_time desc
+        limit #{offset},#{rows}
+    </select>
+
+    <select id="getCourseCommentCount" resultType="java.lang.Integer">
+        SELECT count(0)
+        FROM tb_teacher_course tc, tb_clbum_course cc, tb_student s, tb_course_comment ccom
+        <where>
+            s.id = #{userId} and tc.cid = #{courseId} and cc.tcid = tc.id
+            and cc.cid = s.cid and ccom.tc_id = cc.tcid
+            <if test="chapterId != null and chapterId != ''">and ccom.cid = #{chapterId}
+            </if>
+            <if test="createTime != null and createTime != ''">and create_time BETWEEN STR_TO_DATE(#{createTime}
+                '%Y-%m-%d %H')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert"
+            parameterType="Chapter">
+        insert into tb_chapter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">id
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">create_by
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                ,
+            </if>
+            <if test="updateTime != null  ">update_time
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                ,
+            </if>
+            <if test="version != null  ">version
+                ,
+            </if>
+            <if test="title != null  and title != ''  ">title
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">name
+                ,
+            </if>
+            <if test="pid != null  ">pid
+                ,
+            </if>
+            <if test="cid != null  ">cid
+                ,
+            </if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null  ">#{id}
+                ,
+            </if>
+            <if test="createBy != null  and createBy != ''  ">#{createBy}
+                ,
+            </if>
+            <if test="createTime != null  ">#{createTime}
+                ,
+            </if>
+            <if test="updateBy != null  and updateBy != ''  ">#{updateBy}
+                ,
+            </if>
+            <if test="updateTime != null  ">#{updateTime}
+                ,
+            </if>
+            <if test="remark != null  and remark != ''  ">#{remark}
+                ,
+            </if>
+            <if test="version != null  ">#{version}
+                ,
+            </if>
+            <if test="title != null  and title != ''  ">#{title}
+                ,
+            </if>
+            <if test="name != null  and name != ''  ">#{name}
+                ,
+            </if>
+            <if test="pid != null  ">#{pid}
+                ,
+            </if>
+            <if test="cid != null  ">#{cid}
+                ,
+            </if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Chapter">
+        update tb_chapter
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="updateBy != null  and updateBy != ''  ">update_by
+                = #{updateBy},
+            </if>
+            <if test="remark != null  and remark != ''  ">remark
+                = #{remark},
+            </if>
+            <if test="version != null  ">version
+                = #{version},
+            </if>
+            <if test="title != null  and title != ''  ">title
+                = #{title},
+            </if>
+            <if test="name != null  and name != ''  ">name
+                = #{name},
+            </if>
+            <if test="pid != null  ">pid
+                = #{pid},
+            </if>
+            <if test="cid != null  ">cid
+                = #{cid},
+            </if>
+            update_time = sysdate()
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        delete
+        from tb_chapter
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteByCid" parameterType="String">
+        delete
+        from tb_chapter
+        where cid = #{cid}
+    </delete>
+
+    <delete id="deleteBatchIds" parameterType="String">
+        delete from tb_chapter where id in
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

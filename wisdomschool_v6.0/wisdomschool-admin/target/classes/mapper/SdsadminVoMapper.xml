@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wstom.admin.mapper.SdsadminVoMapper">
+
+    <resultMap type="SdsadminVo" id="SdsadminVoResult">
+        <id column="id" property="id"/>
+        <result column="login_name" property="loginName"/>
+        <result column="user_name" property="userName"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="grades" property="grades"/>
+        <result column="rid" property="rid"/>
+        <result column="sid" property="sid"/>
+        <result column="department" property="department"/>
+    </resultMap>
+
+    <select id="selectBySdsadminVo" parameterType="SdsadminVo" resultMap="SdsadminVoResult">
+        select
+        user.login_name,
+        user.id,
+        user.create_by,
+        user.create_time,
+        user.update_by,
+        user.update_time,
+        user.sex,
+        user.status,
+        user.school_id,
+        sdsr.sid,
+        sdsr.grades,
+        sdsr.department,
+        user.user_name AS user_name
+        from sys_user user, wy_sdsadmin_role sdsr
+        <where>
+            user.user_attr_id = sdsr.rid
+            and user.user_type = "3"
+            <if test="loginName != null">
+                and login_name like concat('%', #{loginName},'%')
+            </if>
+            <if test="userName != null">
+                and user.user_name like concat('%', #{userName},'%')
+            </if>
+            <if test="schoolId != null">
+                and user.school_id=#{schoolId}
+            </if>
+
+        </where>
+    </select>
+
+    <select id="selectBySdsadminVo2" parameterType="SdsadminVo" resultMap="SdsadminVoResult">
+        select
+        user.login_name,
+        user.create_by,
+        user.create_time,
+        user.update_by,
+        user.update_time,
+        user.sex,
+        user.status,
+        sdsr.grades,
+        sdsr.department,
+        user.user_name AS user_name
+        from sys_user user, wy_sdsadmin_role sdsr
+        <where>
+            user.user_attr_id = sdsr.rid
+            <if test="loginName != null">
+                and login_name like concat('%', #{loginName},'%')
+            </if>
+            <if test="userName != null">
+                and user.user_name like concat('%', #{userName},'%')
+            </if>
+            <if test="rid != null">
+                and sdsr.rid=#{rid}
+            </if>
+        </where>
+    </select>
+    <select id="selectById" parameterType="Integer" resultMap="SdsadminVoResult">
+        select
+        user.login_name,
+        user.id,
+        user.create_by,
+        user.create_time,
+        user.update_by,
+        user.update_time,
+        user.sex,
+        user.status,
+        sds.grades,
+        sds.rid,
+        sds.department,
+        user.user_name AS user_name
+        from wy_sdsadmin sds, sys_user user
+        <where>
+            user.user_attr_id = sds.id
+            and sds.id=#{id}
+        </where>
+    </select>
+</mapper>

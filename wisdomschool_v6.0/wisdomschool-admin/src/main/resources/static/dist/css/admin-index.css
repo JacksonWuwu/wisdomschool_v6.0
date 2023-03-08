@@ -1,0 +1,27 @@
+.sysInfo .title {
+    width: 25%;
+}
+
+.sysInfo td {
+    font-size: 14px;
+    height: 40px;
+}
+
+.brand {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.brand .logo {
+    max-height: 100%;
+    width: 38px;
+    display: inline-block;
+}
+
+#grid-table, #grid-pager {
+    width: 100%;
+}
+
+.form-control-feedback {
+    right: 16px;
+}
